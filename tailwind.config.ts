@@ -28,10 +28,15 @@ const config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        primaryLight: "hsl(var(--primary-light))",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        themeGray: "hsl(var(--theme-gray))",
+        themeYellow: "hsl(var(--theme-yellow))",
+        themeOrange: "hsl(var(--theme-orange))",
+
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
