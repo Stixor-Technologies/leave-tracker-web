@@ -37,6 +37,8 @@ const config = {
         themeYellow: "hsl(var(--theme-yellow))",
         themeOrange: "hsl(var(--theme-orange))",
 
+        heading: "hsl(var(--heading-text))",
+
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
