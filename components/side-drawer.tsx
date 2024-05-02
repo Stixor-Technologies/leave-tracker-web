@@ -14,6 +14,7 @@ const SideDrawer = ({ title }: { title?: string }) => {
           <Image src={hamburger} className="cursor-pointer" alt="hamburger" />
         </SheetTrigger>
       </div>
+
       <SheetContent className="bg-themeGray m-0 w-[300px] p-0">
         <SideBar inSideDrawer={true} />
       </SheetContent>
