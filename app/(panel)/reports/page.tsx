@@ -1,6 +1,7 @@
 import React from "react";
+import { NextPage } from "next";
 
-const Reports = () => {
+const Reports: NextPage = () => {
   return <div>Reports</div>;
 };
 

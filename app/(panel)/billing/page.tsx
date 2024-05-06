@@ -1,6 +1,7 @@
 import React from "react";
+import { NextPage } from "next";
 
-const Billing = () => {
+const Billing: NextPage = () => {
   return <div>Billing</div>;
 };
 

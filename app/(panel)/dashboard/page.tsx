@@ -1,6 +1,7 @@
 import React from "react";
+import { NextPage } from "next";
 
-const Dashboard = () => {
+const Dashboard: NextPage = () => {
   return <div>Dashboard</div>;
 };
 

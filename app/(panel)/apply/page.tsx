@@ -1,6 +1,7 @@
 import React from "react";
+import { NextPage } from "next";
 
-const Apply = () => {
+const Apply: NextPage = () => {
   return <div>Apply</div>;
 };
 

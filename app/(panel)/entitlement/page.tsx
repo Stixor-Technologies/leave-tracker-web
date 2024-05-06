@@ -1,6 +1,7 @@
 import React from "react";
+import { NextPage } from "next";
 
-const Entitlement = () => {
+const Entitlement: NextPage = () => {
   return <div>Entitlement</div>;
 };
 

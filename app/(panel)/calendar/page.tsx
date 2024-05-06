@@ -1,6 +1,7 @@
 import React from "react";
+import { NextPage } from "next";
 
-const Calendar = () => {
+const Calendar: NextPage = () => {
   return <div>Calendar</div>;
 };
 

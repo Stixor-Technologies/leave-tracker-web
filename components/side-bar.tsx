@@ -96,7 +96,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
                 {inSideDrawer ? (
                   <SheetClose
                     onClick={() => handleOptionClick(index, route.href)}
-                    className={`flex cursor-pointer items-center gap-4 px-2 py-2 `}
+                    className={`flex cursor-pointer items-center gap-4 p-2 `}
                   >
                     <Image
                       src={
@@ -116,7 +116,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
                 ) : (
                   <div
                     onClick={() => handleOptionClick(index, route.href)}
-                    className={`flex cursor-pointer items-center gap-4 px-2 py-2 `}
+                    className={`flex cursor-pointer items-center gap-4 p-2 `}
                   >
                     <Image
                       src={
@@ -137,7 +137,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
               </div>
 
               {index === 3 && (
-                <hr className="my-4 me-3 ms-1 h-[1px] text-[#E5E9ED]" />
+                <hr className="my-4 me-3 ms-1 h-px text-[#E5E9ED]" />
               )}
             </>
           ))}
