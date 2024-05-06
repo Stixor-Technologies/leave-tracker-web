@@ -1,15 +1,16 @@
 import { Route } from "./app/types";
+import { ROUTES } from "./constants";
 
 export const routes: Route[] = [
   {
     name: "Apply",
-    href: "/panel/apply",
+    href: ROUTES.APPLY,
     icon: "/assets/images/sidebar/normal-icons/apply.svg",
     activeIcon: "/assets/images/sidebar/active-icons/apply.svg",
   },
   {
     name: "Calendar",
-    href: "/panel/calendar",
+    href: ROUTES.CALENDAR,
     icon: "/assets/images/sidebar/normal-icons/calendar.svg",
     activeIcon: "/assets/images/sidebar/active-icons/calendar.svg",
     // nestedRoutes: [
@@ -21,31 +22,31 @@ export const routes: Route[] = [
   },
   {
     name: "Requests",
-    href: "/panel/requests",
+    href: ROUTES.REQUESTS,
     icon: "/assets/images/sidebar/normal-icons/requests.svg",
     activeIcon: "/assets/images/sidebar/active-icons/requests.svg",
   },
   {
     name: "Entitlement",
-    href: "/panel/entitlement",
+    href: ROUTES.ENTITLEMENT,
     icon: "/assets/images/sidebar/normal-icons/entitlement.svg",
     activeIcon: "/assets/images/sidebar/active-icons/entitlement.svg",
   },
   {
     name: "Dashboard",
-    href: "/panel/dashboard",
+    href: ROUTES.DASHBOARD,
     icon: "/assets/images/sidebar/normal-icons/dashboard.svg",
     activeIcon: "/assets/images/sidebar/active-icons/dashboard.svg",
   },
   {
     name: "Reports",
-    href: "/panel/reports",
+    href: ROUTES.REPORTS,
     icon: "/assets/images/sidebar/normal-icons/reports.svg",
     activeIcon: "/assets/images/sidebar/active-icons/reports.svg",
   },
   {
     name: "Billing",
-    href: "/panel/billing",
+    href: ROUTES.BILLING,
     icon: "/assets/images/sidebar/normal-icons/billing.svg",
     activeIcon: "/assets/images/sidebar/active-icons/billing.svg",
   },
