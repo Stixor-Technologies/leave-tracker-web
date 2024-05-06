@@ -1,13 +1,3 @@
-// import { OptionsType } from "cookies-next/lib/types";
-
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-// export const cookieConfig: OptionsType = {
-//   path: "/",
-//   httpOnly: process.env.NODE_ENV === "development" ? true : false,
-//   maxAge: 24 * 60 * 60,
-// };
-
 export const ROUTES = {
   SIGN_UP: "/sign-up",
   SIGN_IN: "/sign-in",

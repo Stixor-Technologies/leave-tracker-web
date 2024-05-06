@@ -11,17 +11,6 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-white hover:bg-primary/90 font-medium text-sm ",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        appRed: `text-white bg-hsl-red hover:bg-hsl-light-red `,
-        appPurple: "text-white bg-hsl-purple hover:bg-hsl-dark-purple",
-        grayish: `text-white bg-hsl-dark-gray hover:bg-hsl-dark-purple`,
       },
       size: {
         default: "h-10 px-4 py-2",
