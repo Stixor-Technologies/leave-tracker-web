@@ -34,10 +34,15 @@ const config = {
           foreground: "hsl(var(--secondary-foreground))",
         },
         themeGray: "hsl(var(--theme-gray))",
+        themeLightGray: "hsl(var(--theme-light-gray))",
         themeYellow: "hsl(var(--theme-yellow))",
         themeOrange: "hsl(var(--theme-orange))",
 
         heading: "hsl(var(--heading-text))",
+        placeholder: "hsl(var(--placeholder-text))",
+
+        disabled: "hsl(var(--disabled))",
+        inputBorder: "hsl(var(--input-border))",
 
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

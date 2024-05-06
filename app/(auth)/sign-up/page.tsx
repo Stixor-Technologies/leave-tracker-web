@@ -4,18 +4,22 @@
 // import { toast } from "react-toastify";
 import { Form, Formik, FormikHelpers } from "formik";
 import { SignUpFormDetails, signUpFormDetails } from "@/formik/initial-values";
-import { addAdminValidationSchema } from "@/formik/validations";
+import { signUpValidationSchema } from "@/formik/validations";
 import { Button } from "@/components/ui/button";
 import { signUpForm } from "@/formik/forms";
+import { inter } from "@/app/fonts";
+import { FcGoogle } from "react-icons/fc";
+import { FaJira } from "react-icons/fa6";
+import { SiSlack } from "react-icons/si";
 import InputField from "@/components/formik/input-field";
-import React from "react";
+import React, { ReactNode } from "react";
 import FormPageTemplate from "@/components/ui/form-page-template";
 
 const SignUp = () => {
   //   const router = useRouter();
 
   const {
-    fields: { email, newPassword, confirmPassword },
+    fields: { email, password, confirmPassword },
   } = signUpForm;
 
   const onSubmitHandler = (
@@ -25,12 +29,22 @@ const SignUp = () => {
     console.log(values, formikHelpers);
   };
 
+  const socialLink = (icon: ReactNode, name: string) => {
+    return (
+      <div className="flex grow items-center justify-center gap-[8px] rounded-md border px-4 py-2">
+        {icon}
+        {/* <FcGoogle size={18} />{" "} */}
+        <span className="text-sm font-medium">{name}</span>
+      </div>
+    );
+  };
+
   return (
-    <FormPageTemplate>
+    <FormPageTemplate redirectTo="sign-in">
       <Formik
         onSubmit={onSubmitHandler}
         initialValues={signUpFormDetails}
-        validationSchema={addAdminValidationSchema}
+        validationSchema={signUpValidationSchema}
       >
         {({ handleSubmit, errors, touched }) => (
           <Form>
@@ -49,13 +63,14 @@ const SignUp = () => {
 
               <div>
                 <InputField
-                  name={newPassword.name}
-                  label={newPassword.label}
+                  name={password.name}
+                  label={password.label}
                   extraClasses="w-[70vw] sm:w-[480px] md:w-[550px] lg:w-[632px]"
-                  placeholder={newPassword.placeholder}
+                  placeholder={password.placeholder}
                   required={true}
-                  error={errors?.newPassword}
-                  touched={touched?.newPassword}
+                  error={errors?.password}
+                  touched={touched?.password}
+                  isPassword={true}
                 />
               </div>
 
@@ -68,11 +83,12 @@ const SignUp = () => {
                   required={true}
                   error={errors?.confirmPassword}
                   touched={touched?.confirmPassword}
+                  isPassword={true}
                 />
               </div>
             </div>
 
-            <div className="mt-9">
+            <div className="pb-[30px] pt-[34px]">
               <Button
                 // disabled={isLoading}
                 className="w-[100%] sm:w-[15rem]"
@@ -82,21 +98,32 @@ const SignUp = () => {
                 Sign Up
               </Button>
             </div>
+
+            <div className="flex flex-col gap-6">
+              <div className="mb-4 flex items-center">
+                <span
+                  className={`text-themeLightGray text-sm font-normal ${inter.className}`}
+                >
+                  Or signup with
+                </span>
+                <div className="bg-themeLightGray ml-1 h-[1px] flex-grow"></div>
+              </div>
+
+              <div className="flex flex-wrap gap-[10px]">
+                {socialLink(<FcGoogle size={18} />, "Google")}
+
+                {socialLink(<SiSlack size={18} />, "Slack")}
+
+                {socialLink(
+                  <FaJira size={18} className="text-[#2584FF]" />,
+                  "Jira",
+                )}
+              </div>
+            </div>
           </Form>
         )}
       </Formik>
     </FormPageTemplate>
-    // <div className="relative flex h-screen w-screen items-center justify-center ">
-    //   <Image
-    //     src={logo}
-    //     alt="logo"
-    //     className="logo absolute left-5 top-[18px]"
-    //   />
-
-    //   <div className="rounded-[24px] border bg-white px-7 py-6 md:px-11 md:py-9">
-
-    //   </div>
-    // </div>
   );
 };
 

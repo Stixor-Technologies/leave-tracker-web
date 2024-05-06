@@ -21,10 +21,15 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --theme-gray: 0, 0%, 97%, 1;
+    --theme-light-gray: 0, 0%, 73%, 1;
     --theme-yellow: 48, 100%, 55%, 1;
     --theme-orange: 14, 82%, 53%, 1;
 
     --heading-text: 212, 13%, 29%, 1;
+    --placeholder-text: 0, 0%, 25%, 1;
+
+    --disabled: 210, 40%, 96%, 1;
+    --input-border: 213, 27%, 84%, 1;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
