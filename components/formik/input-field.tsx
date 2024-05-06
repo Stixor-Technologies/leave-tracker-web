@@ -62,9 +62,9 @@ const InputField: FC<InputFieldProps> = (props) => {
             className="absolute inset-y-0 right-0 flex items-center pr-3"
           >
             {showPassword ? (
-              <LuEyeOff className="text-themeLightGray h-6 w-6" />
+              <LuEyeOff className="h-6 w-6 text-themeLightGray" />
             ) : (
-              <LuEye className="text-themeLightGray h-6 w-6" />
+              <LuEye className="h-6 w-6 text-themeLightGray" />
             )}
           </button>
         )}

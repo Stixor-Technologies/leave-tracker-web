@@ -1,7 +1,5 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
-// import { toast } from "react-toastify";
 import { Form, Formik, FormikHelpers } from "formik";
 import { SignUpFormDetails, signUpFormDetails } from "@/formik/initial-values";
 import { signUpValidationSchema } from "@/formik/validations";
@@ -16,8 +14,6 @@ import React, { ReactNode } from "react";
 import FormPageTemplate from "@/components/ui/form-page-template";
 
 const SignUp = () => {
-  //   const router = useRouter();
-
   const {
     fields: { email, password, confirmPassword },
   } = signUpForm;
@@ -102,11 +98,11 @@ const SignUp = () => {
             <div className="flex flex-col gap-6">
               <div className="mb-4 flex items-center">
                 <span
-                  className={`text-themeLightGray text-sm font-normal ${inter.className}`}
+                  className={`text-sm font-normal text-themeLightGray ${inter.className}`}
                 >
                   Or signup with
                 </span>
-                <div className="bg-themeLightGray ml-1 h-[1px] flex-grow"></div>
+                <div className="ml-1 h-[1px] flex-grow bg-themeLightGray"></div>
               </div>
 
               <div className="flex flex-wrap gap-[10px]">

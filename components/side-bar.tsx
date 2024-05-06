@@ -66,7 +66,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
       <div
         className={`${!inSideDrawer && "hidden"} ${
           !inSideDrawer && "lg:block"
-        } bg-themeGray h-full lg:min-h-screen  ${
+        } h-full bg-themeGray lg:min-h-screen  ${
           !inSideDrawer && "md:w-[239px] md:min-w-[239px]"
         } ${!inSideDrawer && "lg:w-[239px] lg:min-w-[239px]"}`}
       >

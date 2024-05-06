@@ -15,7 +15,7 @@ const SideDrawer = ({ title }: { title?: string }) => {
         </SheetTrigger>
       </div>
 
-      <SheetContent className="bg-themeGray m-0 w-[300px] p-0">
+      <SheetContent className="m-0 w-[300px] bg-themeGray p-0">
         <SideBar inSideDrawer={true} />
       </SheetContent>
     </Sheet>

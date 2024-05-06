@@ -1,5 +1,4 @@
 import "../globals.css";
-// import "react-toastify/dist/ReactToastify.css";
 import SideBar from "@/components/side-bar";
 
 export default function RootLayout({
