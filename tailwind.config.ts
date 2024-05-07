@@ -34,6 +34,9 @@ const config = {
           foreground: "hsl(var(--secondary-foreground))",
         },
 
+        white: "hsl(var(--white))",
+        black: "hsl(var(--black))",
+
         themeGray: "hsl(var(--theme-gray))",
         themeLightGray: "hsl(var(--theme-light-gray))",
         themeYellow: "hsl(var(--theme-yellow))",
