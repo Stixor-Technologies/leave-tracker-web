@@ -92,11 +92,11 @@ const SignUp: NextPage = () => {
             <div className="flex flex-col gap-6">
               <div className="mb-4 flex items-center">
                 <span
-                  className={`text-themeLightGray text-sm font-normal ${inter.className}`}
+                  className={`text-sm text-themeLightGray ${inter.className}`}
                 >
                   Or signup with
                 </span>
-                <div className="bg-themeLightGray ml-1 h-px grow"></div>
+                <div className="ml-1 h-px grow bg-themeLightGray"></div>
               </div>
 
               <div className="flex flex-wrap gap-[0.625rem]">

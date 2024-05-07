@@ -37,7 +37,7 @@ const InputField: FC<InputFieldProps> = (props) => {
     <div className="flex flex-col">
       <label
         htmlFor={name}
-        className={`${disabled && "text-disabled"} mb-1.5 text-sm font-normal md:text-base`}
+        className={`${disabled && "text-disabled"} mb-1.5 text-sm md:text-base`}
       >
         {label}
         {required && <span className="ps-0.5 text-red-500">*</span>}
@@ -62,9 +62,9 @@ const InputField: FC<InputFieldProps> = (props) => {
             className="absolute inset-y-0 right-0 flex items-center pr-3"
           >
             {showPassword ? (
-              <LuEyeOff className="text-themeLightGray h-6 w-6" />
+              <LuEyeOff className="h-6 w-6 text-themeLightGray" />
             ) : (
-              <LuEye className="text-themeLightGray h-6 w-6" />
+              <LuEye className="h-6 w-6 text-themeLightGray" />
             )}
           </button>
         )}

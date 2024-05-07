@@ -16,21 +16,25 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
 }) => {
   return (
     <div className="relative flex min-h-screen w-screen flex-col items-center justify-center bg-themeGray">
-      <Image src={logo} alt="logo" className="absolute left-5 top-[18px] z-0" />
+      <Image
+        src={logo}
+        alt="logo"
+        className="absolute left-5 top-[1.125rem] z-0"
+      />
 
       <Image
         src={backgroundLogo}
         alt="Background Logo"
-        className="absolute bottom-0 left-5 z-0 w-[280px] md:w-auto"
+        className="absolute bottom-0 left-5 z-0 w-[17.5rem] md:w-auto"
       />
 
       {redirectTo === "" ? (
-        <div className="z-10 mt-[4rem] rounded-2xl border bg-white px-7 py-6 md:rounded-[24px] md:px-11 md:py-9">
+        <div className="z-10 mt-[4rem] rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:py-9">
           {children}
         </div>
       ) : (
         <div className="mt-[4rem] flex flex-col items-center sm:items-end">
-          <div className="z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[24px] md:px-11 md:py-9">
+          <div className="z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:py-9">
             {children}
           </div>
           <div className="pt-6 text-sm text-[#BBBBBB]">
