@@ -25,13 +25,9 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
       )}
 
       <div
-        className={`${!inSideDrawer && "hidden"} ${
-          !inSideDrawer && "lg:block"
-        } h-full bg-themeGray lg:min-h-screen  ${
-          !inSideDrawer && "md:w-[15rem] md:min-w-[15rem]"
-        } ${!inSideDrawer && "lg:w-[15rem] lg:min-w-[15rem]"}`}
+        className={`${!inSideDrawer && "hidden lg:block"} h-full bg-themeGray md:w-[15rem] md:min-w-[15rem] lg:min-h-screen`}
       >
-        <div className="pb-[2.065rem]  ps-5 pt-5">
+        <div className="pb-[2.065rem] ps-5 pt-5">
           <Link href={ROUTES.DASHBOARD}>
             <Image
               priority
@@ -73,9 +69,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
                 )}
               </div>
 
-              {index === 3 && (
-                <hr className="my-4 me-3 ms-1 h-px text-seperator" />
-              )}
+              {index === 3 && <hr className="my-4 me-3 ms-1 h-px" />}
             </>
           ))}
         </div>
