@@ -1,17 +1,17 @@
 import * as Yup from "yup";
 
-import { signUpForm } from "../forms";
+import { signUpForm } from "../form-details";
 
 const {
-  fields: { email: signUpEmail, password, confirmPassword },
+  fields: { email: signUpEmail, password },
 } = signUpForm;
 
 export const signUpValidationSchema = Yup.object().shape({
-  [signUpEmail.name]: Yup.string()
+  email: Yup.string()
     .email("Invalid email address")
     .required(`${signUpEmail.label} is required`),
 
-  [password.name]: Yup.string()
+  password: Yup.string()
     .min(8, "Password must be at least 8 characters long")
     .max(32, "Password must be at most 32 characters long")
     .matches(
@@ -20,7 +20,7 @@ export const signUpValidationSchema = Yup.object().shape({
     )
     .required("Password is required"),
 
-  [confirmPassword.name]: Yup.string()
+  confirmPassword: Yup.string()
     .oneOf([Yup.ref(password.name)], "Passwords must match")
     .required("Please confirm your password"),
 });

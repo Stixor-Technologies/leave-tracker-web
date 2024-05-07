@@ -9,14 +9,14 @@ export const signUpForm = {
       errMsg: "Email is required",
     },
     password: {
-      type: "string",
+      type: "password",
       name: "password",
       label: "New Password",
       placeholder: "new password",
       errMsg: "Password is required.",
     },
     confirmPassword: {
-      type: "string",
+      type: "password",
       name: "confirmPassword",
       label: "Confirm Password",
       placeholder: "confirm password",

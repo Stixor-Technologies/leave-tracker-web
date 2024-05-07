@@ -11,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-white hover:bg-primary/90 font-medium text-sm ",
+        transparent: "",
       },
       size: {
         default: "h-10 px-4 py-2",

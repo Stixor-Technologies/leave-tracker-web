@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Field } from "formik";
-import { LuEye, LuEyeOff } from "react-icons/lu";
+import { Eye, EyeOff } from "lucide-react";
 
 interface InputFieldProps {
   name: string;
@@ -62,9 +62,9 @@ const InputField: FC<InputFieldProps> = (props) => {
             className="absolute inset-y-0 right-0 flex items-center pr-3"
           >
             {showPassword ? (
-              <LuEyeOff className="h-6 w-6 text-themeLightGray" />
+              <EyeOff className="h-6 w-6 text-themeLightGray" />
             ) : (
-              <LuEye className="h-6 w-6 text-themeLightGray" />
+              <Eye className="h-6 w-6 text-themeLightGray" />
             )}
           </button>
         )}

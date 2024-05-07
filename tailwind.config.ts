@@ -33,6 +33,7 @@ const config = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+
         themeGray: "hsl(var(--theme-gray))",
         themeLightGray: "hsl(var(--theme-light-gray))",
         themeYellow: "hsl(var(--theme-yellow))",
@@ -43,6 +44,8 @@ const config = {
 
         disabled: "hsl(var(--disabled))",
         inputBorder: "hsl(var(--input-border))",
+
+        seperator: "hsl(var(--seperator))",
 
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

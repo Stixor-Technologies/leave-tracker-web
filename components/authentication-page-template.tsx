@@ -37,7 +37,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
           <div className="z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:py-9">
             {children}
           </div>
-          <div className="pt-6 text-sm text-[#BBBBBB]">
+          <div className="pt-6 text-sm text-themeLightGray">
             {redirectTo !== "sign-up" ? (
               <>
                 Already have an account?{" "}
