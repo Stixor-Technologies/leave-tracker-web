@@ -74,7 +74,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
               </div>
 
               {index === 3 && (
-                <hr className="text-seperator my-4 me-3 ms-1 h-px" />
+                <hr className="my-4 me-3 ms-1 h-px text-seperator" />
               )}
             </>
           ))}
