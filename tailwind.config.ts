@@ -28,10 +28,28 @@ const config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        primaryLight: "hsl(var(--primary-light))",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+
+        white: "hsl(var(--white))",
+        black: "hsl(var(--black))",
+
+        themeGray: "hsl(var(--theme-gray))",
+        themeLightGray: "hsl(var(--theme-light-gray))",
+        themeYellow: "hsl(var(--theme-yellow))",
+        themeOrange: "hsl(var(--theme-orange))",
+
+        heading: "hsl(var(--heading-text))",
+        placeholder: "hsl(var(--placeholder-text))",
+
+        disabled: "hsl(var(--disabled))",
+        inputBorder: "hsl(var(--input-border))",
+
+        seperator: "hsl(var(--seperator))",
+
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
