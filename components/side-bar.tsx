@@ -7,7 +7,7 @@ import { FC } from "react";
 import { usePathname } from "next/navigation";
 import { routes } from "@/routes";
 import { SheetClose } from "./ui/sheet";
-import { ROUTES } from "@/constants";
+import { ROUTES } from "@/utils/constants";
 
 interface SideBarProps {
   inSideDrawer?: boolean;

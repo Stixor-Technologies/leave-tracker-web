@@ -1,4 +1,4 @@
-import { AUTH_BASE_URL } from "@/constants";
+import { AUTH_BASE_URL } from "@/utils/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getCookie } from "cookies-next";
 
