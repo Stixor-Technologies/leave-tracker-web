@@ -3,7 +3,7 @@ import Image from "next/image";
 import logo from "@/public/assets/images/logo.svg";
 import backgroundLogo from "@/public/assets/images/background-logo.svg";
 import Link from "next/link";
-import { ROUTES } from "@/constants";
+import { ROUTES } from "@/utils/constants";
 
 interface AuthenticationPageTemplateProps {
   children: ReactNode;
