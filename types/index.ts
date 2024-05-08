@@ -1,6 +1,6 @@
 export interface UserState {
   user?: {
-    id?: number;
+    id?: string;
     email?: string;
   };
 }

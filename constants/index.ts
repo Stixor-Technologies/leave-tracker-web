@@ -22,4 +22,4 @@ export const PROTECTED_ROUTES = [
 
 export const AUTH_ROUTES = [ROUTES.SIGN_UP, ROUTES.SIGN_IN];
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+export const AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
