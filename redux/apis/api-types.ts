@@ -5,9 +5,26 @@ export interface SignUpRequest {
   //   local:boolean;
 }
 
-export interface SignUpResponse {
-  message: string;
+export interface SignUpSuccessResponse {
   data: {
-    isOrg: boolean;
+    message: string;
+    data: {
+      isOrg: boolean;
+    };
+  };
+}
+export interface ErrorResponse {
+  error: {
+    data: {
+      message: string;
+      name: string;
+      status: number;
+      response: {
+        error: string;
+        message: string;
+        statusCode: number;
+      };
+    };
+    status: number;
   };
 }
