@@ -21,19 +21,32 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import { useSignInMutation } from "@/redux/apis/auth-api";
+import { toast } from "sonner";
 
 const SignIn: NextPage = () => {
   const {
     fields: { email, password },
   } = signInForm;
 
+  const [signIn, { isLoading }] = useSignInMutation();
+
   const form = useForm({
     resolver: yupResolver(signInValidationSchema),
     defaultValues: signInDefaultValues,
   });
 
-  const onSubmit = (values: SignInFormDetails) => {
-    console.log(values);
+  console.log(isLoading);
+
+  const onSubmit = async (formValues: SignInFormDetails) => {
+    try {
+      const { data } = await signIn(formValues).unwrap();
+      toast.success("Login successfull");
+      console.log("res", data);
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message);
+    }
   };
 
   const socialLink = (icon: ReactNode, name: string) => {
@@ -110,6 +123,16 @@ const SignIn: NextPage = () => {
             className="mb-[1.9rem] mt-[0.625rem] w-full sm:w-[15rem]"
             variant="default"
             type="submit"
+            isLoading={isLoading}
+            // onClick={() =>
+            //   toast("Event has been created", {
+            //     description: "Sunday, December 03, 2023 at 9:00 AM",
+            //     action: {
+            //       label: "Undo",
+            //       onClick: () => console.log("Undo"),
+            //     },
+            //   })
+            // }
           >
             Login
           </Button>

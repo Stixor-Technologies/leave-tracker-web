@@ -19,7 +19,18 @@ export const authApi = createApi({
   tagTypes: [],
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    signIn: builder.mutation<
+      { message: string },
+      { email: string; password: string }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/auth/sign-in",
+        body: body,
+      }),
+    }),
+  }),
 });
 
-export const {} = authApi;
+export const { useSignInMutation } = authApi;
