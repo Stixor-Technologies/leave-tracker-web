@@ -1,4 +1,4 @@
-import { Route } from "./app/types";
+import { Route } from "./types";
 import { ROUTES } from "./utils/constants";
 import {
   PenLine,

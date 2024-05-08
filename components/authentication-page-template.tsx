@@ -14,8 +14,11 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
   children,
   redirectTo = "",
 }) => {
+  const generalClasses =
+    "z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[45rem]";
+
   return (
-    <div className="relative flex min-h-screen w-screen flex-col items-center justify-center bg-themeGray">
+    <div className="bg-lightGray relative flex min-h-screen w-screen flex-col items-center justify-center">
       <Image
         src={logo}
         alt="logo"
@@ -29,18 +32,18 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
       />
 
       {redirectTo === "" ? (
-        <div className="z-10 mt-[4rem] rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:py-9">
-          {children}
-        </div>
+        <div className={`mt-[5rem] ${generalClasses}`}>{children}</div>
       ) : (
-        <div className="mt-[4rem] flex flex-col items-center sm:items-end">
-          <div className="z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:py-9">
-            {children}
-          </div>
-          <div className="pt-6 text-sm text-themeLightGray">
+        <div className="mt-[5rem] flex flex-col items-center sm:items-end">
+          <div className={`${generalClasses}`}>{children}</div>
+
+          <div className="pt-3 text-sm sm:pt-6">
             {redirectTo !== "sign-up" ? (
               <>
-                Already have an account?{" "}
+                <span className="text-textColor opacity-50">
+                  Already have an account?{" "}
+                </span>
+
                 <Link
                   href={ROUTES.SIGN_IN}
                   className="text-lg font-bold text-primary"
@@ -50,7 +53,10 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
               </>
             ) : (
               <>
-                Don&apos;t have an account yet?{" "}
+                <span className="text-textColor opacity-50">
+                  Don&apos;t have an account yet?{" "}
+                </span>
+
                 <Link
                   href={ROUTES.SIGN_UP}
                   className="text-lg font-bold text-primary"

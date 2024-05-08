@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { signUpForm } from "@/utils/forms/form-details";
 import { NextPage } from "next";
 import React, { ReactNode } from "react";
-import FormPageTemplate from "@/components/authentication-page-template";
+import AuthenticationPageTemplate from "@/components/authentication-page-template";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -48,11 +48,11 @@ const SignUp: NextPage = () => {
   };
 
   return (
-    <FormPageTemplate redirectTo="sign-in">
+    <AuthenticationPageTemplate redirectTo="sign-in">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-6"
+          className="flex flex-col flex-wrap gap-6"
         >
           <FormField
             control={form.control}
@@ -119,8 +119,9 @@ const SignUp: NextPage = () => {
 
           <Button
             // disabled={isLoading}
-            className="mb-[1.9rem] mt-[0.625rem] w-full sm:w-[15rem]"
-            variant="default"
+            className="mb-[1.875rem] mt-[0.625rem] "
+            variant="primary"
+            size={"medium"}
             type="submit"
           >
             Sign Up
@@ -129,9 +130,11 @@ const SignUp: NextPage = () => {
       </Form>
 
       <div className="flex flex-col gap-6">
-        <div className="mb-4 flex items-center">
-          <span className={`text-sm text-themeLightGray`}>Or signup with</span>
-          <div className="ml-1 h-px grow bg-themeLightGray"></div>
+        <div className="flex items-center">
+          <span className={`text-textColor text-sm opacity-50`}>
+            Or signup with
+          </span>
+          <div className="bg-textColor ml-1 h-px grow opacity-50"></div>
         </div>
 
         <div className="flex flex-wrap gap-[0.625rem]">
@@ -166,7 +169,7 @@ const SignUp: NextPage = () => {
           )}
         </div>
       </div>
-    </FormPageTemplate>
+    </AuthenticationPageTemplate>
   );
 };
 
