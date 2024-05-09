@@ -9,12 +9,14 @@ interface AuthenticationPageTemplateProps {
   children: ReactNode;
   redirectTo?: string;
   className?: string;
+  needGeneralStyles?: boolean;
 }
 
 const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
   children,
   redirectTo = "",
   className = "",
+  needGeneralStyles = true,
 }) => {
   const generalClasses =
     "z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[45rem]";
@@ -37,7 +39,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
 
       {redirectTo === "" ? (
         <div
-          className={`${window.innerHeight <= 750 && "mt-[5rem]"} ${generalClasses} ${className}`}
+          className={`${window.innerHeight <= 750 && "mt-[5rem]"} ${needGeneralStyles && generalClasses} ${className}`}
         >
           {children}
         </div>
@@ -45,7 +47,11 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
         <div
           className={`${window.innerHeight <= 750 && "mt-[5rem]"} flex flex-col items-center sm:items-end`}
         >
-          <div className={`${generalClasses} ${className}`}>{children}</div>
+          <div
+            className={`${needGeneralStyles && generalClasses} ${className}`}
+          >
+            {children}
+          </div>
 
           <div className="pt-3 text-sm sm:pt-6">
             {redirectTo !== "sign-up" ? (
