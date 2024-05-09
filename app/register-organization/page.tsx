@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import { signUpValidationSchema } from "@/utils/forms/validations";
 import { Button } from "@/components/ui/button";
-import { signUpForm } from "@/utils/forms/form-details";
 import { NextPage } from "next";
-import React, { ReactNode } from "react";
+import React from "react";
 import FormPageTemplate from "@/components/authentication-page-template";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,36 +13,97 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+  CommandList,
+} from "@/components/ui/command";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+import { Check, ChevronsUpDown } from "lucide-react";
+import {
+  Calculator,
+  Calendar,
+  CreditCard,
+  Settings,
+  Smile,
+  User,
+  ChevronDown,
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { orgSizeOptions, countries } from "@/constants";
 
 export interface OrganizatonFormDetail {
-  name: string;
+  organizationName: string;
   organizationSize: string;
   country: string;
   timeZone: string;
 }
 
-export const signUpValidationSchema = Yup.object().shape({
-  name: Yup.string()
-    .email("Organization name is required address")
-    .required(`${signUpEmail.label} is required`),
-
+export const organizationSchema = Yup.object().shape({
+  organizationName: Yup.string().required(`Organization name is required`),
   organizationSize: Yup.string().required("Organization Size is required"),
-
-  country: Yup.string(),
+  country: Yup.string().required("Organization Size is required"),
+  timeZone: Yup.string().required("Organization Size is required"),
 });
 
 const SignUp: NextPage = () => {
-  const {
-    fields: { email, password, confirmPassword },
-  } = signUpForm;
+  // const {
+  //   fields: { email, password, confirmPassword },
+  // } = signUpForm;
+
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+
+  const frameworks = [
+    {
+      value: "next.js",
+      label: "Next.js",
+    },
+    {
+      value: "sveltekit",
+      label: "SvelteKit",
+    },
+    {
+      value: "nuxt.js",
+      label: "Nuxt.js",
+    },
+    {
+      value: "remix",
+      label: "Remix",
+    },
+    {
+      value: "astro",
+      label: "Astro",
+    },
+  ];
 
   const form = useForm({
-    resolver: yupResolver(signUpValidationSchema),
+    resolver: yupResolver(organizationSchema),
     defaultValues: {
-      name: "",
+      organizationName: "",
       organizationSize: "",
       country: "",
       timeZone: "",
@@ -56,20 +114,19 @@ const SignUp: NextPage = () => {
     console.log(values);
   };
 
-  const socialLink = (icon: ReactNode, name: string) => {
-    return (
-      <Button
-        className="flex grow items-center justify-center gap-[0.5rem] rounded-md border px-4 py-2"
-        variant={"transparent"}
-      >
-        {icon}
-        <span className="text-sm font-medium">{name}</span>
-      </Button>
-    );
+  const handelClick = () => {
+    console.log("clicked");
   };
 
   return (
-    <FormPageTemplate redirectTo="sign-in">
+    <FormPageTemplate>
+      <Button
+        className="mb-[1.9rem] mt-[0.625rem] w-full sm:w-[15rem]"
+        variant="default"
+        onClick={handelClick}
+      >
+        Create Organization
+      </Button>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -77,17 +134,17 @@ const SignUp: NextPage = () => {
         >
           <FormField
             control={form.control}
-            name={"email"}
+            name={"organizationName"}
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor={email.name} required={true}>
-                  {email.label}
+                <Label htmlFor={"organizationName"} required={true}>
+                  Name
                 </Label>
 
                 <FormControl>
                   <Input
-                    placeholder={email.placeholder}
-                    type={email.type}
+                    placeholder={"Organization Name"}
+                    // type={}
                     {...field}
                   />
                 </FormControl>
@@ -98,20 +155,33 @@ const SignUp: NextPage = () => {
 
           <FormField
             control={form.control}
-            name={"password"}
+            name="organizationSize"
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor={password.name} required={true}>
-                  {password.label}
+                <Label htmlFor={"organizationName"} required={true}>
+                  Organization Size
                 </Label>
 
-                <FormControl>
-                  <Input
-                    placeholder={password.placeholder}
-                    type={password.type}
-                    {...field}
-                  />
-                </FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue
+                        className=" !text-red-700"
+                        placeholder="Select"
+                      />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {orgSizeOptions?.map((orgSizes, index) => (
+                      <SelectItem key={index} value={orgSizes?.value}>
+                        {orgSizes?.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
@@ -119,74 +189,171 @@ const SignUp: NextPage = () => {
 
           <FormField
             control={form.control}
-            name={"confirmPassword"}
+            name="country"
             render={({ field }) => (
-              <FormItem>
-                <Label htmlFor={confirmPassword.name} required={true}>
-                  {confirmPassword.label}
+              <FormItem className="flex flex-col">
+                <Label htmlFor={"country"} required={true}>
+                  Country
                 </Label>
 
-                <FormControl>
-                  <Input
-                    placeholder={confirmPassword.placeholder}
-                    type={confirmPassword.type}
-                    {...field}
-                  />
-                </FormControl>
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button role="combobox" aria-expanded={open}>
+                      {value
+                        ? countries?.find((country) => country?.value === value)
+                            ?.label
+                        : "Select framework..."}
+                      <ChevronDown className="h-4 w-4 text-placeholder" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="!w-full p-0"
+                    // side="left"
+                    // align="start"
+                  >
+                    <Command>
+                      <CommandInput placeholder="Search framework..." />
+                      <CommandEmpty>No framework found.</CommandEmpty>
+                      <CommandGroup>
+                        <CommandList>
+                          {countries?.map((country) => (
+                            <CommandItem
+                              key={country?.value}
+                              value={country?.value}
+                              onSelect={(currentValue) => {
+                                setValue(
+                                  currentValue === value ? "" : currentValue,
+                                );
+                                setOpen(false);
+                              }}
+                            >
+                              <Check
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  value === country?.value
+                                    ? "opacity-100"
+                                    : "opacity-0",
+                                )}
+                              />
+                              {country?.label}
+                            </CommandItem>
+                          ))}
+                        </CommandList>
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+
                 <FormMessage />
               </FormItem>
             )}
           />
+
+          {/* <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                role="combobox"
+                aria-expanded={open}
+                className="w-[200px] justify-between"
+              >
+                {value
+                  ? frameworks.find((framework) => framework.value === value)
+                      ?.label
+                  : "Select framework..."}
+                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[200px] p-0">
+              <Command>
+                <CommandInput placeholder="Search framework..." />
+                <CommandEmpty>No framework found.</CommandEmpty>
+                <CommandGroup>
+                  <CommandList>
+                    {frameworks.map((framework) => (
+                      <CommandItem
+                        key={framework.value}
+                        value={framework.value}
+                        onSelect={(currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue);
+                          setOpen(false);
+                        }}
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            value === framework.value
+                              ? "opacity-100"
+                              : "opacity-0",
+                          )}
+                        />
+                        {framework.label}
+                      </CommandItem>
+                    ))}
+                  </CommandList>
+                </CommandGroup>
+              </Command>
+            </PopoverContent>
+          </Popover> */}
+
+          {/* <Popover>
+            <PopoverTrigger asChild>
+              <Button>Open popover</Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium leading-none">Dimensions</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Set the dimensions for the layer.
+                  </p>
+                </div>
+                <div className="grid gap-2">
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="width">Width</Label>
+                    <Input
+                      id="width"
+                      defaultValue="100%"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="maxWidth">Max. width</Label>
+                    <Input
+                      id="maxWidth"
+                      defaultValue="300px"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="height">Height</Label>
+                    <Input
+                      id="height"
+                      defaultValue="25px"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="maxHeight">Max. height</Label>
+                    <Input
+                      id="maxHeight"
+                      defaultValue="none"
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover> */}
 
           <Button
-            // disabled={isLoading}
             className="mb-[1.9rem] mt-[0.625rem] w-full sm:w-[15rem]"
             variant="default"
             type="submit"
           >
-            Sign Up
+            Create Organization
           </Button>
         </form>
       </Form>
-
-      <div className="flex flex-col gap-6">
-        <div className="mb-4 flex items-center">
-          <span className={`text-sm text-themeLightGray`}>Or signup with</span>
-          <div className="ml-1 h-px grow bg-themeLightGray"></div>
-        </div>
-
-        <div className="flex flex-wrap gap-[0.625rem]">
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/google-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Google",
-          )}
-
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/slack-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Slack",
-          )}
-
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/jira-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Jira",
-          )}
-        </div>
-      </div>
     </FormPageTemplate>
   );
 };
