@@ -25,13 +25,11 @@ import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/constants";
 
 const SignUp: NextPage = () => {
+  const [signUp, { isLoading }] = useSignUpMutation();
+  const router = useRouter();
   const {
     fields: { email, password, confirmPassword },
   } = signUpForm;
-
-  const [signUp, { isLoading }] = useSignUpMutation();
-
-  const router = useRouter();
 
   const form = useForm({
     resolver: yupResolver(signUpValidationSchema),
@@ -39,13 +37,17 @@ const SignUp: NextPage = () => {
   });
 
   const onSubmit = async (values: SignUpFormDetails) => {
-    const result = await signUp(values);
-    if (result?.error) {
-      alert(result?.error?.data?.message);
-    } else {
-      alert(result?.data?.message);
-
-      router.push(ROUTES.VERIFICATION);
+    try {
+      await signUp(values).unwrap();
+      alert("User Registered Successfully");
+      // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
+      // toast.success("User Registered Successfully");
+      setTimeout(() => router.push(ROUTES.VERIFICATION), 500);
+    } catch (error: any) {
+      console.log(error);
+      alert(error?.data?.message);
+      // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
+      // toast.error(error?.data?.message);
     }
   };
 

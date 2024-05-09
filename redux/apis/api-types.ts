@@ -14,17 +14,15 @@ export interface SignUpSuccessResponse {
   };
 }
 export interface ErrorResponse {
-  error: {
-    data: {
-      message: string;
-      name: string;
-      status: number;
-      response: {
-        error: string;
-        message: string;
-        statusCode: number;
-      };
-    };
+  data: {
+    message: string;
+    name: string;
     status: number;
+    response: {
+      error: string;
+      message: string;
+      statusCode: number;
+    };
   };
+  status: number;
 }

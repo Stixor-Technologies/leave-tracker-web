@@ -1,24 +1,28 @@
-import React, { ReactNode } from "react";
 import Image from "next/image";
 import logo from "@/public/assets/images/logo.svg";
 import backgroundLogo from "@/public/assets/images/background-logo.svg";
 import Link from "next/link";
+import React, { ReactNode } from "react";
 import { ROUTES } from "@/utils/constants";
 
 interface AuthenticationPageTemplateProps {
   children: ReactNode;
   redirectTo?: string;
+  className?: string;
 }
 
 const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
   children,
   redirectTo = "",
+  className = "",
 }) => {
   const generalClasses =
     "z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[45rem]";
 
   return (
-    <div className="bg-lightGray relative flex min-h-screen w-screen flex-col items-center justify-center">
+    <div
+      className={`relative flex min-h-screen w-screen flex-col items-center justify-center bg-lightGray`}
+    >
       <Image
         src={logo}
         alt="logo"
@@ -32,10 +36,16 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
       />
 
       {redirectTo === "" ? (
-        <div className={`mt-[5rem] ${generalClasses}`}>{children}</div>
+        <div
+          className={`${window.innerHeight <= 750 && "mt-[5rem]"} ${generalClasses} ${className}`}
+        >
+          {children}
+        </div>
       ) : (
-        <div className="mt-[5rem] flex flex-col items-center sm:items-end">
-          <div className={`${generalClasses}`}>{children}</div>
+        <div
+          className={`${window.innerHeight <= 750 && "mt-[5rem]"} flex flex-col items-center sm:items-end`}
+        >
+          <div className={`${generalClasses} ${className}`}>{children}</div>
 
           <div className="pt-3 text-sm sm:pt-6">
             {redirectTo !== "sign-up" ? (
