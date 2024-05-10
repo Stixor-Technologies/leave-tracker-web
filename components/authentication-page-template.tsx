@@ -39,14 +39,14 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
 
       {redirectTo === "" ? (
         <div
-          className={`mt-[5rem] ${needGeneralStyles && generalClasses} ${className}`}
+          className={`mt-[5rem] ${needGeneralStyles ? generalClasses : "z-10"} ${className}`}
         >
           {children}
         </div>
       ) : (
         <div className={`mt-[5rem] flex flex-col items-center sm:items-end`}>
           <div
-            className={`${needGeneralStyles && generalClasses} ${className}`}
+            className={`${needGeneralStyles ? generalClasses : "z-10"} ${className}`}
           >
             {children}
           </div>
