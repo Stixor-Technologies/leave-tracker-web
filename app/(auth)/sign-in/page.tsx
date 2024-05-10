@@ -43,8 +43,6 @@ const SignIn: NextPage = () => {
     defaultValues: signInDefaultValues,
   });
 
-  console.log(isLoading);
-
   const onSubmit = async (formValues: SignInFormDetails) => {
     try {
       const res = await signIn(formValues).unwrap();
