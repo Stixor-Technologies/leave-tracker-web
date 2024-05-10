@@ -60,6 +60,7 @@ const SignIn: NextPage = () => {
         }
       }
     } catch (err: any) {
+      console.log(err);
       toast.error(err?.data?.message);
     }
   };
