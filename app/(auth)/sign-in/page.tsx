@@ -117,9 +117,10 @@ const SignIn: NextPage = () => {
           </div>
 
           <Button
-            className="mb-[1.9rem] mt-[0.625rem] w-full sm:w-[15rem]"
+            className="mb-[1.9rem] mt-[0.625rem]"
             variant="primary"
             type="submit"
+            size={"medium"}
             loading={isLoading}
             disabled={isLoading}
           >

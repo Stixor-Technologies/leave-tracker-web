@@ -19,6 +19,7 @@ import { RootState } from "@/types";
 import { useDispatch } from "react-redux";
 import { loginUser } from "@/redux/slice/user-slice";
 import { NextPage } from "next";
+import { toast } from "sonner";
 
 const Verification: NextPage = () => {
   const router = useRouter();
@@ -47,14 +48,10 @@ const Verification: NextPage = () => {
           email: storedEmail as string,
           local: LOCAL,
         }).unwrap();
-        alert("Verification link sent to email successfully");
-        // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
-        // toast.success("Verification link sent to email successfully");
+        toast.success("Verification link sent to email successfully");
       } catch (error: any) {
         console.log(error);
-        alert(error?.data?.message);
-        // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
-        // toast.error(error?.data?.message);
+        toast.error(error?.data?.message);
       }
     } else {
       router.push(

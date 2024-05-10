@@ -25,6 +25,7 @@ import { useRouter } from "next/navigation";
 import { LOCAL, ROUTES } from "@/utils/constants";
 import { useDispatch } from "react-redux";
 import { updateEmail } from "@/redux/slice/user-slice";
+import { toast } from "sonner";
 
 const SignUp: NextPage = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -42,17 +43,13 @@ const SignUp: NextPage = () => {
   const onSubmit = async (values: SignUpFormDetails) => {
     try {
       await signUp({ ...values, local: LOCAL }).unwrap();
-      alert("User Registered Successfully");
 
       dispatch(updateEmail(values.email));
-      // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
-      // toast.success("User Registered Successfully");
+      toast.success("User Registered Successfully");
       setTimeout(() => router.push(ROUTES.VERIFICATION), 500);
     } catch (error: any) {
       console.log(error);
-      alert(error?.data?.message);
-      // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
-      // toast.error(error?.data?.message);
+      toast.error(error?.data?.message);
     }
   };
 
