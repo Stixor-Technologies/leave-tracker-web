@@ -124,6 +124,7 @@ const SignIn: NextPage = () => {
             variant="default"
             type="submit"
             isLoading={isLoading}
+            disabled={isLoading}
           >
             Login
           </Button>
