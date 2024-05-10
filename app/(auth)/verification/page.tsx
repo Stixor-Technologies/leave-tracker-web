@@ -13,7 +13,7 @@ import {
   useVerifyLinkQuery,
 } from "@/redux/apis/auth-api";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/utils/constants";
+import { LOCAL, ROUTES } from "@/utils/constants";
 import { useSelector } from "react-redux";
 import { RootState } from "@/types";
 import { useDispatch } from "react-redux";
@@ -47,7 +47,7 @@ const Verification: NextPage = () => {
       try {
         await resendLink({
           email: storedEmail as string,
-          local: true,
+          local: LOCAL,
         }).unwrap();
         alert("Link sent successfully");
         // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch

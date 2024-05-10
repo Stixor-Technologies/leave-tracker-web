@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUpMutation } from "@/redux/apis/auth-api";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/utils/constants";
+import { LOCAL, ROUTES } from "@/utils/constants";
 import { useDispatch } from "react-redux";
 import { updateEmail } from "@/redux/slice/user-slice";
 
@@ -41,7 +41,7 @@ const SignUp: NextPage = () => {
 
   const onSubmit = async (values: SignUpFormDetails) => {
     try {
-      await signUp({ ...values, local: true }).unwrap();
+      await signUp({ ...values, local: LOCAL }).unwrap();
       alert("User Registered Successfully");
 
       dispatch(updateEmail(values.email));
