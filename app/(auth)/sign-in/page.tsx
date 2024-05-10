@@ -23,8 +23,15 @@ import Link from "next/link";
 import { useSignInMutation } from "@/redux/apis/auth-api";
 import { toast } from "sonner";
 import SocialSignUp from "@/components/social-sign-up";
+import { useAppDispatch } from "@/redux/hooks";
+import { loginUser } from "@/redux/slice/user-slice";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/utils/constants";
 
 const SignIn: NextPage = () => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+
   const {
     fields: { email, password },
   } = signInForm;
@@ -40,11 +47,17 @@ const SignIn: NextPage = () => {
 
   const onSubmit = async (formValues: SignInFormDetails) => {
     try {
-      const { data } = await signIn(formValues).unwrap();
+      const res = await signIn(formValues).unwrap();
       toast.success("Login successfull");
-      console.log("res", data);
+      if (res?.status === 200) {
+        dispatch(loginUser(res?.data));
+        if (res?.data?.isOrg) {
+          setTimeout(() => router.replace(ROUTES.DASHBOARD), 500);
+        } else {
+          setTimeout(() => router.replace(ROUTES.REGISTRATION_TYPE), 500);
+        }
+      }
     } catch (err: any) {
-      console.log(err);
       toast.error(err?.data?.message);
     }
   };

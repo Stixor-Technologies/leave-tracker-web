@@ -21,6 +21,9 @@ export interface SignUpRequest {
   local: boolean;
 }
 
+export interface SignInRequest
+  extends Omit<SignUpRequest, "confirmPassword" | "local"> {}
+
 export interface SignUpSuccessResponse {
   data: {
     message: string;
@@ -42,7 +45,7 @@ export interface ResendEmailVerificationLinkResponse {
   };
 }
 
-export interface VerifyEmailResponse {
+export interface AuthenticationResponse {
   message: string;
   status: number;
   data: UserState;
