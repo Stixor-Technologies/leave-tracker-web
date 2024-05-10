@@ -74,8 +74,11 @@ const SignUp: NextPage = () => {
   //   fields: { email, password, confirmPassword },
   // } = signUpForm;
 
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [countryPopover, setCountryPopover] = React.useState(false);
+  const [country, setCountry] = React.useState("");
+
+  const [timeZonePopover, settimeZonePopover] = React.useState(false);
+  const [timeZone, settimeZone] = React.useState("");
 
   const frameworks = [
     {
@@ -187,67 +190,137 @@ const SignUp: NextPage = () => {
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <Label htmlFor={"country"} required={true}>
-                  Country
-                </Label>
+          <div className="flex">
+            <FormField
+              control={form.control}
+              name="timeZone"
+              render={({ field }) => (
+                <FormItem className="flex flex-1 flex-col">
+                  <Label htmlFor={"country"} required={true}>
+                    Country
+                  </Label>
 
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <Button role="combobox" aria-expanded={open}>
-                      {value
-                        ? countries?.find((country) => country?.value === value)
-                            ?.label
-                        : "Select framework..."}
-                      <ChevronDown className="h-4 w-4 text-placeholder" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    className="!w-full p-0"
-                    // side="left"
-                    // align="start"
+                  <Popover
+                    open={countryPopover}
+                    onOpenChange={setCountryPopover}
                   >
-                    <Command>
-                      <CommandInput placeholder="Search framework..." />
-                      <CommandEmpty>No framework found.</CommandEmpty>
-                      <CommandGroup>
-                        <CommandList>
-                          {countries?.map((country) => (
-                            <CommandItem
-                              key={country?.value}
-                              value={country?.value}
-                              onSelect={(currentValue) => {
-                                setValue(
-                                  currentValue === value ? "" : currentValue,
-                                );
-                                setOpen(false);
-                              }}
-                            >
-                              <Check
-                                className={cn(
-                                  "mr-2 h-4 w-4",
-                                  value === country?.value
-                                    ? "opacity-100"
-                                    : "opacity-0",
-                                )}
-                              />
-                              {country?.label}
-                            </CommandItem>
-                          ))}
-                        </CommandList>
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
+                    <PopoverTrigger asChild>
+                      <Button role="combobox" aria-expanded={open}>
+                        {country
+                          ? countries?.find((con) => con?.value === country)
+                              ?.label
+                          : "Select framework..."}
+                        <ChevronDown className="h-4 w-4 text-placeholder" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="!w-full p-0"
+                      // side="left"
+                      // align="start"
+                    >
+                      <Command>
+                        <CommandInput placeholder="Select" />
+                        <CommandEmpty>No country found.</CommandEmpty>
+                        <CommandGroup>
+                          <CommandList>
+                            {countries?.map((con) => (
+                              <CommandItem
+                                key={con?.value}
+                                value={con?.value}
+                                onSelect={(currentValue) => {
+                                  setCountry(
+                                    currentValue === country
+                                      ? ""
+                                      : currentValue,
+                                  );
+                                  setCountryPopover(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    country === con?.value
+                                      ? "opacity-100"
+                                      : "opacity-0",
+                                  )}
+                                />
+                                {con?.label}
+                              </CommandItem>
+                            ))}
+                          </CommandList>
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem className="flex flex-1 flex-col">
+                  <Label htmlFor={"country"} required={true}>
+                    TimeZone
+                  </Label>
+
+                  <Popover
+                    open={timeZonePopover}
+                    onOpenChange={settimeZonePopover}
+                  >
+                    <PopoverTrigger asChild>
+                      <Button role="combobox" aria-expanded={open}>
+                        {timeZone
+                          ? countries?.find((zone) => zone?.value === timeZone)
+                              ?.label
+                          : "Select framework..."}
+                        <ChevronDown className="h-4 w-4 text-placeholder" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="!w-full p-0">
+                      <Command>
+                        <CommandInput placeholder="Select" />
+                        <CommandEmpty>No country found.</CommandEmpty>
+                        <CommandGroup>
+                          <CommandList>
+                            {countries?.map((zone) => (
+                              <CommandItem
+                                key={zone?.value}
+                                value={zone?.value}
+                                onSelect={(currentValue) => {
+                                  settimeZone(
+                                    currentValue === timeZone
+                                      ? ""
+                                      : currentValue,
+                                  );
+                                  settimeZonePopover(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    timeZone === zone?.value
+                                      ? "opacity-100"
+                                      : "opacity-0",
+                                  )}
+                                />
+                                {zone?.label}
+                              </CommandItem>
+                            ))}
+                          </CommandList>
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           {/* <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
