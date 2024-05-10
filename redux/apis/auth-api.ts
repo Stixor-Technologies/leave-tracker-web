@@ -49,7 +49,7 @@ export const authApi = createApi({
       }),
     }),
 
-    verifyLink: builder.query<VerifyEmailResponse | ErrorResponse, string>({
+    verifyLink: builder.query<VerifyEmailResponse | any, string>({
       query: (token) => ({
         method: "GET",
         url: "/auth/verify-link",
