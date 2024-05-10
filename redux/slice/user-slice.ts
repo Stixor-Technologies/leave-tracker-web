@@ -1,22 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserState } from "@/types";
-// * Slice will be changed accordingly later
 
 const initialUserState: UserState = {
   user: {
-    id: undefined,
-    email: undefined,
+    id: null,
+    name: null,
+    email: null,
+    slackId: null,
+    role: null,
+    deleted: false,
+    createdAt: null,
+    updatedAt: null,
+    verified: false,
+    orgUser: [],
   },
+  isOrg: false,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState: initialUserState,
   reducers: {
-    loginSuccess(state, action: PayloadAction<UserState>) {
+    loginUser(state, action: PayloadAction<UserState>) {
       state.user = action.payload.user;
+    },
+    updateEmail(state, action: PayloadAction<string>) {
+      if (state.user) {
+        state.user.email = action.payload;
+      }
     },
   },
 });
 
-export const { loginSuccess } = userSlice.actions;
+export const { loginUser, updateEmail } = userSlice.actions;

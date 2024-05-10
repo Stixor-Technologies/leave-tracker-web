@@ -4,6 +4,24 @@
 
 @layer base {
   :root {
+    --primary: 257, 68%, 58%, 1;
+
+    --primary-light: 257, 100%, 79%, 1;
+
+    --primary-dark: 228, 97%, 13%, 1;
+
+    --gray: 0, 0%, 89%, 1;
+
+    --light-gray: 0, 0%, 97%, 1;
+
+    --yellow: 48, 100%, 55%, 1;
+
+    --orange: 14, 82%, 53%, 1;
+
+    --stroke: 214, 32%, 91%, 1;
+
+    --text-color: 0, 0%, 25%, 1;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -13,8 +31,6 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 257, 68%, 58%, 1;
-    --primary-light: 257, 100%, 79%, 1;
     --primary-foreground: 210 40% 98%;
 
     --white: 0, 0%, 100%, 1;
@@ -23,18 +39,11 @@
     --secondary: 228, 97%, 13%, 1;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --theme-gray: 0, 0%, 97%, 1;
-    --theme-light-gray: 0, 0%, 73%, 1;
-    --theme-yellow: 48, 100%, 55%, 1;
-    --theme-orange: 14, 82%, 53%, 1;
-
     --heading-text: 212, 13%, 29%, 1;
     --placeholder-text: 0, 0%, 25%, 1;
 
     --disabled: 210, 40%, 96%, 1;
     --input-border: 213, 27%, 84%, 1;
-
-    --seperator: 214, 32%, 91%, 1;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;

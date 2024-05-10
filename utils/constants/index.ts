@@ -1,6 +1,11 @@
+export const LOCAL = false;
+
 export const ROUTES = {
   SIGN_UP: "/sign-up",
   SIGN_IN: "/sign-in",
+  VERIFICATION: "/verification",
+  REGISTRATION_TYPE: "/registration-type",
+  ORGANIZATION_REGISTRATION: "/organization-registration",
   APPLY: "/apply",
   CALENDAR: "/calendar",
   REQUESTS: "/requests",
@@ -20,6 +25,12 @@ export const PROTECTED_ROUTES = [
   ROUTES.BILLING,
 ];
 
-export const AUTH_ROUTES = [ROUTES.SIGN_UP, ROUTES.SIGN_IN];
+export const AUTH_ROUTES = [
+  ROUTES.SIGN_UP,
+  ROUTES.SIGN_IN,
+  ROUTES.VERIFICATION,
+  ROUTES.REGISTRATION_TYPE,
+  ROUTES.ORGANIZATION_REGISTRATION,
+];
 
 export const AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
