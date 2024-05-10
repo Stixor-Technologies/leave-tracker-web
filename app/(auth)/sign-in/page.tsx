@@ -46,13 +46,17 @@ const SignIn: NextPage = () => {
   const onSubmit = async (formValues: SignInFormDetails) => {
     try {
       const res = await signIn(formValues).unwrap();
-      toast.success("Login successfull");
       if (res?.status === 200) {
+        toast.success("Login successfull");
         dispatch(loginUser(res?.data));
         if (res?.data?.isOrg) {
-          setTimeout(() => router.replace(ROUTES.DASHBOARD), 500);
-        } else {
-          setTimeout(() => router.replace(ROUTES.REGISTRATION_TYPE), 500);
+          setTimeout(
+            () =>
+              router.replace(
+                res?.data?.isOrg ? ROUTES.DASHBOARD : ROUTES.REGISTRATION_TYPE,
+              ),
+            500,
+          );
         }
       }
     } catch (err: any) {
@@ -111,8 +115,8 @@ const SignIn: NextPage = () => {
               )}
             />
 
-            <Link href={"/"} className="mt-1.5 inline-block text-sm text-gray">
-              I forgot my password
+            <Link href={"#"} className="text-gray mt-1.5 inline-block text-sm">
+              Forgot Password?
             </Link>
           </div>
 

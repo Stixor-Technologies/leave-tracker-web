@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { signInForm, signUpForm } from "../form-details";
 
 const {
-  fields: { email: signUpEmail, password },
+  fields: { email: signUpEmail, password: signUpPassword },
 } = signUpForm;
 
 const {
@@ -25,7 +25,7 @@ export const signUpValidationSchema = Yup.object().shape({
     .required("Password is required"),
 
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref(password.name)], "Passwords must match")
+    .oneOf([Yup.ref(signUpPassword.name)], "Passwords must match")
     .required("Please confirm your password"),
 });
 
