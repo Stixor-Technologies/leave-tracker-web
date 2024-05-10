@@ -1,19 +1,19 @@
 import Image from "next/image";
 import React, { ReactNode } from "react";
-import { Button } from "./ui/button";
+import Link from "next/link";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
-  const socialLink = (icon: ReactNode, name: string) => {
+  const socialLink = (icon: ReactNode, name: string, href: string) => {
     return (
-      <Button
-        className="flex grow rounded-md border px-4 py-2"
-        variant={"transparent"}
+      <Link
+        href={href}
+        className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
       >
         <span className="flex items-center justify-center gap-[0.5rem]">
           {icon}
           <span className="text-sm font-medium">{name}</span>
         </span>
-      </Button>
+      </Link>
     );
   };
   return (
@@ -34,6 +34,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             height={18}
           />,
           "Google",
+          "https://auth-leave-tracker.stixor.com/v1/auth/google/login",
         )}
 
         {socialLink(
@@ -44,6 +45,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             height={18}
           />,
           "Slack",
+          "https://auth-leave-tracker.stixor.com/v1/auth/slack/login",
         )}
 
         {socialLink(
@@ -54,6 +56,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             height={18}
           />,
           "Jira",
+          "#",
         )}
       </div>
     </div>
