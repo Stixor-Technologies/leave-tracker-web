@@ -1,5 +1,5 @@
-import { Route } from "./app/types";
-import { ROUTES } from "./constants";
+import { Route } from "./types";
+import { ROUTES } from "./utils/constants";
 import {
   PenLine,
   CalendarDays,

@@ -7,7 +7,7 @@ import { FC } from "react";
 import { usePathname } from "next/navigation";
 import { routes } from "@/routes";
 import { SheetClose } from "./ui/sheet";
-import { ROUTES } from "@/constants";
+import { ROUTES } from "@/utils/constants";
 
 interface SideBarProps {
   inSideDrawer?: boolean;
@@ -25,7 +25,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
       )}
 
       <div
-        className={`${!inSideDrawer && "hidden lg:block"} h-full bg-themeGray md:w-[15rem] md:min-w-[15rem] lg:min-h-screen`}
+        className={`${!inSideDrawer && "hidden lg:block"} h-full bg-gray md:w-[15rem] md:min-w-[15rem] lg:min-h-screen`}
       >
         <div className="pb-[2.065rem] ps-5 pt-5">
           <Link href={ROUTES.DASHBOARD}>

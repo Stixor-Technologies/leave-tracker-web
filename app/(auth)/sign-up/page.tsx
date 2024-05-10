@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
+import React from "react";
+import AuthenticationPageTemplate from "@/components/authentication-page-template";
+import SocialSignUp from "@/components/social-sign-up";
 import { signUpFormDetails } from "@/utils/forms/initial-values";
 import { SignUpFormDetails } from "@/utils/forms/interfaces";
 import { signUpValidationSchema } from "@/utils/forms/validations";
 import { Button } from "@/components/ui/button";
 import { signUpForm } from "@/utils/forms/form-details";
 import { NextPage } from "next";
-import React, { ReactNode } from "react";
-import FormPageTemplate from "@/components/authentication-page-template";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -20,8 +20,16 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSignUpMutation } from "@/redux/apis/auth-api";
+import { useRouter } from "next/navigation";
+import { LOCAL, ROUTES } from "@/utils/constants";
+import { useDispatch } from "react-redux";
+import { updateEmail } from "@/redux/slice/user-slice";
 
 const SignUp: NextPage = () => {
+  const [signUp, { isLoading }] = useSignUpMutation();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const {
     fields: { email, password, confirmPassword },
   } = signUpForm;
@@ -31,28 +39,29 @@ const SignUp: NextPage = () => {
     defaultValues: signUpFormDetails,
   });
 
-  const onSubmit = (values: SignUpFormDetails) => {
-    console.log(values);
-  };
+  const onSubmit = async (values: SignUpFormDetails) => {
+    try {
+      await signUp({ ...values, local: LOCAL }).unwrap();
+      alert("User Registered Successfully");
 
-  const socialLink = (icon: ReactNode, name: string) => {
-    return (
-      <Button
-        className="flex grow items-center justify-center gap-[0.5rem] rounded-md border px-4 py-2"
-        variant={"transparent"}
-      >
-        {icon}
-        <span className="text-sm font-medium">{name}</span>
-      </Button>
-    );
+      dispatch(updateEmail(values.email));
+      // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
+      // toast.success("User Registered Successfully");
+      setTimeout(() => router.push(ROUTES.VERIFICATION), 500);
+    } catch (error: any) {
+      console.log(error);
+      alert(error?.data?.message);
+      // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
+      // toast.error(error?.data?.message);
+    }
   };
 
   return (
-    <FormPageTemplate redirectTo="sign-in">
+    <AuthenticationPageTemplate redirectTo="sign-in">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-6"
+          className="flex flex-col flex-wrap gap-6"
         >
           <FormField
             control={form.control}
@@ -88,6 +97,7 @@ const SignUp: NextPage = () => {
                   <Input
                     placeholder={password.placeholder}
                     type={password.type}
+                    isPassword={true}
                     {...field}
                   />
                 </FormControl>
@@ -109,6 +119,7 @@ const SignUp: NextPage = () => {
                   <Input
                     placeholder={confirmPassword.placeholder}
                     type={confirmPassword.type}
+                    isPassword={true}
                     {...field}
                   />
                 </FormControl>
@@ -118,9 +129,11 @@ const SignUp: NextPage = () => {
           />
 
           <Button
-            // disabled={isLoading}
-            className="mb-[1.9rem] mt-[0.625rem] w-full sm:w-[15rem]"
-            variant="default"
+            disabled={isLoading}
+            loading={isLoading}
+            className="mb-[1.875rem] mt-[0.625rem] "
+            variant="primary"
+            size={"medium"}
             type="submit"
           >
             Sign Up
@@ -128,45 +141,8 @@ const SignUp: NextPage = () => {
         </form>
       </Form>
 
-      <div className="flex flex-col gap-6">
-        <div className="mb-4 flex items-center">
-          <span className={`text-sm text-themeLightGray`}>Or signup with</span>
-          <div className="ml-1 h-px grow bg-themeLightGray"></div>
-        </div>
-
-        <div className="flex flex-wrap gap-[0.625rem]">
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/google-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Google",
-          )}
-
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/slack-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Slack",
-          )}
-
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/jira-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Jira",
-          )}
-        </div>
-      </div>
-    </FormPageTemplate>
+      <SocialSignUp />
+    </AuthenticationPageTemplate>
   );
 };
 

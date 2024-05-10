@@ -19,36 +19,38 @@ const config = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         primaryLight: "hsl(var(--primary-light))",
+        primaryDark: "hsl(var(--primary-dark))",
+
+        white: "hsl(var(--white))",
+        black: "hsl(var(--black))",
+        gray: "hsl(var(--gray))",
+        lightGray: "hsl(var(--light-gray))",
+        yellow: "hsl(var(--yellow))",
+        orange: "hsl(var(--orange))",
+        stroke: "hsl(var(--stroke))",
+        textColor: "hsl(var(--text-color))",
+
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-
-        white: "hsl(var(--white))",
-        black: "hsl(var(--black))",
-
-        themeGray: "hsl(var(--theme-gray))",
-        themeLightGray: "hsl(var(--theme-light-gray))",
-        themeYellow: "hsl(var(--theme-yellow))",
-        themeOrange: "hsl(var(--theme-orange))",
 
         heading: "hsl(var(--heading-text))",
         placeholder: "hsl(var(--placeholder-text))",
 
         disabled: "hsl(var(--disabled))",
         inputBorder: "hsl(var(--input-border))",
-
-        seperator: "hsl(var(--seperator))",
 
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
