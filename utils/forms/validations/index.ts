@@ -1,10 +1,14 @@
 import * as Yup from "yup";
 
-import { signUpForm } from "../form-details";
+import { signInForm, signUpForm } from "../form-details";
 
 const {
   fields: { email: signUpEmail, password },
 } = signUpForm;
+
+const {
+  fields: { email: signInEmail, password: signInPassword },
+} = signInForm;
 
 export const signUpValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -28,14 +32,6 @@ export const signUpValidationSchema = Yup.object().shape({
 export const signInValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email address")
-    .required(`email is required`),
-
-  password: Yup.string()
-    .min(8, "Password must be at least 8 characters long")
-    .max(32, "Password must be at most 32 characters long")
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&`~^#@${}%[\]/\\"'()\-_=+|;:<>\.])[A-Za-z\d@$!%*?&`~^#@${}%[\]/\\"'()\-_=+|;:<>\.]{8,32}$/,
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special characters",
-    )
-    .required("Password is required"),
+    .required(`${signInEmail?.label} is required`),
+  password: Yup.string().required(`${signInPassword?.label} is required`),
 });

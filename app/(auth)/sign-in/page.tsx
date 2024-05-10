@@ -1,14 +1,13 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import { NextPage } from "next";
-import Image from "next/image";
 import { signInDefaultValues } from "@/utils/forms/initial-values";
 import { SignInFormDetails } from "@/utils/forms/interfaces";
 import { signInValidationSchema } from "@/utils/forms/validations";
 import { Button } from "@/components/ui/button";
 import { signInForm } from "@/utils/forms/form-details";
-import FormPageTemplate from "@/components/authentication-page-template";
+import AuthenticationPageTemplate from "@/components/authentication-page-template";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -23,6 +22,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useSignInMutation } from "@/redux/apis/auth-api";
 import { toast } from "sonner";
+import SocialSignUp from "@/components/social-sign-up";
 
 const SignIn: NextPage = () => {
   const {
@@ -43,26 +43,14 @@ const SignIn: NextPage = () => {
       const { data } = await signIn(formValues).unwrap();
       toast.success("Login successfull");
       console.log("res", data);
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
       toast.error(err?.data?.message);
     }
   };
 
-  const socialLink = (icon: ReactNode, name: string) => {
-    return (
-      <Button
-        className="flex grow items-center justify-center gap-[0.5rem] rounded-md border px-4 py-2"
-        variant={"transparent"}
-      >
-        {icon}
-        <span className="text-sm font-medium">{name}</span>
-      </Button>
-    );
-  };
-
   return (
-    <FormPageTemplate redirectTo="sign-up">
+    <AuthenticationPageTemplate redirectTo="sign-up">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -103,6 +91,7 @@ const SignIn: NextPage = () => {
                     <Input
                       placeholder={password.placeholder}
                       type={password.type}
+                      isPassword={true}
                       {...field}
                     />
                   </FormControl>
@@ -111,10 +100,7 @@ const SignIn: NextPage = () => {
               )}
             />
 
-            <Link
-              href={"/"}
-              className="mt-1.5 inline-block text-sm text-[#E2E2E2]"
-            >
+            <Link href={"/"} className="text-gray mt-1.5 inline-block text-sm">
               I forgot my password
             </Link>
           </div>
@@ -131,45 +117,8 @@ const SignIn: NextPage = () => {
         </form>
       </Form>
 
-      <div className="flex flex-col gap-6">
-        <div className="mb-4 flex items-center">
-          <span className={`text-sm text-themeLightGray`}>Or signup with</span>
-          <div className="ml-1 h-px grow bg-themeLightGray"></div>
-        </div>
-
-        <div className="flex flex-wrap gap-[0.625rem]">
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/google-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Google",
-          )}
-
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/slack-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Slack",
-          )}
-
-          {socialLink(
-            <Image
-              src={"/assets/images/social-icons/jira-icon.svg"}
-              alt="google icon"
-              width={18}
-              height={18}
-            />,
-            "Jira",
-          )}
-        </div>
-      </div>
-    </FormPageTemplate>
+      <SocialSignUp title="login" />
+    </AuthenticationPageTemplate>
   );
 };
 
