@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -9,7 +10,7 @@ export interface InputProps
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, isPassword = false, ...props }, ref) => {
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -20,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={(isPassword && !showPassword) || !isPassword ? type : "text"}
           className={cn(
-            "!mt-[0.375rem] flex h-10 w-full rounded-md border border-inputBorder bg-background px-3 py-2 text-sm text-placeholder outline-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-sm placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-[70vw] lg:w-[39.5rem]",
+            "!mt-[0.375rem] flex h-10 w-full rounded-md border border-inputBorder bg-background px-3 py-2 text-sm text-placeholder outline-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-sm placeholder:text-muted-foreground focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50 sm:w-[70vw] lg:w-[39.5rem]",
             className,
           )}
           ref={ref}

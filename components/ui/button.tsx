@@ -3,7 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import { ReloadIcon } from "@radix-ui/react-icons";
+import { RotateCw } from "lucide-react";
 
 const generalClasses = "h-10 px-4 py-2 w-full";
 
@@ -56,8 +56,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <div className="flex items-center justify-center">
-          {loading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-          {!loading && <span>{props.children}</span>}
+          {loading ? (
+            <RotateCw className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <span>{props.children}</span>
+          )}
         </div>
       </Comp>
     );

@@ -6,7 +6,7 @@ export interface RootState {
 }
 
 export interface UserState {
-  user?: {
+  user: {
     id: number | null;
     name: string | null;
     email: string | null;

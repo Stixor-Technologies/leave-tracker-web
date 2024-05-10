@@ -10,7 +10,6 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         variant={"transparent"}
       >
         <span className="flex items-center justify-center gap-[0.5rem]">
-          {" "}
           {icon}
           <span className="text-sm font-medium">{name}</span>
         </span>
@@ -40,7 +39,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         {socialLink(
           <Image
             src={"/assets/images/social-icons/slack-icon.svg"}
-            alt="google icon"
+            alt="slack icon"
             width={18}
             height={18}
           />,
@@ -50,7 +49,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         {socialLink(
           <Image
             src={"/assets/images/social-icons/jira-icon.svg"}
-            alt="google icon"
+            alt="jira icon"
             width={18}
             height={18}
           />,

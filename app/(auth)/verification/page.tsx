@@ -32,14 +32,12 @@ const Verification: NextPage = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
-  const { data, isLoading: verifyLoading } = useVerifyLinkQuery({
-    token: token as string,
-  });
+  const { data, isLoading: verifyLoading } = useVerifyLinkQuery(
+    token as string,
+  );
 
   useEffect(() => {
-    if (data?.status === 200) {
-      dispatch(loginUser(data.data));
-    }
+    if (data?.status === 200) dispatch(loginUser(data.data));
   }, [data]);
 
   const handleClick = async () => {
@@ -49,9 +47,9 @@ const Verification: NextPage = () => {
           email: storedEmail as string,
           local: LOCAL,
         }).unwrap();
-        alert("Link sent successfully");
+        alert("Verification link sent to email successfully");
         // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
-        // toast.success("Link sent successfully");
+        // toast.success("Verification link sent to email successfully");
       } catch (error: any) {
         console.log(error);
         alert(error?.data?.message);

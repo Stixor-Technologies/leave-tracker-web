@@ -7,7 +7,7 @@ import {
   ResendEmailVerificationLinkResponse,
   SignUpRequest,
   SignUpSuccessResponse,
-  VerifyEmailRequest,
+  VerifyEmailResponse,
 } from "./api-types";
 
 export const authApi = createApi({
@@ -26,7 +26,6 @@ export const authApi = createApi({
   }),
   tagTypes: [],
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   endpoints: (builder) => ({
     signUp: builder.mutation<
       SignUpSuccessResponse | ErrorResponse,
@@ -50,11 +49,11 @@ export const authApi = createApi({
       }),
     }),
 
-    verifyLink: builder.query<any | ErrorResponse, VerifyEmailRequest>({
-      query: (params) => ({
+    verifyLink: builder.query<VerifyEmailResponse | ErrorResponse, string>({
+      query: (token) => ({
         method: "GET",
         url: "/auth/verify-link",
-        params: params,
+        params: { token },
       }),
       keepUnusedDataFor: 0.001,
     }),

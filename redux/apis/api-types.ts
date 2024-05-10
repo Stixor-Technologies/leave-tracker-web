@@ -1,3 +1,5 @@
+import { UserState } from "@/types";
+
 export interface ErrorResponse {
   data: {
     message: string;
@@ -40,28 +42,8 @@ export interface ResendEmailVerificationLinkResponse {
   };
 }
 
-export interface VerifyEmailRequest {
-  token: string;
-}
-
 export interface VerifyEmailResponse {
-  data: {
-    message: string;
-    status: number;
-    data: {
-      isOrg: boolean;
-      user: {
-        id: number;
-        name: string | null;
-        email: string;
-        slackId: string | null;
-        role: string | null;
-        deleted: boolean;
-        createdAt: string;
-        updatedAt: string;
-        verified: boolean;
-        orgUser: [];
-      };
-    };
-  };
+  message: string;
+  status: number;
+  data: UserState;
 }
