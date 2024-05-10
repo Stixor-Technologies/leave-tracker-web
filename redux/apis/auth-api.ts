@@ -59,10 +59,7 @@ export const authApi = createApi({
       keepUnusedDataFor: 0.001,
     }),
 
-    signIn: builder.mutation<
-      AuthenticationResponse | ErrorResponse,
-      SignInRequest
-    >({
+    signIn: builder.mutation<AuthenticationResponse, SignInRequest>({
       query: (body) => ({
         method: "POST",
         url: "/auth/sign-in",

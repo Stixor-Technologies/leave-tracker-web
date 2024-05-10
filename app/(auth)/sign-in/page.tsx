@@ -49,15 +49,13 @@ const SignIn: NextPage = () => {
       if (res?.status === 200) {
         toast.success("Login successfull");
         dispatch(loginUser(res?.data));
-        if (res?.data?.isOrg) {
-          setTimeout(
-            () =>
-              router.replace(
-                res?.data?.isOrg ? ROUTES.DASHBOARD : ROUTES.REGISTRATION_TYPE,
-              ),
-            500,
+        console.log(res);
+        setTimeout(() => {
+          console.log("replace");
+          router.replace(
+            res?.data?.isOrg ? ROUTES.DASHBOARD : ROUTES.REGISTRATION_TYPE,
           );
-        }
+        }, 500);
       }
     } catch (err: any) {
       console.log(err);
