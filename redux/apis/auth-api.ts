@@ -3,8 +3,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { getCookie } from "cookies-next";
 import {
   ErrorResponse,
+  ResendEmailVerificationLinkRequest,
+  ResendEmailVerificationLinkResponse,
   SignUpRequest,
   SignUpSuccessResponse,
+  VerifyEmailRequest,
 } from "./api-types";
 
 export const authApi = createApi({
@@ -35,7 +38,31 @@ export const authApi = createApi({
         body: body,
       }),
     }),
+
+    resendEmailVerificationLink: builder.mutation<
+      ResendEmailVerificationLinkResponse | ErrorResponse,
+      ResendEmailVerificationLinkRequest
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/user/send-verification-link",
+        body: body,
+      }),
+    }),
+
+    verifyLink: builder.query<any | ErrorResponse, VerifyEmailRequest>({
+      query: (params) => ({
+        method: "GET",
+        url: "/auth/verify-link",
+        params: params,
+      }),
+      keepUnusedDataFor: 0.001,
+    }),
   }),
 });
 
-export const { useSignUpMutation } = authApi;
+export const {
+  useSignUpMutation,
+  useResendEmailVerificationLinkMutation,
+  useVerifyLinkQuery,
+} = authApi;

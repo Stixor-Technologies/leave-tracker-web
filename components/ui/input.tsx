@@ -11,9 +11,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, isPassword = false, ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword);
-    };
+    const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
     const generalClasses = "text-textColor opacity-50 ";
 
     return (

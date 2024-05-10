@@ -28,25 +28,23 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
       <Image
         src={logo}
         alt="logo"
-        className="absolute left-5 top-[1.125rem] z-0"
+        className="absolute left-5 top-[1.125rem] !z-0"
       />
 
       <Image
         src={backgroundLogo}
         alt="Background Logo"
-        className="absolute bottom-0 left-5 z-0 w-[17.5rem] md:w-auto"
+        className="absolute bottom-0 left-0 !z-0 w-[17.5rem] md:w-auto"
       />
 
       {redirectTo === "" ? (
         <div
-          className={`${window.innerHeight <= 750 && "mt-[5rem]"} ${needGeneralStyles && generalClasses} ${className}`}
+          className={`mt-[5rem] ${needGeneralStyles && generalClasses} ${className}`}
         >
           {children}
         </div>
       ) : (
-        <div
-          className={`${window.innerHeight <= 750 && "mt-[5rem]"} flex flex-col items-center sm:items-end`}
-        >
+        <div className={`mt-[5rem] flex flex-col items-center sm:items-end`}>
           <div
             className={`${needGeneralStyles && generalClasses} ${className}`}
           >

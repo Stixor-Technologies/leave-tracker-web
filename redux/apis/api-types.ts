@@ -1,18 +1,3 @@
-export interface SignUpRequest {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  //   local:boolean;
-}
-
-export interface SignUpSuccessResponse {
-  data: {
-    message: string;
-    data: {
-      isOrg: boolean;
-    };
-  };
-}
 export interface ErrorResponse {
   data: {
     message: string;
@@ -25,4 +10,58 @@ export interface ErrorResponse {
     };
   };
   status: number;
+}
+
+export interface SignUpRequest {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  local: boolean;
+}
+
+export interface SignUpSuccessResponse {
+  data: {
+    message: string;
+    data: {
+      isOrg: boolean;
+    };
+  };
+}
+
+export interface ResendEmailVerificationLinkRequest {
+  email: string;
+  local: boolean;
+}
+
+export interface ResendEmailVerificationLinkResponse {
+  data: {
+    message: string;
+    data: string;
+  };
+}
+
+export interface VerifyEmailRequest {
+  token: string;
+}
+
+export interface VerifyEmailResponse {
+  data: {
+    message: string;
+    status: number;
+    data: {
+      isOrg: boolean;
+      user: {
+        id: number;
+        name: string | null;
+        email: string;
+        slackId: string | null;
+        role: string | null;
+        deleted: boolean;
+        createdAt: string;
+        updatedAt: string;
+        verified: boolean;
+        orgUser: [];
+      };
+    };
+  };
 }

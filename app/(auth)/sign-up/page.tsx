@@ -23,10 +23,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSignUpMutation } from "@/redux/apis/auth-api";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/constants";
+import { useDispatch } from "react-redux";
+import { updateEmail } from "@/redux/slice/user-slice";
 
 const SignUp: NextPage = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
   const router = useRouter();
+  const dispatch = useDispatch();
   const {
     fields: { email, password, confirmPassword },
   } = signUpForm;
@@ -38,8 +41,10 @@ const SignUp: NextPage = () => {
 
   const onSubmit = async (values: SignUpFormDetails) => {
     try {
-      await signUp(values).unwrap();
+      await signUp({ ...values, local: true }).unwrap();
       alert("User Registered Successfully");
+
+      dispatch(updateEmail(values.email));
       // Alert is used and toast is commented because toast component is created in sign in branch and this will be fixed in that branch
       // toast.success("User Registered Successfully");
       setTimeout(() => router.push(ROUTES.VERIFICATION), 500);

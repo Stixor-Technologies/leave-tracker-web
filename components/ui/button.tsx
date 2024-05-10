@@ -57,7 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         <div className="flex items-center justify-center">
           {loading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
-          <span>{props.children}</span>
+          {!loading && <span>{props.children}</span>}
         </div>
       </Comp>
     );

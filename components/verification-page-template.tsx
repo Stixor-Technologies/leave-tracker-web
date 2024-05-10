@@ -8,6 +8,7 @@ interface VerificationPageTemplateProps {
   buttonText?: string;
   showButton?: boolean;
   handleClick?: () => void;
+  loading?: boolean;
 }
 
 const VerificationPageTemplate: React.FC<VerificationPageTemplateProps> = ({
@@ -16,6 +17,7 @@ const VerificationPageTemplate: React.FC<VerificationPageTemplateProps> = ({
   buttonText = "",
   showButton = true,
   handleClick = () => {},
+  loading = false,
 }) => {
   return (
     <div className="flex flex-col items-center justify-center">
@@ -26,7 +28,13 @@ const VerificationPageTemplate: React.FC<VerificationPageTemplateProps> = ({
       </h1>
 
       {showButton && (
-        <Button variant={"primary"} size={"medium"} onClick={handleClick}>
+        <Button
+          variant={"primary"}
+          size={"medium"}
+          onClick={handleClick}
+          disabled={loading}
+          loading={loading}
+        >
           {buttonText}
         </Button>
       )}
