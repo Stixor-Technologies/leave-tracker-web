@@ -17,12 +17,12 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
     );
   };
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mb-1 flex flex-col gap-6">
       <div className="flex items-center">
-        <span className={`text-sm text-textColor opacity-50`}>
+        <span className={`text-textColor text-sm opacity-50`}>
           Or {title} with
         </span>
-        <div className="ml-1 h-px grow bg-textColor opacity-50"></div>
+        <div className="bg-textColor ml-1 h-px grow opacity-50"></div>
       </div>
 
       <div className="flex flex-wrap gap-[0.625rem]">

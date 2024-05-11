@@ -19,12 +19,12 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
   needGeneralStyles = true,
 }) => {
   const generalClasses = needGeneralStyles
-    ? "z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[45rem]"
+    ? "z-10 rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-10 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[45rem]"
     : "z-10";
 
   return (
     <div
-      className={`relative flex min-h-screen w-screen flex-col items-center justify-center bg-lightGray`}
+      className={`bg-lightGray relative flex min-h-screen w-screen flex-col items-center justify-center`}
     >
       <Image
         src={logo}
