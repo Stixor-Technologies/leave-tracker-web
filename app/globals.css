@@ -40,7 +40,7 @@
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --heading-text: 212, 13%, 29%, 1;
-    --placeholder-text: 0, 0%, 25%, 1;
+    --placeholder-text: 0, 0%, 25%, 0.5;
 
     --disabled: 210, 40%, 96%, 1;
     --input-border: 213, 27%, 84%, 1;
@@ -98,5 +98,11 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* to make popover content width relative to it's parent */
+  .popover-width {
+    width: var(--radix-popover-trigger-width);
+    max-height: var(--radix-popover-content-available-height);
   }
 }
