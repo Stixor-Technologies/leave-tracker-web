@@ -18,6 +18,7 @@ const buttonVariants = cva(
           "bg-lightGray border border-stroke text-textColor hover:bg-gray hover:transition-background duration-300 font-medium text-sm",
 
         transparent: "",
+        popover: "border border-stroke block !px-3",
       },
       size: {
         large: `${generalClasses} sm:w-[22.188rem]`,
@@ -55,13 +56,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <div className="flex items-center justify-center">
+        <span
+          className={`flex items-center font-normal ${variant === "popover" ? "justify-between" : "justify-center"}`}
+        >
           {loading ? (
             <RotateCw className="mr-2 h-4 w-4 animate-spin" />
           ) : (
-            <span>{props.children}</span>
+            <>{props.children}</>
           )}
-        </div>
+        </span>
       </Comp>
     );
   },
