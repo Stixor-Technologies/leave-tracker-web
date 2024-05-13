@@ -35,3 +35,14 @@ export const signInValidationSchema = Yup.object().shape({
     .required(`${signInEmail?.label} is required`),
   password: Yup.string().required(`${signInPassword?.label} is required`),
 });
+
+export const organizationSchema = Yup.object().shape({
+  name: Yup.string()
+    .matches(/^[A-Za-z\s]+$/, "Only characters are allowed")
+    .min(3, "Name should be atleast 3 characters long.")
+    .max(20, "Name should be at most 20 characters long.")
+    .required(`Organization name is required`),
+  size: Yup.string().required("Organization Size is required"),
+  country: Yup.string().required("Organization Size is required"),
+  timeZone: Yup.string().required("Organization Size is required"),
+});

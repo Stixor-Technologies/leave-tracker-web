@@ -1,4 +1,4 @@
-export const LOCAL = false;
+export const LOCAL = true;
 
 export const ROUTES = {
   SIGN_UP: "/sign-up",
@@ -35,7 +35,7 @@ export const AUTH_ROUTES = [
 
 export const AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
 
-export const orgSizeOptions = [
+export const ORG_SIZE_OPTIONS = [
   {
     value: "0-10",
     label: "0-10",
@@ -55,7 +55,7 @@ export const orgSizeOptions = [
   },
 ];
 
-export const countries = [
+export const COUNTRIES = [
   { label: "Afghanistan", value: "Afghanistan" },
   { label: "Albania", value: "Albania" },
   { label: "Algeria", value: "Algeria" },
@@ -253,4 +253,47 @@ export const countries = [
   { label: "Viet Nam", value: "Viet Nam" },
   { label: "Zambia", value: "Zambia" },
   { label: "Zimbabwe", value: "Zimbabwe" },
+];
+
+export const TIMEZONES = [
+  { label: "Eniwetok, Kwajalein", value: "-12:00" },
+  { label: "Midway Island, Samoa", value: "-11:00" },
+  { label: "Hawaii", value: "-10:00" },
+  { label: "Taiohae", value: "-09:50" },
+  { label: "Alaska", value: "-09:00" },
+  { label: "Pacific Time (US & Canada)", value: "-08:00" },
+  { label: "Mountain Time (US & Canada)", value: "-07:00" },
+  { label: "Central Time (US & Canada), Mexico City", value: "-06:00" },
+  { label: "Eastern Time (US & Canada), Bogota, Lima", value: "-05:00" },
+  { label: "Caracas", value: "-04:50" },
+  { label: "Atlantic Time (Canada), Caracas, La Paz", value: "-04:00" },
+  { label: "Newfoundland", value: "-03:50" },
+  { label: "Brazil, Buenos Aires, Georgetown", value: "-03:00" },
+  { label: "Mid-Atlantic", value: "-02:00" },
+  { label: "Azores, Cape Verde Islands", value: "-01:00" },
+  { label: "Western Europe Time, London, Lisbon, Casablanca", value: "+00:00" },
+  { label: "Brussels, Copenhagen, Madrid, Paris", value: "+01:00" },
+  { label: "Kaliningrad, South Africa", value: "+02:00" },
+  { label: "Baghdad, Riyadh, Moscow, St. Petersburg", value: "+03:00" },
+  { label: "Tehran", value: "+03:50" },
+  { label: "Abu Dhabi, Muscat, Baku, Tbilisi", value: "+04:00" },
+  { label: "Kabul", value: "+04:50" },
+  { label: "Islamabad, Karachi, Ekaterinburg, Tashkent", value: "+05:00" },
+  { label: "Bombay, Calcutta, Madras, New Delhi", value: "+05:50" },
+  { label: "Kathmandu, Pokhara", value: "+05:75" },
+  { label: "Almaty, Dhaka, Colombo", value: "+06:00" },
+  { label: "Yangon, Mandalay", value: "+06:50" },
+  { label: "Bangkok, Hanoi, Jakarta", value: "+07:00" },
+  { label: "Beijing, Perth, Singapore, Hong Kong", value: "+08:00" },
+  { label: "Eucla", value: "+08:75" },
+  { label: "Tokyo, Seoul, Osaka, Sapporo, Yakutsk", value: "+09:00" },
+  { label: "Adelaide, Darwin", value: "+09:50" },
+  { label: "Eastern Australia, Guam, Vladivostok", value: "+10:00" },
+  { label: "Lord Howe Island", value: "+10:50" },
+  { label: "Magadan, Solomon Islands, New Caledonia", value: "+11:00" },
+  { label: "Norfolk Island", value: "+11:50" },
+  { label: "Auckland, Wellington, Fiji, Kamchatka", value: "+12:00" },
+  { label: "Chatham Islands", value: "+12:75" },
+  { label: "Apia, Nukualofa", value: "+13:00" },
+  { label: "Line Islands, Tokelau", value: "+14:00" },
 ];

@@ -50,3 +50,9 @@ export interface AuthenticationResponse {
   status: number;
   data: UserState;
 }
+
+export interface CreateOrganizationRequest {
+  message: string;
+  status: number;
+  data: UserState;
+}

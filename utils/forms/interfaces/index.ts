@@ -6,3 +6,10 @@ export interface SignUpFormDetails {
 
 export interface SignInFormDetails
   extends Omit<SignUpFormDetails, "confirmPassword"> {}
+
+export interface OrganizationFormDetail {
+  name: string;
+  size: string;
+  country: string;
+  timeZone: string;
+}

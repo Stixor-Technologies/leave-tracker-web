@@ -10,6 +10,7 @@ import {
   AuthenticationResponse,
   SignInRequest,
 } from "./api-types";
+import { OrganizationFormDetail } from "@/utils/forms/interfaces";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -67,6 +68,14 @@ export const authApi = createApi({
         body: body,
       }),
     }),
+
+    createOrganization: builder.mutation<any, OrganizationFormDetail>({
+      query: (body) => ({
+        method: "POST",
+        url: "/org",
+        body: body,
+      }),
+    }),
   }),
 });
 
@@ -75,4 +84,5 @@ export const {
   useResendEmailVerificationLinkMutation,
   useVerifyLinkQuery,
   useSignInMutation,
+  useCreateOrganizationMutation,
 } = authApi;

@@ -4,7 +4,6 @@ import { NextPage } from "next";
 import { Button } from "@/components/ui/button";
 import AuthenticationPageTemplate from "@/components/authentication-page-template";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
@@ -41,43 +40,41 @@ import { cn } from "@/lib/utils";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { orgSizeOptions, countries } from "@/utils/constants";
-
-export interface OrganizatonFormDetail {
-  organizationName: string;
-  organizationSize: string;
-  country: string;
-  timeZone: string;
-}
-
-export const organizationSchema = Yup.object().shape({
-  organizationName: Yup.string().required(`Organization name is required`),
-  organizationSize: Yup.string().required("Organization Size is required"),
-  country: Yup.string().required("Organization Size is required"),
-  timeZone: Yup.string().required("Organization Size is required"),
-});
+import { ORG_SIZE_OPTIONS, COUNTRIES, TIMEZONES } from "@/utils/constants";
+import { organizationDefaultValues } from "@/utils/forms/initial-values";
+import { OrganizationFormDetail } from "@/utils/forms/interfaces";
+import { organizationSchema } from "@/utils/forms/validations";
+import { useCreateOrganizationMutation } from "@/redux/apis/auth-api";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/utils/constants";
 
 const SignUp: NextPage = () => {
-  // const {
-  //   fields: { email, password, confirmPassword },
-  // } = signUpForm;
-
+  const router = useRouter();
   const [countryPopover, setCountryPopover] = useState(false);
   const [timeZonePopover, settimeZonePopover] = useState(false);
 
+  const [createOrganization, { isLoading }] = useCreateOrganizationMutation();
+
   const form = useForm({
     resolver: yupResolver(organizationSchema),
-    defaultValues: {
-      organizationName: "",
-      organizationSize: "",
-      country: "",
-      timeZone: "",
-    },
+    defaultValues: organizationDefaultValues,
   });
 
-  const onSubmit = (values: OrganizatonFormDetail) => {
-    console.log(values);
+  const onSubmit = async (formValues: OrganizationFormDetail) => {
+    console.log(formValues);
+
+    try {
+      const res = await createOrganization(formValues).unwrap();
+      if (res?.status === 200) {
+        toast.success("Login successfull");
+        setTimeout(() => {
+          router.replace(ROUTES.DASHBOARD);
+        }, 500);
+      }
+    } catch (err: any) {
+      toast.error(err?.data?.message);
+    }
   };
 
   return (
@@ -89,21 +86,13 @@ const SignUp: NextPage = () => {
         >
           <FormField
             control={form.control}
-            name={"organizationName"}
+            name={"name"}
             render={({ field }) => (
               <FormItem>
-                {/* <Label htmlFor={"organizationName"} required={true}>
-                  Name
-                </Label> */}
-
-                <FormLabel required>Name</FormLabel>
+                <FormLabel required>Organization name</FormLabel>
 
                 <FormControl>
-                  <Input
-                    placeholder={"Organization Name"}
-                    // type={}
-                    {...field}
-                  />
+                  <Input placeholder={"name"} type={"string"} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,12 +101,9 @@ const SignUp: NextPage = () => {
 
           <FormField
             control={form.control}
-            name="organizationSize"
+            name="size"
             render={({ field }) => (
               <FormItem>
-                {/* <Label htmlFor={"organizationSize"} required={true}>
-                  Organization Size
-                </Label> */}
                 <FormLabel required> Organization Size</FormLabel>
 
                 <Select
@@ -132,7 +118,7 @@ const SignUp: NextPage = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {orgSizeOptions?.map((orgSizes, index) => (
+                    {ORG_SIZE_OPTIONS?.map((orgSizes, index) => (
                       <SelectItem key={index} value={orgSizes?.value}>
                         {orgSizes?.label}
                       </SelectItem>
@@ -149,13 +135,9 @@ const SignUp: NextPage = () => {
               control={form.control}
               name="country"
               render={({ field }) => {
-                console.log(field);
+                // console.log(field);
                 return (
                   <FormItem className="flex flex-1 flex-col">
-                    {/* <Label htmlFor={"country"} required={true}>
-                      Country
-                    </Label> */}
-
                     <FormLabel required>Country</FormLabel>
 
                     <Popover
@@ -169,7 +151,7 @@ const SignUp: NextPage = () => {
                           role="combobox"
                         >
                           {field?.value
-                            ? countries?.find(
+                            ? COUNTRIES?.find(
                                 (country) => country?.value === field?.value,
                               )?.label
                             : "select"}
@@ -185,7 +167,7 @@ const SignUp: NextPage = () => {
                           <CommandEmpty>No country found.</CommandEmpty>
                           <CommandGroup>
                             <CommandList>
-                              {countries?.map((country) => (
+                              {COUNTRIES?.map((country) => (
                                 <CommandItem
                                   key={country?.value}
                                   value={country?.value}
@@ -220,72 +202,74 @@ const SignUp: NextPage = () => {
             <FormField
               control={form.control}
               name="timeZone"
-              render={({ field }) => (
-                <FormItem className="flex flex-1 flex-col">
-                  <Label htmlFor={"timeZone"} required={true}>
-                    TimeZone
-                  </Label>
+              render={({ field }) => {
+                // console.log(field);
+                return (
+                  <FormItem className="flex flex-1 flex-col">
+                    <FormLabel required>TimeZone</FormLabel>
 
-                  <Popover
-                    open={timeZonePopover}
-                    onOpenChange={settimeZonePopover}
-                  >
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="popover"
-                        className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
-                        role="combobox"
-                        // aria-expanded={open}
-                      >
-                        {field?.value
-                          ? countries?.find(
-                              (zone) => zone?.value === field?.value,
-                            )?.label
-                          : "select"}
-                        <ChevronDown
-                          className={`h-4 w-4 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
-                        />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="p-0">
-                      <Command>
-                        <CommandInput placeholder="Search timezone..." />
-                        <CommandEmpty>No timezone found.</CommandEmpty>
-                        <CommandGroup>
-                          <CommandList>
-                            {countries?.map((zone) => (
-                              <CommandItem
-                                key={zone?.value}
-                                value={zone?.value}
-                                onSelect={() => {
-                                  form.setValue("timeZone", zone?.value);
-                                  settimeZonePopover(false);
-                                }}
-                              >
-                                <Check
-                                  className={cn(
-                                    "mr-2 h-4 w-4",
-                                    field?.value === zone?.value
-                                      ? "opacity-100"
-                                      : "opacity-0",
-                                  )}
-                                />
-                                {zone?.label}
-                              </CommandItem>
-                            ))}
-                          </CommandList>
-                        </CommandGroup>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
+                    <Popover
+                      open={timeZonePopover}
+                      onOpenChange={settimeZonePopover}
+                    >
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="popover"
+                          className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
+                          role="combobox"
+                        >
+                          {field?.value
+                            ? TIMEZONES?.find(
+                                (zone) => zone?.value === field?.value,
+                              )?.label
+                            : "select"}
+                          <ChevronDown
+                            className={`h-4 w-4 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
+                          />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="p-0">
+                        <Command>
+                          <CommandInput placeholder="Search timezone..." />
+                          <CommandEmpty>No timezone found.</CommandEmpty>
+                          <CommandGroup>
+                            <CommandList>
+                              {TIMEZONES?.map((zone) => (
+                                <CommandItem
+                                  key={zone?.value}
+                                  value={zone?.label}
+                                  onSelect={() => {
+                                    console.log(zone?.value);
+                                    form.setValue("timeZone", zone?.value);
+                                    settimeZonePopover(false);
+                                  }}
+                                >
+                                  <Check
+                                    className={cn(
+                                      "mr-2 h-4 w-4",
+                                      field?.value === zone?.value
+                                        ? "opacity-100"
+                                        : "opacity-0",
+                                    )}
+                                  />
+                                  {zone?.label}
+                                </CommandItem>
+                              ))}
+                            </CommandList>
+                          </CommandGroup>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
 
-                  <FormMessage />
-                </FormItem>
-              )}
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
           </div>
 
           <Button
+            loading={isLoading}
             className="mt-3.5"
             variant="primary"
             size={"medium"}
