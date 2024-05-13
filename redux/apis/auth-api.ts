@@ -54,7 +54,6 @@ export const authApi = createApi({
         method: "GET",
         url: "/auth/verify-link",
         params: { token },
-        credentials: "include",
       }),
       keepUnusedDataFor: 0.001,
     }),
