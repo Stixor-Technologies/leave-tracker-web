@@ -51,7 +51,7 @@ const RegisterationType: NextPage = () => {
   return (
     <AuthenticationPageTemplate
       needGeneralStyles={false}
-      className="mb-5 sm:mb-auto"
+      className="mb-5 sm:mb-0"
     >
       <h1 className="px-4 pb-8 text-center text-xl font-medium text-textColor sm:px-0 md:text-2xl lg:pb-16 lg:text-[1.75rem]">
         Embrace My Leave Tracker as your go-to solution for:
