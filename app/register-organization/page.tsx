@@ -66,8 +66,9 @@ const SignUp: NextPage = () => {
 
     try {
       const res = await createOrganization(formValues).unwrap();
-      if (res?.status === 200) {
-        toast.success("Login successfull");
+      if (res?.data) {
+        toast.success(res?.message);
+        form.reset();
         setTimeout(() => {
           router.replace(ROUTES.DASHBOARD);
         }, 500);
@@ -134,142 +135,137 @@ const SignUp: NextPage = () => {
             <FormField
               control={form.control}
               name="country"
-              render={({ field }) => {
-                // console.log(field);
-                return (
-                  <FormItem className="flex flex-1 flex-col">
-                    <FormLabel required>Country</FormLabel>
+              render={({ field }) => (
+                <FormItem className="flex flex-1 flex-col">
+                  <FormLabel required>Country</FormLabel>
 
-                    <Popover
-                      open={countryPopover}
-                      onOpenChange={setCountryPopover}
-                    >
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="popover"
-                          className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
-                          role="combobox"
-                        >
-                          {field?.value
-                            ? COUNTRIES?.find(
-                                (country) => country?.value === field?.value,
-                              )?.label
-                            : "select"}
-                          <ChevronDown
-                            className={`h-4 w-4 text-placeholder ${countryPopover && "rotate-180"} transition-transform duration-200
+                  <Popover
+                    open={countryPopover}
+                    onOpenChange={setCountryPopover}
+                  >
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="popover"
+                        className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
+                        role="combobox"
+                      >
+                        {field?.value
+                          ? COUNTRIES?.find(
+                              (country) => country?.value === field?.value,
+                            )?.label
+                          : "select"}
+                        <ChevronDown
+                          className={`h-4 w-4 text-placeholder ${countryPopover && "rotate-180"} transition-transform duration-200
                             `}
-                          />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="p-0">
-                        <Command>
-                          <CommandInput placeholder="Search country..." />
-                          <CommandEmpty>No country found.</CommandEmpty>
-                          <CommandGroup>
-                            <CommandList>
-                              {COUNTRIES?.map((country) => (
-                                <CommandItem
-                                  key={country?.value}
-                                  value={country?.value}
-                                  onSelect={() => {
-                                    form.setValue("country", country?.value);
-                                    setCountryPopover(false);
-                                  }}
-                                >
-                                  <Check
-                                    className={cn(
-                                      "mr-2 h-4 w-4",
-                                      field?.value === country?.value
-                                        ? "opacity-100"
-                                        : "opacity-0",
-                                    )}
-                                  />
-                                  {country?.label}
-                                </CommandItem>
-                              ))}
-                            </CommandList>
-                          </CommandGroup>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
+                        />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="p-0">
+                      <Command>
+                        <CommandInput placeholder="Search country..." />
+                        <CommandEmpty>No country found.</CommandEmpty>
+                        <CommandGroup>
+                          <CommandList>
+                            {COUNTRIES?.map((country) => (
+                              <CommandItem
+                                key={country?.value}
+                                value={country?.value}
+                                onSelect={() => {
+                                  form.setValue("country", country?.value);
+                                  setCountryPopover(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    field?.value === country?.value
+                                      ? "opacity-100"
+                                      : "opacity-0",
+                                  )}
+                                />
+                                {country?.label}
+                              </CommandItem>
+                            ))}
+                          </CommandList>
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
 
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
+                  <FormMessage />
+                </FormItem>
+              )}
             />
 
             <FormField
               control={form.control}
               name="timeZone"
-              render={({ field }) => {
-                // console.log(field);
-                return (
-                  <FormItem className="flex flex-1 flex-col">
-                    <FormLabel required>TimeZone</FormLabel>
+              render={({ field }) => (
+                <FormItem className="flex flex-1 flex-col">
+                  <FormLabel required>TimeZone</FormLabel>
 
-                    <Popover
-                      open={timeZonePopover}
-                      onOpenChange={settimeZonePopover}
-                    >
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="popover"
-                          className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
-                          role="combobox"
-                        >
-                          {field?.value
-                            ? TIMEZONES?.find(
-                                (zone) => zone?.value === field?.value,
-                              )?.label
-                            : "select"}
-                          <ChevronDown
-                            className={`h-4 w-4 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
-                          />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="p-0">
-                        <Command>
-                          <CommandInput placeholder="Search timezone..." />
-                          <CommandEmpty>No timezone found.</CommandEmpty>
-                          <CommandGroup>
-                            <CommandList>
-                              {TIMEZONES?.map((zone) => (
-                                <CommandItem
-                                  key={zone?.value}
-                                  value={zone?.label}
-                                  onSelect={() => {
-                                    console.log(zone?.value);
-                                    form.setValue("timeZone", zone?.value);
-                                    settimeZonePopover(false);
-                                  }}
-                                >
-                                  <Check
-                                    className={cn(
-                                      "mr-2 h-4 w-4",
-                                      field?.value === zone?.value
-                                        ? "opacity-100"
-                                        : "opacity-0",
-                                    )}
-                                  />
-                                  {zone?.label}
-                                </CommandItem>
-                              ))}
-                            </CommandList>
-                          </CommandGroup>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
+                  <Popover
+                    open={timeZonePopover}
+                    onOpenChange={settimeZonePopover}
+                  >
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="popover"
+                        className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
+                        role="combobox"
+                      >
+                        {field?.value
+                          ? TIMEZONES?.find(
+                              (zone) => zone?.value === field?.value,
+                            )?.label
+                          : "select"}
+                        <ChevronDown
+                          className={`h-4 w-4 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
+                        />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="p-0">
+                      <Command>
+                        <CommandInput placeholder="Search timezone..." />
+                        <CommandEmpty>No timezone found.</CommandEmpty>
+                        <CommandGroup>
+                          <CommandList>
+                            {TIMEZONES?.map((zone) => (
+                              <CommandItem
+                                key={zone?.value}
+                                value={zone?.label}
+                                onSelect={() => {
+                                  console.log(zone?.value);
+                                  form.setValue("timeZone", zone?.value);
+                                  settimeZonePopover(false);
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    field?.value === zone?.value
+                                      ? "opacity-100"
+                                      : "opacity-0",
+                                  )}
+                                />
+                                {zone?.label}
+                              </CommandItem>
+                            ))}
+                          </CommandList>
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
 
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
 
           <Button
             loading={isLoading}
+            disabled={isLoading}
             className="mt-3.5"
             variant="primary"
             size={"medium"}

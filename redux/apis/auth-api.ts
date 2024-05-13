@@ -1,6 +1,5 @@
 import { AUTH_BASE_URL } from "@/utils/constants";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getCookie } from "cookies-next";
 import {
   ErrorResponse,
   ResendEmailVerificationLinkRequest,
@@ -9,6 +8,7 @@ import {
   SignUpSuccessResponse,
   AuthenticationResponse,
   SignInRequest,
+  CreateOrganizationResponse,
 } from "./api-types";
 import { OrganizationFormDetail } from "@/utils/forms/interfaces";
 
@@ -16,15 +16,7 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: AUTH_BASE_URL,
-    prepareHeaders: (headers) => {
-      const token = getCookie("token");
-
-      if (token) {
-        headers.set("authorization", `Bearer ${token}`);
-      }
-
-      return headers;
-    },
+    credentials: "include",
   }),
   tagTypes: [],
 
@@ -68,7 +60,10 @@ export const authApi = createApi({
       }),
     }),
 
-    createOrganization: builder.mutation<any, OrganizationFormDetail>({
+    createOrganization: builder.mutation<
+      CreateOrganizationResponse,
+      OrganizationFormDetail
+    >({
       query: (body) => ({
         method: "POST",
         url: "/org",

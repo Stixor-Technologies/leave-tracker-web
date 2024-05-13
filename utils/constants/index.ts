@@ -5,7 +5,7 @@ export const ROUTES = {
   SIGN_IN: "/sign-in",
   VERIFICATION: "/verification",
   REGISTRATION_TYPE: "/registration-type",
-  ORGANIZATION_REGISTRATION: "/organization-registration",
+  ORGANIZATION_REGISTRATION: "/register-organization",
   APPLY: "/apply",
   CALENDAR: "/calendar",
   REQUESTS: "/requests",

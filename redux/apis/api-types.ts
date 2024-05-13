@@ -51,8 +51,7 @@ export interface AuthenticationResponse {
   data: UserState;
 }
 
-export interface CreateOrganizationRequest {
+export interface CreateOrganizationResponse {
   message: string;
-  status: number;
-  data: UserState;
+  data: string;
 }
