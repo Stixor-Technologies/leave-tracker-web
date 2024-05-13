@@ -48,7 +48,6 @@ const SignUp: NextPage = () => {
       toast.success("User Registered Successfully");
       setTimeout(() => router.push(ROUTES.VERIFICATION), 500);
     } catch (error: any) {
-      console.log(error);
       toast.error(error?.data?.message);
     }
   };

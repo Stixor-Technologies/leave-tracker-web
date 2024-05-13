@@ -50,7 +50,6 @@ const Verification: NextPage = () => {
         }).unwrap();
         toast.success("Verification link sent to email successfully");
       } catch (error: any) {
-        console.log(error);
         toast.error(error?.data?.message);
       }
     } else {

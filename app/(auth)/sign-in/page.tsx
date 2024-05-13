@@ -49,16 +49,13 @@ const SignIn: NextPage = () => {
       if (res?.status === 200) {
         toast.success("Login successfull");
         dispatch(loginUser(res?.data));
-        console.log(res);
         setTimeout(() => {
-          console.log("replace");
           router.replace(
             res?.data?.isOrg ? ROUTES.DASHBOARD : ROUTES.REGISTRATION_TYPE,
           );
         }, 500);
       }
     } catch (err: any) {
-      console.log(err);
       toast.error(err?.data?.message);
     }
   };
@@ -114,7 +111,7 @@ const SignIn: NextPage = () => {
               )}
             />
 
-            <Link href={"/"} className="mt-1.5 inline-block text-sm text-gray">
+            <Link href={"/"} className="text-gray mt-1.5 inline-block text-sm">
               Forgot Password?
             </Link>
           </div>
