@@ -1,10 +1,14 @@
 import * as Yup from "yup";
 
-import { signUpForm } from "../form-details";
+import { signInForm, signUpForm } from "../form-details";
 
 const {
-  fields: { email: signUpEmail, password },
+  fields: { email: signUpEmail, password: signUpPassword },
 } = signUpForm;
+
+const {
+  fields: { email: signInEmail, password: signInPassword },
+} = signInForm;
 
 export const signUpValidationSchema = Yup.object().shape({
   email: Yup.string()
@@ -21,6 +25,13 @@ export const signUpValidationSchema = Yup.object().shape({
     .required("Password is required"),
 
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref(password.name)], "Passwords must match")
+    .oneOf([Yup.ref(signUpPassword.name)], "Passwords do not match")
     .required("Please confirm your password"),
+});
+
+export const signInValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required(`${signInEmail?.label} is required`),
+  password: Yup.string().required(`${signInPassword?.label} is required`),
 });

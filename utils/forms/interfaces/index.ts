@@ -3,3 +3,6 @@ export interface SignUpFormDetails {
   password: string;
   confirmPassword: string;
 }
+
+export interface SignInFormDetails
+  extends Omit<SignUpFormDetails, "confirmPassword"> {}

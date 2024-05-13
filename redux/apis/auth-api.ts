@@ -7,7 +7,8 @@ import {
   ResendEmailVerificationLinkResponse,
   SignUpRequest,
   SignUpSuccessResponse,
-  VerifyEmailResponse,
+  AuthenticationResponse,
+  SignInRequest,
 } from "./api-types";
 
 export const authApi = createApi({
@@ -49,7 +50,7 @@ export const authApi = createApi({
       }),
     }),
 
-    verifyLink: builder.query<VerifyEmailResponse | any, string>({
+    verifyLink: builder.query<AuthenticationResponse | any, string>({
       query: (token) => ({
         method: "GET",
         url: "/auth/verify-link",
@@ -58,6 +59,14 @@ export const authApi = createApi({
       }),
       keepUnusedDataFor: 0.001,
     }),
+
+    signIn: builder.mutation<AuthenticationResponse, SignInRequest>({
+      query: (body) => ({
+        method: "POST",
+        url: "/auth/sign-in",
+        body: body,
+      }),
+    }),
   }),
 });
 
@@ -65,4 +74,5 @@ export const {
   useSignUpMutation,
   useResendEmailVerificationLinkMutation,
   useVerifyLinkQuery,
+  useSignInMutation,
 } = authApi;
