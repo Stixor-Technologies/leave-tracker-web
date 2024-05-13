@@ -33,7 +33,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
 
   return (
     <div
-      className={`bg-lightGray relative flex min-h-screen w-screen flex-col items-center justify-center`}
+      className={`relative flex min-h-screen w-screen flex-col items-center justify-center bg-lightGray`}
     >
       <Image
         src={logo}
