@@ -24,3 +24,23 @@ export const signUpForm = {
     },
   },
 };
+
+export const signInForm = {
+  id: "01-sign-in-form",
+  fields: {
+    email: {
+      type: "string",
+      name: "email",
+      label: "Email",
+      placeholder: "email",
+      errMsg: "Email is required",
+    },
+    password: {
+      type: "password",
+      name: "password",
+      label: "Password",
+      placeholder: "password",
+      errMsg: "Password is required.",
+    },
+  },
+};
