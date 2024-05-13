@@ -25,7 +25,7 @@ export const signUpValidationSchema = Yup.object().shape({
     .required("Password is required"),
 
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref(signUpPassword.name)], "Passwords must do not match")
+    .oneOf([Yup.ref(signUpPassword.name)], "Passwords do not match")
     .required("Please confirm your password"),
 });
 
