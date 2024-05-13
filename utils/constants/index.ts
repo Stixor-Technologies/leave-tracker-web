@@ -297,3 +297,7 @@ export const TIMEZONES = [
   { label: "Apia, Nukualofa", value: "+13:00" },
   { label: "Line Islands, Tokelau", value: "+14:00" },
 ];
+export const SOCIAL_LINKS = {
+  GOOGLE: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/google/login`,
+  SLACK: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/slack/login`,
+};
