@@ -43,6 +43,6 @@ export const organizationSchema = Yup.object().shape({
     .max(20, "Name should be at most 20 characters long.")
     .required(`Organization name is required`),
   size: Yup.string().required("Organization Size is required"),
-  country: Yup.string().required("Organization Size is required"),
-  timeZone: Yup.string().required("Organization Size is required"),
+  country: Yup.string().required("Country is required"),
+  timeZone: Yup.string().required("Time Zone is required"),
 });
