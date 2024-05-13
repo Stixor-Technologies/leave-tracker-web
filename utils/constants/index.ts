@@ -34,3 +34,8 @@ export const AUTH_ROUTES = [
 ];
 
 export const AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
+
+export const SOCIAL_LINKS = {
+  GOOGLE: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/google/login`,
+  SLACK: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/slack/login`,
+};

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { ReactNode } from "react";
 import { toast } from "sonner";
+import { SOCIAL_LINKS } from "@/utils/constants";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
   const socialLink = (
@@ -47,7 +48,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             height={18}
           />,
           "Google",
-          "https://auth-leave-tracker.stixor.com/v1/auth/google/login",
+          SOCIAL_LINKS.GOOGLE,
         )}
 
         {socialLink(
@@ -58,7 +59,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             height={18}
           />,
           "Slack",
-          "https://auth-leave-tracker.stixor.com/v1/auth/slack/login",
+          SOCIAL_LINKS.SLACK,
         )}
 
         {socialLink(
