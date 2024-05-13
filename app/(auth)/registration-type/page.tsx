@@ -63,7 +63,7 @@ const RegisterationType: NextPage = () => {
             organizationImage,
             "Organization Image",
             "Organization",
-            "Lorem ipsum dolor sit amet consectetur. Gravida mattis vel felis sapien. Quis amet mattis id varius est sed.",
+            "Set up your organization to easily track employee activity with an all-in-one HR system",
           )}
         </Link>
 
@@ -71,7 +71,7 @@ const RegisterationType: NextPage = () => {
           employeeImage,
           "Employee Image",
           "Employee",
-          "Lorem ipsum dolor sit amet consectetur. Gravida mattis vel felis sapien. Quis amet mattis id varius est sed.",
+          "Join an organization that you are affiliated with.",
           "!pt-[2.688rem]",
           () => {
             toast.error("You need an invite from the admin to continue");

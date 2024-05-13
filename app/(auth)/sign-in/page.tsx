@@ -111,7 +111,10 @@ const SignIn: NextPage = () => {
               )}
             />
 
-            <Link href={"/"} className="mt-1.5 inline-block text-sm text-gray">
+            <Link
+              href={"/forgot-password"}
+              className="mt-1.5 inline-block text-sm text-gray"
+            >
               Forgot Password?
             </Link>
           </div>

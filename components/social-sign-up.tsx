@@ -39,7 +39,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         <div className="ml-1 h-px grow bg-textColor opacity-50"></div>
       </div>
 
-      <div className="flex flex-wrap gap-[0.625rem]">
+      <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-3">
         {socialLink(
           <Image
             src={"/assets/images/social-icons/google-icon.svg"}

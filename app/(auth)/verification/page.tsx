@@ -9,6 +9,7 @@ import VerificationPageTemplate from "@/components/verification-page-template";
 import React, { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import {
+  useCheckUserVerificationQuery,
   useResendEmailVerificationLinkMutation,
   useVerifyLinkQuery,
 } from "@/redux/apis/auth-api";
@@ -33,6 +34,10 @@ const Verification: NextPage = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
+  const { data: checkVerificationData } = useCheckUserVerificationQuery(
+    storedEmail as string,
+  );
+
   const { data, isLoading: verifyLoading } = useVerifyLinkQuery(
     token as string,
   );
@@ -41,8 +46,12 @@ const Verification: NextPage = () => {
     if (data?.status === 200) dispatch(loginUser(data.data));
   }, [data]);
 
+  useEffect(() => {
+    console.log(checkVerificationData);
+  }, [checkVerificationData]);
+
   const handleClick = async () => {
-    if (!token) {
+    if (!token && !checkVerificationData?.data?.verified) {
       try {
         await resendLink({
           email: storedEmail as string,
@@ -61,7 +70,9 @@ const Verification: NextPage = () => {
 
   const content = {
     imageURL: !token
-      ? pendingImage
+      ? checkVerificationData?.data?.verified
+        ? approvedImage
+        : pendingImage
       : verifyLoading
         ? verifyingImage
         : data?.status === 200
@@ -69,16 +80,26 @@ const Verification: NextPage = () => {
           : failedImage,
 
     headingText: !token
-      ? "Please verify your email address"
+      ? checkVerificationData?.data?.verified
+        ? "Email verification successful"
+        : "Please verify your email address"
       : verifyLoading
         ? "Verifying provided email"
         : data?.status === 200
           ? "Email verification successful"
           : "Email verification failed, Please try again",
 
-    buttonText: !token ? "Resend Verification link" : "Proceed",
+    buttonText:
+      !token && !checkVerificationData?.data?.verified
+        ? "Resend Verification link"
+        : "Proceed",
 
-    showButton: !token || (token && data?.status === 200) ? true : false,
+    showButton:
+      !token ||
+      (token && data?.status === 200) ||
+      checkVerificationData?.data?.verified
+        ? true
+        : false,
   };
 
   return (
