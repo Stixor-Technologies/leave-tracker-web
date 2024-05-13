@@ -46,10 +46,6 @@ const Verification: NextPage = () => {
     if (data?.status === 200) dispatch(loginUser(data.data));
   }, [data]);
 
-  useEffect(() => {
-    console.log(checkVerificationData);
-  }, [checkVerificationData]);
-
   const handleClick = async () => {
     if (!token && !checkVerificationData?.data?.verified) {
       try {
