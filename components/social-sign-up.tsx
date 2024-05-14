@@ -1,11 +1,13 @@
 import Image from "next/image";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { SOCIAL_LINKS } from "@/utils/constants";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
   const router = useRouter();
+
+  useEffect(() => router.refresh(), []);
 
   const socialLink = (icon: ReactNode, name: string, link: string) => {
     return (
@@ -14,7 +16,6 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
         onClick={() => {
           router.push(link);
-          window.location.reload();
         }}
       >
         <span className="flex items-center justify-center gap-[0.5rem]">
