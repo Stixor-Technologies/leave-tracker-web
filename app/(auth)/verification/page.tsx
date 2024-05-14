@@ -34,16 +34,21 @@ const Verification: NextPage = () => {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 
-  const { data: checkVerificationData } = useCheckUserVerificationQuery(
-    storedEmail as string,
-  );
+  const { data: checkVerificationData, refetch } =
+    useCheckUserVerificationQuery(storedEmail as string);
 
   const { data, isLoading: verifyLoading } = useVerifyLinkQuery(
     token as string,
   );
 
   useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (data?.status === 200) dispatch(loginUser(data.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleClick = async () => {

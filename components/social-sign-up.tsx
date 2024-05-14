@@ -1,32 +1,24 @@
 import Image from "next/image";
-import Link from "next/link";
 import React, { ReactNode } from "react";
-import { toast } from "sonner";
 import { SOCIAL_LINKS } from "@/utils/constants";
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
-  const socialLink = (
-    icon: ReactNode,
-    name: string,
-    href: string,
-    needToast: boolean = false,
-  ) => {
+  const router = useRouter();
+
+  const socialLink = (icon: ReactNode, name: string, link: string) => {
     return (
-      <Link
-        href={href}
+      <Button
+        variant={"transparent"}
         className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
-        onClick={() =>
-          needToast &&
-          toast.error(
-            "Jira isn't part of the story yet and will be implemented later",
-          )
-        }
+        onClick={() => router.push(link)}
       >
         <span className="flex items-center justify-center gap-[0.5rem]">
           {icon}
           <span className="text-sm font-medium">{name}</span>
         </span>
-      </Link>
+      </Button>
     );
   };
 
@@ -39,7 +31,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         <div className="ml-1 h-px grow bg-textColor opacity-50"></div>
       </div>
 
-      <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
         {socialLink(
           <Image
             src={"/assets/images/social-icons/google-icon.svg"}
@@ -60,18 +52,6 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
           />,
           "Slack",
           SOCIAL_LINKS.SLACK,
-        )}
-
-        {socialLink(
-          <Image
-            src={"/assets/images/social-icons/jira-icon.svg"}
-            alt="jira icon"
-            width={18}
-            height={18}
-          />,
-          "Jira",
-          "#",
-          true,
         )}
       </div>
     </div>
