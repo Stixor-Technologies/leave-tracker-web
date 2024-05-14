@@ -50,3 +50,10 @@ export interface AuthenticationResponse {
   status: number;
   data: UserState;
 }
+
+export interface CheckUserVerificationResponse {
+  message: string;
+  data: {
+    verified: boolean;
+  };
+}
