@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { ReactNode, useEffect } from "react";
+import React from "react";
 import { SOCIAL_LINKS } from "@/utils/constants";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
