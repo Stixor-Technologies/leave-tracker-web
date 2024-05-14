@@ -80,6 +80,9 @@ const SignUp: NextPage = () => {
     }
   };
 
+  const iconStyles =
+    "h-4 w-4 shrink-0 text-placeholder transition-transform duration-200";
+
   return (
     <AuthenticationPageTemplate className="w-full">
       <Form {...form}>
@@ -163,7 +166,7 @@ const SignUp: NextPage = () => {
                             : "Select"}
                         </span>
                         <ChevronDown
-                          className={`h-4 w-4 shrink-0 text-placeholder ${countryPopover && "rotate-180"} transition-transform duration-200
+                          className={`${iconStyles} ${countryPopover && "rotate-180"}
                             `}
                         />
                       </Button>
@@ -233,7 +236,7 @@ const SignUp: NextPage = () => {
                             : "Select"}
                         </span>
                         <ChevronDown
-                          className={`h-4 w-4 shrink-0 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
+                          className={`${iconStyles} ${timeZonePopover && "rotate-180"}`}
                         />
                       </Button>
                     </PopoverTrigger>
