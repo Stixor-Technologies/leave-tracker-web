@@ -55,3 +55,10 @@ export interface CreateOrganizationResponse {
   message: string;
   data: string;
 }
+
+export interface CheckUserVerificationResponse {
+  message: string;
+  data: {
+    verified: boolean;
+  };
+}
