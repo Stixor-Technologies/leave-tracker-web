@@ -13,6 +13,7 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   REPORTS: "/reports",
   BILLING: "/billing",
+  HOME: "/",
 };
 
 export const PROTECTED_ROUTES = [
@@ -23,6 +24,7 @@ export const PROTECTED_ROUTES = [
   ROUTES.DASHBOARD,
   ROUTES.REPORTS,
   ROUTES.BILLING,
+  ROUTES.HOME,
 ];
 
 export const AUTH_ROUTES = [
