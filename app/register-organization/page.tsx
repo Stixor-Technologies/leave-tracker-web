@@ -51,8 +51,8 @@ import { ROUTES } from "@/utils/constants";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
-  const [countryPopover, setCountryPopover] = useState(false);
-  const [timeZonePopover, settimeZonePopover] = useState(false);
+  const [countryPopover, setCountryPopover] = useState<boolean>(false);
+  const [timeZonePopover, setTimeZonePopover] = useState<boolean>(false);
 
   const [createOrganization, { isLoading }] = useCreateOrganizationMutation();
 
@@ -206,7 +206,7 @@ const SignUp: NextPage = () => {
 
                   <Popover
                     open={timeZonePopover}
-                    onOpenChange={settimeZonePopover}
+                    onOpenChange={setTimeZonePopover}
                   >
                     <PopoverTrigger asChild>
                       <Button
@@ -237,9 +237,8 @@ const SignUp: NextPage = () => {
                                 key={zone?.value}
                                 value={zone?.label}
                                 onSelect={() => {
-                                  console.log(zone?.value);
                                   form.setValue("timeZone", zone?.value);
-                                  settimeZonePopover(false);
+                                  setTimeZonePopover(false);
                                 }}
                               >
                                 <Check
