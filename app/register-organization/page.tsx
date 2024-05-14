@@ -48,7 +48,6 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/constants";
 import { createOrganizationForm } from "@/utils/forms/form-details";
-import { time } from "console";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
