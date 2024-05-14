@@ -1,32 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import { SOCIAL_LINKS } from "@/utils/constants";
-// import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { SOCIAL_LINKS } from "@/utils/constants";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
-  const router = useRouter();
-
-  // useEffect(() => router.refresh(), []);
-
-  // const socialLink = (icon: ReactNode, name: string, link: string) => {
-  //   return (
-  //     <Button
-  //       variant={"transparent"}
-  //       className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
-  //       onClick={() => {
-  //         router.push(link);
-  //       }}
-  //     >
-  //       <span className="flex items-center justify-center gap-[0.5rem]">
-  //         {icon}
-  //         <span className="text-sm font-medium">{name}</span>
-  //       </span>
-  //     </Button>
-  //   );
-  // };
-
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center">
@@ -40,23 +17,18 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
         <Link
           href={SOCIAL_LINKS.GOOGLE}
           className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
-          onKeyUp={() => {
-            router.refresh();
-          }}
-          onTouchEnd={() => {
-            router.refresh();
-          }}
         >
           <span className="flex items-center justify-center gap-[0.5rem]">
             <Image
               src={"/assets/images/social-icons/google-icon.svg"}
-              alt="google icon"
+              alt="Google icon"
               width={18}
               height={18}
             />
             <span className="text-sm font-medium">Google</span>
           </span>
         </Link>
+
         <Link
           className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
           href={SOCIAL_LINKS.SLACK}
@@ -64,7 +36,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
           <span className="flex items-center justify-center gap-[0.5rem]">
             <Image
               src={"/assets/images/social-icons/slack-icon.svg"}
-              alt="slack icon"
+              alt="Slack icon"
               width={18}
               height={18}
             />
@@ -72,29 +44,6 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
           </span>
         </Link>
       </div>
-      {/* <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
-        {socialLink(
-          <Image
-            src={"/assets/images/social-icons/google-icon.svg"}
-            alt="google icon"
-            width={18}
-            height={18}
-          />,
-          "Google",
-          SOCIAL_LINKS.GOOGLE,
-        )}
-
-        {socialLink(
-          <Image
-            src={"/assets/images/social-icons/slack-icon.svg"}
-            alt="slack icon"
-            width={18}
-            height={18}
-          />,
-          "Slack",
-          SOCIAL_LINKS.SLACK,
-        )}
-      </div> */}
     </div>
   );
 };
