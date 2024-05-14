@@ -48,6 +48,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/constants";
 import { createOrganizationForm } from "@/utils/forms/form-details";
+import { time } from "console";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
@@ -163,7 +164,7 @@ const SignUp: NextPage = () => {
                             ? COUNTRIES?.find(
                                 (country) => country?.value === field?.value,
                               )?.label
-                            : "Select"}
+                            : `${country?.label}`}
                         </span>
                         <ChevronDown
                           className={`${iconStyles} ${countryPopover && "rotate-180"}
@@ -233,7 +234,7 @@ const SignUp: NextPage = () => {
                             ? TIMEZONES?.find(
                                 (zone) => zone?.value === field?.value,
                               )?.label
-                            : "Select"}
+                            : `${timeZone?.placeholder}`}
                         </span>
                         <ChevronDown
                           className={`${iconStyles} ${timeZonePopover && "rotate-180"}`}
