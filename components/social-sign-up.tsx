@@ -12,7 +12,10 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
       <Button
         variant={"transparent"}
         className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
-        onClick={() => router.push(link)}
+        onClick={() => {
+          router.push(link);
+          window.location.reload();
+        }}
       >
         <span className="flex items-center justify-center gap-[0.5rem]">
           {icon}
