@@ -62,8 +62,6 @@ const SignUp: NextPage = () => {
   });
 
   const onSubmit = async (formValues: OrganizationFormDetail) => {
-    console.log(formValues);
-
     try {
       const res = await createOrganization(formValues).unwrap();
       if (res?.data) {
@@ -149,13 +147,15 @@ const SignUp: NextPage = () => {
                         className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
                         role="combobox"
                       >
-                        {field?.value
-                          ? COUNTRIES?.find(
-                              (country) => country?.value === field?.value,
-                            )?.label
-                          : "select"}
+                        <span className="line-clamp-1 text-left">
+                          {field?.value
+                            ? COUNTRIES?.find(
+                                (country) => country?.value === field?.value,
+                              )?.label
+                            : "select"}
+                        </span>
                         <ChevronDown
-                          className={`h-4 w-4 text-placeholder ${countryPopover && "rotate-180"} transition-transform duration-200
+                          className={`h-4 w-4 shrink-0 text-placeholder ${countryPopover && "rotate-180"} transition-transform duration-200
                             `}
                         />
                       </Button>
@@ -214,13 +214,15 @@ const SignUp: NextPage = () => {
                         className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
                         role="combobox"
                       >
-                        {field?.value
-                          ? TIMEZONES?.find(
-                              (zone) => zone?.value === field?.value,
-                            )?.label
-                          : "select"}
+                        <span className="line-clamp-1 text-left">
+                          {field?.value
+                            ? TIMEZONES?.find(
+                                (zone) => zone?.value === field?.value,
+                              )?.label
+                            : "select"}
+                        </span>
                         <ChevronDown
-                          className={`h-4 w-4 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
+                          className={`h-4 w-4 shrink-0 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
                         />
                       </Button>
                     </PopoverTrigger>

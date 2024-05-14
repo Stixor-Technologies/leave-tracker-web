@@ -56,7 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <span
-          className={`flex items-center font-normal ${variant === "popover" ? "justify-between" : "justify-center"}`}
+          className={`flex items-center font-normal ${variant === "popover" ? " justify-between" : "justify-center"}`}
         >
           {loading ? (
             <RotateCw className="mr-2 h-4 w-4 animate-spin" />
