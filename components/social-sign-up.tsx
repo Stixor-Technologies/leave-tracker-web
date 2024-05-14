@@ -41,6 +41,14 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
           className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
           onClick={() => {
             router.push(SOCIAL_LINKS.GOOGLE);
+
+            router.refresh();
+          }}
+          onKeyUp={() => {
+            router.refresh();
+          }}
+          onTouchEnd={() => {
+            router.refresh();
           }}
         >
           <span className="flex items-center justify-center gap-[0.5rem]">
