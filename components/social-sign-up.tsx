@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { SOCIAL_LINKS } from "@/utils/constants";
-import { Button } from "./ui/button";
+// import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
   const router = useRouter();
@@ -36,14 +37,9 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
       </div>
 
       <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
-        <Button
-          variant={"transparent"}
+        <Link
+          href={SOCIAL_LINKS.GOOGLE}
           className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
-          onClick={() => {
-            router.push(SOCIAL_LINKS.GOOGLE);
-
-            router.refresh();
-          }}
           onKeyUp={() => {
             router.refresh();
           }}
@@ -60,13 +56,10 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             />
             <span className="text-sm font-medium">Google</span>
           </span>
-        </Button>
-        <Button
-          variant={"transparent"}
+        </Link>
+        <Link
           className="transition-background flex grow items-center justify-center rounded-md border px-4 py-2 duration-300 hover:bg-slate-100"
-          onClick={() => {
-            router.push(SOCIAL_LINKS.SLACK);
-          }}
+          href={SOCIAL_LINKS.SLACK}
         >
           <span className="flex items-center justify-center gap-[0.5rem]">
             <Image
@@ -77,7 +70,7 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
             />
             <span className="text-sm font-medium">Slack</span>
           </span>
-        </Button>
+        </Link>
       </div>
       {/* <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
         {socialLink(
