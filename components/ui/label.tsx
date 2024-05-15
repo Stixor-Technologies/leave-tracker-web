@@ -21,7 +21,7 @@ const Label = React.forwardRef<
     {...props}
   >
     {children}
-    {required && <span className="ps-0.5 text-red-500">*</span>}
+    {required && <span className="ps-0.5 text-destructive">*</span>}
   </LabelPrimitive.Root>
 ));
 
