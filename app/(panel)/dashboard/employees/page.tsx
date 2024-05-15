@@ -79,7 +79,7 @@ const Employees: NextPage = () => {
         <DialogTrigger>
           <Button variant={"primary"}>Add New Employee</Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className=" max-w-[45rem] px-11">
           {/* <DialogHeader>
             <DialogTitle>Are you absolutely sure?</DialogTitle>
             <DialogDescription>
@@ -91,109 +91,119 @@ const Employees: NextPage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col flex-wrap gap-6"
+              // className="flex flex-col flex-wrap gap-6"
             >
-              <FormField
-                control={form.control}
-                name={"firstName"}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{firstName?.label}</FormLabel>
+              <div className="grid grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name={"firstName"}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{firstName?.label}</FormLabel>
 
-                    <FormControl>
-                      <Input
-                        placeholder={firstName.placeholder}
-                        type={firstName.type}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormControl>
+                        <Input
+                          placeholder={firstName.placeholder}
+                          type={firstName.type}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name={"lastName"}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{lastName?.label}</FormLabel>
+                <FormField
+                  control={form.control}
+                  name={"lastName"}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{lastName?.label}</FormLabel>
 
-                    <FormControl>
-                      <Input
-                        placeholder={lastName.placeholder}
-                        type={lastName?.type}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormControl>
+                        <Input
+                          placeholder={lastName.placeholder}
+                          type={lastName?.type}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name={"email"}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{email?.label}</FormLabel>
+                <FormField
+                  control={form.control}
+                  name={"email"}
+                  render={({ field }) => (
+                    <FormItem className="col-span-2">
+                      <FormLabel>{email?.label}</FormLabel>
 
-                    <FormControl>
-                      <Input
-                        placeholder={email?.placeholder}
-                        type={email.type}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormControl>
+                        <Input
+                          placeholder={email?.placeholder}
+                          type={email.type}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name={"hireDate"}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{hireDate?.label}</FormLabel>
+                <FormField
+                  control={form.control}
+                  name={"hireDate"}
+                  render={({ field }) => {
+                    console.log(field);
+                    return (
+                      <FormItem>
+                        <FormLabel>{hireDate?.label}</FormLabel>
 
-                    <FormControl>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={"primary"}
-                              className={`font-normal", w-[240px] pl-3 text-left
+                        <FormControl>
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <FormControl>
+                                <Button
+                                  variant={"primary"}
+                                  className={`font-normal", w-[240px] pl-3 text-left
                                 ${!field.value} && "text-muted-foreground",
                               `}
-                            >
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                >
+                                  <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
 
-                              {field.value ? (
-                                format(field.value, "PPP")
-                              ) : (
-                                <span>Pick a date</span>
-                              )}
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={(date) =>
-                              date > new Date() || date < new Date("1900-01-01")
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                                  {field.value ? (
+                                    format(field.value, "PPP")
+                                  ) : (
+                                    <span>Pick a date</span>
+                                  )}
+                                </Button>
+                              </FormControl>
+                            </PopoverTrigger>
+                            <PopoverContent
+                              className="w-auto p-0"
+                              align="start"
+                            >
+                              <Calendar
+                                mode="single"
+                                selected={new Date(field.value)}
+                                onSelect={field.onChange}
+                                // defaultMonth={field?.value}
+                                disabled={(date) =>
+                                  date > new Date() ||
+                                  date < new Date("1900-01-01")
+                                }
+                                initialFocus
+                              />
+                            </PopoverContent>
+                          </Popover>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+              </div>
 
               <Button
                 // disabled={isLoading}
