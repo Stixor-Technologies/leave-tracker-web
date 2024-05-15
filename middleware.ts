@@ -11,9 +11,6 @@ export const config = {
     "/dashboard/:path*",
     "/reports/:path*",
     "/billing/:path*",
-    "/sign-in/:path*",
-    "/sign-up/:path*",
-    "/verification/:path*",
   ],
 };
 
@@ -21,8 +18,6 @@ export default function middleware(req: any) {
   // Replace "AUTH_COOKIE_NAME" with your actual cookie name
   const authToken = req.cookies.get("Authentication");
   const isAuthenticated = !!authToken; // Check if token exists
-
-  console.log(isAuthenticated, authToken);
 
   // Create a regular expression to match protected routes (dynamic segments replaced with ".+")
   const protectedRoutesRegex = new RegExp(
@@ -36,7 +31,6 @@ export default function middleware(req: any) {
 
   // if user is logged in and tries to access AUTH_ROUTES
   if (isAuthenticated && AUTH_ROUTES.includes(req.nextUrl.pathname)) {
-    console.log("home");
     return NextResponse.redirect(new URL("/", req.url));
   }
 
