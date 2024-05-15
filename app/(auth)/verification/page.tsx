@@ -63,7 +63,7 @@ const Verification: NextPage = () => {
         toast.error(error?.data?.message);
       }
     } else {
-      router.push(
+      router.replace(
         data?.data?.isOrg ? ROUTES.DASHBOARD : ROUTES.REGISTRATION_TYPE,
       );
     }
