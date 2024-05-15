@@ -26,7 +26,6 @@ import { LOCAL, ROUTES } from "@/utils/constants";
 import { useDispatch } from "react-redux";
 import { updateEmail } from "@/redux/slice/user-slice";
 import { toast } from "sonner";
-import { setCookie } from "cookies-next";
 
 const SignUp: NextPage = () => {
   const [signUp, { isLoading }] = useSignUpMutation();
@@ -42,17 +41,15 @@ const SignUp: NextPage = () => {
   });
 
   const onSubmit = async (values: SignUpFormDetails) => {
-    // try {
-    //   await signUp({ ...values, local: LOCAL }).unwrap();
+    try {
+      await signUp({ ...values, local: LOCAL }).unwrap();
 
-    //   dispatch(updateEmail(values.email));
-    //   toast.success("User Registered Successfully");
-    //   setTimeout(() => router.push(ROUTES.VERIFICATION), 500);
-    // } catch (error: any) {
-    //   toast.error(error?.data?.message);
-    // }
-
-    setCookie("cookieKey", "value", { maxAge: 60 * 6 * 24 });
+      dispatch(updateEmail(values.email));
+      toast.success("User Registered Successfully");
+      setTimeout(() => router.push(ROUTES.VERIFICATION), 500);
+    } catch (error: any) {
+      toast.error(error?.data?.message);
+    }
   };
 
   return (
