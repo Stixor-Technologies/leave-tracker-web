@@ -44,3 +44,29 @@ export const signInForm = {
     },
   },
 };
+
+export const createOrganizationForm = {
+  id: "01-sign-in-form",
+  fields: {
+    name: {
+      type: "string",
+      label: "Organization name",
+      placeholder: "Name",
+    },
+    size: {
+      type: "string",
+      label: "Organization Size",
+      placeholder: "Select",
+    },
+    country: {
+      type: "string",
+      label: "Country",
+      placeholder: "Select",
+    },
+    timeZone: {
+      type: "string",
+      label: "TimeZone",
+      placeholder: "Select",
+    },
+  },
+};

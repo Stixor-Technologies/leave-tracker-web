@@ -5,7 +5,7 @@ import { SOCIAL_LINKS } from "@/utils/constants";
 
 const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="mb-1 flex flex-col gap-6">
       <div className="flex items-center">
         <span className={`text-sm text-textColor opacity-50`}>
           Or {title} with
