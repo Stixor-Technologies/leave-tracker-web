@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config = {
+  corePlugins: {
+    container: false,
+  },
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -94,7 +97,25 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addComponents }: any) {
+      addComponents({
+        ".container": {
+          width: "100%",
+          maxWidth: "100%",
+          padding: "0.5rem 0.875rem",
+
+          "@screen md": {
+            padding: "1.25rem 1.25rem 1.25rem 1.063rem",
+          },
+          "@screen 2xl": {
+            maxWidth: "1536px",
+          },
+        },
+      });
+    },
+  ],
 } satisfies Config;
 
 export default config;

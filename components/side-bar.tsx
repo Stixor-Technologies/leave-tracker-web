@@ -22,7 +22,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
   return (
     <>
       {!inSideDrawer && (
-        <div className="block px-5 pt-5 lg:hidden ">
+        <div className="block px-3.5 pt-5 lg:hidden ">
           <SideDrawer />
         </div>
       )}
