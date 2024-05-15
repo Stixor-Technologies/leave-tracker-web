@@ -11,6 +11,9 @@ export const config = {
     "/dashboard/:path*",
     "/reports/:path*",
     "/billing/:path*",
+    "/sign-in/:path*",
+    "/sign-up/:path*",
+    "/verification/:path*",
   ],
 };
 
