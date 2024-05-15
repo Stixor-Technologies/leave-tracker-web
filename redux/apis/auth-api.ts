@@ -9,6 +9,7 @@ import {
   AuthenticationResponse,
   SignInRequest,
   CreateOrganizationResponse,
+  CheckUserVerificationResponse,
 } from "./api-types";
 import { OrganizationFormDetail } from "@/utils/forms/interfaces";
 
@@ -52,6 +53,17 @@ export const authApi = createApi({
       keepUnusedDataFor: 0.001,
     }),
 
+    checkUserVerification: builder.query<CheckUserVerificationResponse, string>(
+      {
+        query: (email) => ({
+          method: "GET",
+          url: "/user/is-verified",
+          params: { email },
+        }),
+        keepUnusedDataFor: 0.001,
+      },
+    ),
+
     signIn: builder.mutation<AuthenticationResponse, SignInRequest>({
       query: (body) => ({
         method: "POST",
@@ -77,6 +89,7 @@ export const {
   useSignUpMutation,
   useResendEmailVerificationLinkMutation,
   useVerifyLinkQuery,
+  useCheckUserVerificationQuery,
   useSignInMutation,
   useCreateOrganizationMutation,
 } = authApi;

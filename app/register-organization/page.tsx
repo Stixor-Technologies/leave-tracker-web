@@ -36,7 +36,6 @@ import {
 } from "@/components/ui/popover";
 
 import { Check, ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -48,6 +47,7 @@ import { useCreateOrganizationMutation } from "@/redux/apis/auth-api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/constants";
+import { createOrganizationForm } from "@/utils/forms/form-details";
 
 const SignUp: NextPage = () => {
   const router = useRouter();
@@ -55,6 +55,10 @@ const SignUp: NextPage = () => {
   const [timeZonePopover, setTimeZonePopover] = useState<boolean>(false);
 
   const [createOrganization, { isLoading }] = useCreateOrganizationMutation();
+
+  const {
+    fields: { name, size, country, timeZone },
+  } = createOrganizationForm;
 
   const form = useForm({
     resolver: yupResolver(organizationSchema),
@@ -76,6 +80,9 @@ const SignUp: NextPage = () => {
     }
   };
 
+  const iconStyles =
+    "h-4 w-4 shrink-0 text-placeholder transition-transform duration-200";
+
   return (
     <AuthenticationPageTemplate className="w-full">
       <Form {...form}>
@@ -88,10 +95,14 @@ const SignUp: NextPage = () => {
             name={"name"}
             render={({ field }) => (
               <FormItem>
-                <FormLabel required>Organization name</FormLabel>
+                <FormLabel required>{name?.label}</FormLabel>
 
                 <FormControl>
-                  <Input placeholder={"name"} type={"string"} {...field} />
+                  <Input
+                    placeholder={name?.placeholder}
+                    type={name?.type}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,7 +114,7 @@ const SignUp: NextPage = () => {
             name="size"
             render={({ field }) => (
               <FormItem>
-                <FormLabel required> Organization Size</FormLabel>
+                <FormLabel required>{size?.label}</FormLabel>
 
                 <Select
                   onValueChange={field.onChange}
@@ -111,9 +122,9 @@ const SignUp: NextPage = () => {
                 >
                   <FormControl>
                     <SelectTrigger
-                      className={`${field?.value === "" ? "text-placeholder" : "text-text-color"}`}
+                      className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
                     >
-                      <SelectValue placeholder="select" />
+                      <SelectValue placeholder={size?.label} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -135,7 +146,7 @@ const SignUp: NextPage = () => {
               name="country"
               render={({ field }) => (
                 <FormItem className="flex flex-1 flex-col">
-                  <FormLabel required>Country</FormLabel>
+                  <FormLabel required>{country?.label}</FormLabel>
 
                   <Popover
                     open={countryPopover}
@@ -147,15 +158,15 @@ const SignUp: NextPage = () => {
                         className={`${field?.value === "" ? "text-placeholder" : "text-textColor"}`}
                         role="combobox"
                       >
-                        <span className="line-clamp-1 text-left">
+                        <span className="line-clamp-1">
                           {field?.value
                             ? COUNTRIES?.find(
                                 (country) => country?.value === field?.value,
                               )?.label
-                            : "select"}
+                            : `${country?.label}`}
                         </span>
                         <ChevronDown
-                          className={`h-4 w-4 shrink-0 text-placeholder ${countryPopover && "rotate-180"} transition-transform duration-200
+                          className={`${iconStyles} ${countryPopover && "rotate-180"}
                             `}
                         />
                       </Button>
@@ -176,12 +187,15 @@ const SignUp: NextPage = () => {
                                 }}
                               >
                                 <Check
-                                  className={cn(
-                                    "mr-2 h-4 w-4",
-                                    field?.value === country?.value
-                                      ? "opacity-100"
-                                      : "opacity-0",
-                                  )}
+                                  className={`
+                                    w-4", mr-2 h-4
+                                    ${
+                                      field?.value === country?.value
+                                        ? "opacity-100"
+                                        : "opacity-0"
+                                    }
+                                    
+                                  `}
                                 />
                                 {country?.label}
                               </CommandItem>
@@ -202,7 +216,7 @@ const SignUp: NextPage = () => {
               name="timeZone"
               render={({ field }) => (
                 <FormItem className="flex flex-1 flex-col">
-                  <FormLabel required>TimeZone</FormLabel>
+                  <FormLabel required>{timeZone?.label}</FormLabel>
 
                   <Popover
                     open={timeZonePopover}
@@ -219,10 +233,10 @@ const SignUp: NextPage = () => {
                             ? TIMEZONES?.find(
                                 (zone) => zone?.value === field?.value,
                               )?.label
-                            : "select"}
+                            : `${timeZone?.placeholder}`}
                         </span>
                         <ChevronDown
-                          className={`h-4 w-4 shrink-0 text-placeholder ${timeZonePopover && "rotate-180"} transition-transform duration-200`}
+                          className={`${iconStyles} ${timeZonePopover && "rotate-180"}`}
                         />
                       </Button>
                     </PopoverTrigger>
@@ -242,12 +256,13 @@ const SignUp: NextPage = () => {
                                 }}
                               >
                                 <Check
-                                  className={cn(
-                                    "mr-2 h-4 w-4",
-                                    field?.value === zone?.value
-                                      ? "opacity-100"
-                                      : "opacity-0",
-                                  )}
+                                  className={`w-4", mr-2 h-4
+                                    ${
+                                      field?.value === zone?.value
+                                        ? "opacity-100"
+                                        : "opacity-0"
+                                    }
+                                  `}
                                 />
                                 {zone?.label}
                               </CommandItem>

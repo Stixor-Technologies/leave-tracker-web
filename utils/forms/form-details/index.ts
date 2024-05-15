@@ -5,21 +5,21 @@ export const signUpForm = {
       type: "string",
       name: "email",
       label: "Email",
-      placeholder: "email",
+      placeholder: "Email",
       errMsg: "Email is required",
     },
     password: {
       type: "password",
       name: "password",
       label: "New Password",
-      placeholder: "new password",
+      placeholder: "New Password",
       errMsg: "Password is required.",
     },
     confirmPassword: {
       type: "password",
       name: "confirmPassword",
       label: "Confirm Password",
-      placeholder: "confirm password",
+      placeholder: "Confirm Password",
       errMsg: "Password confirmation is required.",
     },
   },
@@ -32,14 +32,14 @@ export const signInForm = {
       type: "string",
       name: "email",
       label: "Email",
-      placeholder: "email",
+      placeholder: "Email",
       errMsg: "Email is required",
     },
     password: {
       type: "password",
       name: "password",
       label: "Password",
-      placeholder: "password",
+      placeholder: "Password",
       errMsg: "Password is required.",
     },
   },
@@ -115,6 +115,31 @@ export const addEmployeeForm = {
       type: "string",
       label: "Contract Expiry Date",
       placeholder: "13/05/2024",
+    },
+  },
+};
+export const createOrganizationForm = {
+  id: "01-sign-in-form",
+  fields: {
+    name: {
+      type: "string",
+      label: "Organization name",
+      placeholder: "Name",
+    },
+    size: {
+      type: "string",
+      label: "Organization Size",
+      placeholder: "Select",
+    },
+    country: {
+      type: "string",
+      label: "Country",
+      placeholder: "Select",
+    },
+    timeZone: {
+      type: "string",
+      label: "TimeZone",
+      placeholder: "Select",
     },
   },
 };
