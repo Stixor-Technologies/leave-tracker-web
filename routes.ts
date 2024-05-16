@@ -9,7 +9,6 @@ import {
   Layers,
   Calculator,
   Users,
-  UserCheck,
   Lock,
   Palmtree,
   GitPullRequest,
@@ -19,6 +18,7 @@ import {
   FolderUp,
   Trees,
 } from "lucide-react";
+import UserRole from "@/public/assets/images/dashboard/User-Role.svg";
 
 export const routes: Route[] = [
   {
@@ -67,7 +67,7 @@ export const dashboardRoutes: Route[] = [
   {
     name: "Roles",
     href: ROUTES.ROLES,
-    icon: UserCheck,
+    icon: UserRole,
   },
   {
     name: "Permissions",
