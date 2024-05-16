@@ -1,6 +1,7 @@
 export const LOCAL = false;
 
 export const ROUTES = {
+  DASHBOARD: "/",
   SIGN_UP: "/sign-up",
   SIGN_IN: "/sign-in",
   VERIFICATION: "/verification",
@@ -10,10 +11,18 @@ export const ROUTES = {
   CALENDAR: "/calendar",
   REQUESTS: "/requests",
   ENTITLEMENT: "/entitlement",
-  DASHBOARD: "/dashboard",
   REPORTS: "/reports",
   BILLING: "/billing",
-  HOME: "/",
+  EMPLOYEE: "/employee",
+  ROLES: "/roles",
+  PERMISSIONS: "/permissions",
+  HOLIDAYS: "/holidays",
+  APPROVAL_FLOWS: "/approval-flows",
+  WORK_SCHEDULE: "/work-schedule",
+  NOTIFICATIONS: "/notifications",
+  ACCOUNT_SETTINGS: "/account-settings",
+  IMPORT: "/import",
+  ABSENCE_TYPES: "/absence-types",
 };
 
 export const PROTECTED_ROUTES = [
@@ -24,7 +33,16 @@ export const PROTECTED_ROUTES = [
   ROUTES.DASHBOARD,
   ROUTES.REPORTS,
   ROUTES.BILLING,
-  ROUTES.HOME,
+  ROUTES.EMPLOYEE,
+  ROUTES.ROLES,
+  ROUTES.PERMISSIONS,
+  ROUTES.HOLIDAYS,
+  ROUTES.APPROVAL_FLOWS,
+  ROUTES.WORK_SCHEDULE,
+  ROUTES.NOTIFICATIONS,
+  ROUTES.ACCOUNT_SETTINGS,
+  ROUTES.IMPORT,
+  ROUTES.ABSENCE_TYPES,
 ];
 
 export const AUTH_ROUTES = [
