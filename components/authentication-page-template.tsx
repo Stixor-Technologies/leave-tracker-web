@@ -31,11 +31,9 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
         alt="Background Logo"
         className="absolute bottom-0 left-0 !z-0 w-[17.5rem] md:w-auto"
       />
-      <div className="my-[1.125rem] flex flex-1 items-center">
+      <div className="my-[1.5rem] flex items-center md:flex-1">
         {redirectTo === "" ? (
-          <div className={`${generalClasses} ${className} h-5/6 `}>
-            {children}
-          </div>
+          <div className={`${generalClasses} ${className}`}>{children}</div>
         ) : (
           <div className={`flex flex-col items-center sm:items-end`}>
             <div className={`${generalClasses} ${className}`}>{children}</div>
@@ -43,7 +41,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
             <div className="z-10 pt-3 text-sm sm:pt-6">
               {redirectTo !== "sign-up" ? (
                 <>
-                  <span className="text-textColor opacity-50">
+                  <span className="text-placeholder">
                     Already have an account?{" "}
                   </span>
 
@@ -56,7 +54,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
                 </>
               ) : (
                 <>
-                  <span className="text-textColor opacity-50">
+                  <span className="text-placeholder">
                     Don&apos;t have an account yet?{" "}
                   </span>
 
