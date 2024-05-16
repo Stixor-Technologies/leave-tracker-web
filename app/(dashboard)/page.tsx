@@ -24,7 +24,7 @@ const Dashboard: NextPage = () => {
 
   return (
     <div className="container">
-      <Header title="Dashboard" className="gap- md:gap-3">
+      <Header title="Dashboard">
         <Button variant="primary" className="w-[92vw] sm:w-auto">
           <ExternalLink size={16} className="me-2" />
           Integrations

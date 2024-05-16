@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({
 
   return (
     <div
-      className={`${generalClasses} ${className} mb-[1.875rem] justify-between border-b border-stroke !pb-1.5 pt-3 md:pt-0`}
+      className={`${generalClasses} ${className} mb-[1.875rem] justify-center border-b border-stroke !pb-1.5 pt-3 sm:justify-between md:pt-0`}
     >
       <div className={`${generalClasses}`}>
         {navigate && (

@@ -31,7 +31,6 @@ interface Organization {
 const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
   const pathname = usePathname();
 
-  const [isHovered, setIsHovered] = useState<number>();
   const textClasses = `flex cursor-pointer items-center gap-4 py-3 px-5 text-textColor hover:text-primary transition-color duration-300`;
 
   // This will be later used when the organizations are set on the backend
@@ -93,12 +92,10 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
                 {inSideDrawer ? (
                   <Link href={route.href} key={index}>
                     <SheetClose
-                      className={`w-full ${textClasses} ${pathname === route.href && "!text-primary"}`}
-                      onMouseEnter={() => setIsHovered(index)}
-                      onMouseLeave={() => setIsHovered(100)}
+                      className={`group w-full ${textClasses} ${pathname === route.href && "!text-primary"}`}
                     >
                       <route.icon
-                        className={`${isHovered === index || pathname === route.href ? "text-primary" : "text-gray "} transition-color duration-300`}
+                        className={`transition-color text-gray duration-300 group-hover:text-primary ${pathname === route.href && "!text-primary"}`}
                       />
 
                       <p className={`text-sm lg:flex-1`}>{route.name}</p>
@@ -107,13 +104,11 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
                 ) : (
                   <Link
                     href={route.href}
-                    className={`${textClasses} ${pathname === route.href && "!text-primary"}`}
-                    onMouseEnter={() => setIsHovered(index)}
-                    onMouseLeave={() => setIsHovered(100)}
+                    className={`group ${textClasses} ${pathname === route.href && "!text-primary"}`}
                     key={index}
                   >
                     <route.icon
-                      className={`${isHovered === index || pathname === route.href ? "text-primary" : "text-gray "} transition-color duration-300`}
+                      className={`transition-color text-gray duration-300 group-hover:text-primary ${pathname === route.href && "!text-primary"}`}
                     />
 
                     <p className={`text-sm lg:flex-1`}>{route.name}</p>
