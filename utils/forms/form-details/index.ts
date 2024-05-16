@@ -134,7 +134,7 @@ export const createOrganizationForm = {
     },
     size: {
       type: "string",
-      label: "Organization Size",
+      label: "Organization size",
       placeholder: "Select",
     },
     country: {
@@ -144,7 +144,7 @@ export const createOrganizationForm = {
     },
     timeZone: {
       type: "string",
-      label: "TimeZone",
+      label: "Time Zone",
       placeholder: "Select",
     },
   },
