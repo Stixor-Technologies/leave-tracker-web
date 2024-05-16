@@ -25,8 +25,8 @@ export interface AddEmployeeFormDetail {
   gender?: string;
   probationEnd?: string;
   directManagerId?: string;
-  seniorityYears?: number | null;
-  seniorityMonths?: number | null;
+  seniorityYears?: string;
+  seniorityMonths?: string;
   workScheduleId?: string;
   contractEnd?: string;
 }

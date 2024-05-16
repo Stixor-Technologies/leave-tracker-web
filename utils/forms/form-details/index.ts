@@ -102,12 +102,12 @@ export const addEmployeeForm = {
       placeholder: "Select",
     },
     seniorityYears: {
-      type: "number",
+      type: "string",
       label: "Seniority Before Hire",
       placeholder: "Years",
     },
     seniorityMonths: {
-      type: "number",
+      type: "string",
       label: "",
       placeholder: "Months",
     },
@@ -124,6 +124,7 @@ export const addEmployeeForm = {
     },
   },
 };
+
 export const createOrganizationForm = {
   id: "01-sign-in-form",
   fields: {
