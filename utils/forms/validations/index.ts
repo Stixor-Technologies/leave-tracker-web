@@ -63,41 +63,61 @@ export const addEmployeeSchema = Yup.object().shape({
   gender: Yup.string().optional(),
   probationEnd: Yup.string().optional(),
   directManagerId: Yup.string().optional(),
-  seniorityYears: Yup.number()
-    .transform((value, originalValue) =>
-      originalValue.trim() === "" ? undefined : value,
-    )
-    .positive("Years must be positive numbers")
-    .max(25, "Years cannot be more than 25")
-    .test(
-      "is-valid-pattern",
-      "Years must be in the format 01, 02",
-      function (value) {
-        if (value === undefined || value === null) {
-          return true;
-        }
-        return /^[0-9]{2}$/.test(value.toString());
-      },
-    )
-    .nullable(),
+  seniorityYears: Yup.string()
+    .trim()
+    .test("is-smaller", "Years cannot be less than 0", function (value) {
+      const numericValue = parseInt(value?.trim() || "", 10);
+      console.log(numericValue, numericValue < 0, typeof numericValue);
+      if (numericValue < 0) {
+        return false;
+      }
+      return true;
+    })
+    .test("is-greater", "Years cannot be greater than 35", function (value) {
+      const numericValue = parseInt(value?.trim() || "", 10);
 
-  seniorityMonths: Yup.number()
-    .transform((value, originalValue) =>
-      originalValue.trim() === "" ? undefined : value,
-    )
-    .positive("Months must be positive numbers")
-    .max(12, "Months cannot be more than 12")
-    .test(
-      "is-valid-pattern",
-      "Months must be in the format 01, 02",
-      function (value) {
-        if (value === undefined || value === null) {
-          return true;
-        }
-        return /^[0-9]{2}$/.test(value.toString());
-      },
-    )
-    .nullable(),
+      if (numericValue === 0) {
+        return true;
+      }
+
+      if (numericValue > 35) {
+        return false;
+      }
+      return true;
+    })
+    .test("is-numeric", "Only numbers allowed", function (value) {
+      return /^\d*$/.test(value?.trim() || "");
+    })
+    .matches(/^(0|\d{2})?$/, "Years must be in the format '01', '02'"),
+
+  seniorityMonths: Yup.string()
+    .trim()
+
+    .test("is-smaller", "Months cannot be less than 0", function (value) {
+      const numericValue = parseInt(value?.trim() || "", 10);
+      console.log(numericValue, numericValue < 0, typeof numericValue);
+      if (numericValue < 0) {
+        return false;
+      }
+      return true;
+    })
+    .test("is-greater", "Months cannot be greater than 12", function (value) {
+      const numericValue = parseInt(value?.trim() || "", 10);
+
+      if (numericValue === 0) {
+        return true;
+      }
+
+      if (numericValue > 12) {
+        return false;
+      }
+      return true;
+    })
+    .test("is-numeric", "Only numbers allowed", function (value) {
+      return /^\d*$/.test(value?.trim() || "");
+    })
+    .matches(/^(0|\d{2})?$/, "Months must be in the format '01', '02'."),
+
   hireDate: Yup.string().optional(),
   contractEnd: Yup.string().optional(),
   workScheduleId: Yup.string().optional(),
