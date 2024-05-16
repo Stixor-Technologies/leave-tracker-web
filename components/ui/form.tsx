@@ -90,14 +90,9 @@ const FormLabel = React.forwardRef<
     required?: boolean;
   }
 >(({ className, required, children, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
+  const { formItemId } = useFormField();
   return (
-    <Label
-      ref={ref}
-      className={cn(error && "text-destructive", className)}
-      htmlFor={formItemId}
-      {...props}
-    >
+    <Label ref={ref} className={cn(className)} htmlFor={formItemId} {...props}>
       {children}
       {required && <span className="ps-0.5 text-destructive">*</span>}
     </Label>
