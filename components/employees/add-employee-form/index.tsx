@@ -31,6 +31,7 @@ import { addEmployeeDefaultValues } from "@/utils/forms/initial-values";
 import { addEmployeeSchema } from "@/utils/forms/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAddEmployeeMutation } from "@/redux/apis/auth-api";
+import { DialogFooter } from "@/components/ui/dialog";
 
 type AddEmployeeProps = {
   setOpenEmployeeForm: Dispatch<React.SetStateAction<boolean>>;
@@ -323,47 +324,48 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
             )}
           />
 
-          <div className="flex items-end gap-4">
-            <FormField
-              control={form.control}
-              name={"seniorityYears"}
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormLabel>{seniorityYears?.label}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={seniorityYears.placeholder}
-                      type={seniorityMonths.type}
-                      inputMode="numeric"
-                      {...field}
-                      value={field.value !== null ? field.value : ""}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <div className="space-y-1.5">
+            <FormLabel>{seniorityYears?.label}</FormLabel>
 
-            <FormField
-              control={form.control}
-              name={"seniorityMonths"}
-              render={({ field }) => (
-                <FormItem className="flex-1">
-                  <FormLabel>{seniorityMonths?.label}</FormLabel>
+            <div className="flex items-start gap-4">
+              <FormField
+                control={form.control}
+                name={"seniorityYears"}
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        placeholder={seniorityYears.placeholder}
+                        type={seniorityMonths.type}
+                        inputMode="numeric"
+                        {...field}
+                        value={field.value !== null ? field.value : ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  <FormControl>
-                    <Input
-                      placeholder={seniorityMonths.placeholder}
-                      type={seniorityMonths.type}
-                      inputMode="numeric"
-                      {...field}
-                      value={field.value !== null ? field.value : ""}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name={"seniorityMonths"}
+                render={({ field }) => (
+                  <FormItem className="flex-1">
+                    <FormControl>
+                      <Input
+                        placeholder={seniorityMonths.placeholder}
+                        type={seniorityMonths.type}
+                        inputMode="numeric"
+                        {...field}
+                        value={field.value !== null ? field.value : ""}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
           </div>
 
           <FormField
@@ -415,7 +417,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
         </div>
 
-        <div className="mt-4 flex flex-col gap-4 sm:mt-8 sm:flex-row sm:items-center sm:gap-[1.5rem]">
+        <DialogFooter className="sticky bottom-0 flex flex-col gap-4 bg-white py-6 sm:flex-row sm:items-center sm:gap-[1.5rem] md:pb-[2.375rem] md:pt-8">
           <div className="flex items-center gap-2 sm:order-1">
             <Checkbox id="terms" />
             <FormLabel
@@ -436,7 +438,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           >
             Add Employee
           </Button>
-        </div>
+        </DialogFooter>
       </form>
     </Form>
   );

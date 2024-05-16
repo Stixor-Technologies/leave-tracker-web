@@ -171,7 +171,7 @@ const SignUp: NextPage = () => {
                         />
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent avoidCollisions={false} className="p-0">
+                    <PopoverContent className="p-0">
                       <Command>
                         <CommandInput placeholder="Search country..." />
                         <CommandEmpty>No country found.</CommandEmpty>
@@ -240,7 +240,7 @@ const SignUp: NextPage = () => {
                         />
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent avoidCollisions={false} className="p-0">
+                    <PopoverContent className="p-0">
                       <Command>
                         <CommandInput placeholder="Search timezone..." />
                         <CommandEmpty>No timezone found.</CommandEmpty>

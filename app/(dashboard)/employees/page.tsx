@@ -15,12 +15,12 @@ const Employees: NextPage = () => {
       <Header title="Employee" navigate>
         <Dialog open={openEmployeeForm} onOpenChange={setOpenEmployeeForm}>
           <DialogTrigger asChild>
-            <Button variant={"primary"} className="w-full sm:w-[12rem]">
+            <Button variant={"primary"} className="w-[92vw] sm:w-[12rem]">
               <CirclePlus className="mr-2" size={16} />
               Add New Employee
             </Button>
           </DialogTrigger>
-          <DialogContent className="w-[90%] max-w-[45rem] px-5 md:w-full md:px-11 md:py-[2.375rem]">
+          <DialogContent className="h-full max-h-[80vh] w-[90%] max-w-[45rem] overflow-y-auto px-5  pb-0 pt-[2.375rem] md:h-auto md:w-full md:px-11">
             <AddEmployee setOpenEmployeeForm={setOpenEmployeeForm} />
           </DialogContent>
         </Dialog>
