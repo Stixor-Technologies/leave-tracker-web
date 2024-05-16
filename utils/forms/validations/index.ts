@@ -46,3 +46,60 @@ export const organizationSchema = Yup.object().shape({
   country: Yup.string().required("Country is required"),
   timeZone: Yup.string().required("Time Zone is required"),
 });
+
+export const addEmployeeSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters long")
+    .max(30, "First name must be at most 30 characters long")
+    .matches(
+      /^[^\s]+(?:$|.*[^\s]+$)/,
+      "First name cannot start/end with space",
+    ),
+  lastName: Yup.string().required("Last name is required"),
+  email: Yup.string().required("Email is required"),
+  role: Yup.string().optional(),
+  approvalFlowId: Yup.string().optional(),
+  holidayCalender: Yup.string().optional(),
+  gender: Yup.string().optional(),
+  probationEnd: Yup.string().optional(),
+  directManagerId: Yup.string().optional(),
+  seniorityYears: Yup.number()
+    .transform((value, originalValue) =>
+      originalValue.trim() === "" ? undefined : value,
+    )
+    .positive("Years must be positive numbers")
+    .max(25, "Years cannot be more than 25")
+    .test(
+      "is-valid-pattern",
+      "Years must be in the format 01, 02",
+      function (value) {
+        if (value === undefined || value === null) {
+          return true;
+        }
+        return /^[0-9]{2}$/.test(value.toString());
+      },
+    )
+    .nullable(),
+
+  seniorityMonths: Yup.number()
+    .transform((value, originalValue) =>
+      originalValue.trim() === "" ? undefined : value,
+    )
+    .positive("Months must be positive numbers")
+    .max(12, "Months cannot be more than 12")
+    .test(
+      "is-valid-pattern",
+      "Months must be in the format 01, 02",
+      function (value) {
+        if (value === undefined || value === null) {
+          return true;
+        }
+        return /^[0-9]{2}$/.test(value.toString());
+      },
+    )
+    .nullable(),
+  hireDate: Yup.string().optional(),
+  contractEnd: Yup.string().optional(),
+  workScheduleId: Yup.string().optional(),
+});

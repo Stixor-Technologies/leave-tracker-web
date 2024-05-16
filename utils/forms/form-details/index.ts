@@ -66,7 +66,7 @@ export const addEmployeeForm = {
     hireDate: {
       type: "string",
       label: "Hire Date",
-      placeholder: "13/05/2024",
+      placeholder: "16/05/2024",
     },
 
     role: {
@@ -78,43 +78,49 @@ export const addEmployeeForm = {
     approvalFlow: {
       type: "string",
       label: "Approval Flow",
-      placeholder: "Basic Approval Flow",
+      placeholder: "Select",
     },
 
     holidayCalender: {
       type: "string",
       label: "Holiday Calender",
-      placeholder: "",
+      placeholder: "Select",
     },
     gender: {
       type: "string",
       label: "Gender",
-      placeholder: "Default",
+      placeholder: "Select",
     },
     probationEnd: {
       type: "string",
       label: "Probation End",
-      placeholder: "Select",
+      placeholder: "16/05/2024",
     },
     directManager: {
       type: "string",
       label: "Direct Manager",
       placeholder: "Select",
     },
-    seniority: {
-      type: "string",
+    seniorityYears: {
+      type: "number",
       label: "Seniority Before Hire",
-      placeholder: "",
+      placeholder: "Years",
     },
+    seniorityMonths: {
+      type: "number",
+      label: "",
+      placeholder: "Months",
+    },
+
     workSchedule: {
       type: "string",
       label: "Work Schedule",
-      placeholder: "Daily meeting",
+      placeholder: "Select",
     },
     contractExpiryDate: {
       type: "string",
       label: "Contract Expiry Date",
-      placeholder: "13/05/2024",
+      placeholder: "16/05/2024",
     },
   },
 };

@@ -1,4 +1,4 @@
-export const LOCAL = false;
+export const LOCAL = true;
 
 export const ROUTES = {
   SIGN_UP: "/sign-up",
@@ -336,3 +336,9 @@ export const SOCIAL_LINKS = {
   GOOGLE: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/google/login`,
   SLACK: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/slack/login`,
 };
+
+export const GENDERS = [
+  { label: "Male", value: "Male" },
+  { label: "Female", value: "Female" },
+  { label: "Other", value: "Other" },
+];

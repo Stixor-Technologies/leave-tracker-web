@@ -8,7 +8,7 @@ export const config = {
     "/calendar/:path*",
     "/requests/:path*",
     "/entitlement/:path*",
-    "/dashboard/:path*",
+    // "/dashboard/:path*",
     "/reports/:path*",
     "/billing/:path*",
   ],
