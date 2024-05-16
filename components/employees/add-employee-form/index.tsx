@@ -64,7 +64,6 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
   });
 
   const onSubmit = async (formValues: AddEmployeeFormDetail) => {
-    console.log("form", formValues);
     try {
       await addEmployee(formValues).unwrap();
       toast.success("Employee Added");
@@ -83,7 +82,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
             name={"firstName"}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{firstName?.label}</FormLabel>
+                <FormLabel required>{firstName?.label}</FormLabel>
 
                 <FormControl>
                   <Input
@@ -102,7 +101,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
             name={"lastName"}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{lastName?.label}</FormLabel>
+                <FormLabel required>{lastName?.label}</FormLabel>
 
                 <FormControl>
                   <Input
@@ -121,7 +120,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
             name={"email"}
             render={({ field }) => (
               <FormItem className="sm:col-span-2">
-                <FormLabel>{email?.label}</FormLabel>
+                <FormLabel required>{email?.label}</FormLabel>
 
                 <FormControl>
                   <Input
