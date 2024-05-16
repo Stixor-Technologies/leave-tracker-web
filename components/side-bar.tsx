@@ -8,9 +8,24 @@ import { usePathname } from "next/navigation";
 import { routes } from "@/routes";
 import { SheetClose } from "./ui/sheet";
 import { ROUTES } from "@/utils/constants";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+// This will be later used when the organizations are set on the backend
+// import { useSelector } from "react-redux";
+// import { RootState } from "@/types";
 
 interface SideBarProps {
   inSideDrawer?: boolean;
+}
+
+interface Organization {
+  id: string;
+  label: string;
+  image: string;
 }
 
 const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
@@ -18,6 +33,30 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
 
   const [isHovered, setIsHovered] = useState<number>();
   const textClasses = `flex cursor-pointer items-center gap-4 py-3 px-5 text-textColor hover:text-primary transition-color duration-300`;
+
+  // This will be later used when the organizations are set on the backend
+  // const storedUser = useSelector((state: RootState) => state?.user?.user);
+
+  const dummyOrgData: Organization[] = [
+    {
+      id: "1",
+      label: "Stixor",
+      image: "/assets/images/sidebar/stixor-logo.svg",
+    },
+    {
+      id: "2",
+      label: "Google",
+      image: "/assets/images/social-icons/google-icon.svg",
+    },
+    {
+      id: "3",
+      label: "Slack",
+      image: "/assets/images/social-icons/slack-icon.svg",
+    },
+  ];
+
+  const [selectedOrganization, setSelectedOrganization] =
+    useState<Organization>(dummyOrgData[0]);
 
   return (
     <>
@@ -87,9 +126,48 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
           </div>
         </div>
 
-        <div className="mx-5 my-10 flex h-10 w-10/12 items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-textColor lg:w-[12.438rem]">
-          Stixor
-        </div>
+        <Select
+          onValueChange={(value) => {
+            const newSelectedOrganization = dummyOrgData.find(
+              (org) => org.id === value,
+            );
+            if (newSelectedOrganization) {
+              setSelectedOrganization(newSelectedOrganization);
+            }
+          }}
+          defaultValue={selectedOrganization.label}
+        >
+          <SelectTrigger className="mx-5 my-10 flex h-10 w-10/12 items-center rounded-md bg-white px-4 py-2 text-sm font-medium text-textColor drop-shadow-xl-opacity lg:w-[12.438rem]">
+            <div className="flex items-center justify-center gap-2 text-sm font-medium text-textColor">
+              <Image
+                src={selectedOrganization.image}
+                alt="Organization Logo"
+                width={15}
+                height={15}
+              />{" "}
+              {selectedOrganization.label}
+            </div>
+          </SelectTrigger>
+
+          <SelectContent>
+            {dummyOrgData?.map(
+              (org: Organization) =>
+                selectedOrganization.id !== org.id && (
+                  <SelectItem value={org.id} key={org.id}>
+                    <div className="flex items-center justify-center gap-2 text-sm font-medium text-textColor">
+                      <Image
+                        src={org.image}
+                        alt="Organization Logo"
+                        width={15}
+                        height={15}
+                      />{" "}
+                      {org.label}
+                    </div>
+                  </SelectItem>
+                ),
+            )}
+          </SelectContent>
+        </Select>
       </div>
     </>
   );
