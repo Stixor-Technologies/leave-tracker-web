@@ -9,10 +9,7 @@ export default function RootLayout({
   return (
     <div className="flex flex-col lg:flex-row">
       <SideBar />
-      <div
-        suppressHydrationWarning={true}
-        className="w-screen bg-white py-4 ps-5 md:px-5 md:py-12"
-      >
+      <div suppressHydrationWarning={true} className="w-screen bg-white">
         {children}
       </div>
     </div>

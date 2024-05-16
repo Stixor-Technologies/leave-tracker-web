@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
-    const generalClasses = "text-textColor opacity-50 ";
+    const generalClasses = "text-placeholder ";
 
     return (
       <div className="relative">

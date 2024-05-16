@@ -41,7 +41,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
             <div className="z-10 pt-3 text-sm sm:pt-6">
               {redirectTo !== "sign-up" ? (
                 <>
-                  <span className="text-textColor opacity-50">
+                  <span className="text-placeholder">
                     Already have an account?{" "}
                   </span>
 
@@ -54,7 +54,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
                 </>
               ) : (
                 <>
-                  <span className="text-textColor opacity-50">
+                  <span className="text-placeholder">
                     Don&apos;t have an account yet?{" "}
                   </span>
 

@@ -18,6 +18,7 @@ const RegisterationType: NextPage = () => {
   useEffect(() => {
     if (socialLogin === "true") {
       toast.success("Logged in successfully");
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       socialLogin = "Displayed already";
     }
   }, [socialLogin]);
@@ -41,7 +42,7 @@ const RegisterationType: NextPage = () => {
           {heading}
         </h2>
 
-        <p className="text-center text-sm leading-4 text-textColor opacity-50">
+        <p className="text-center text-sm leading-4 text-placeholder">
           {content}
         </p>
       </div>

@@ -7,10 +7,9 @@ const SocialSignUp = ({ title = "signup" }: { title?: string }) => {
   return (
     <div className="mb-1 flex flex-col gap-6">
       <div className="flex items-center">
-        <span className={`text-sm text-textColor opacity-50`}>
-          Or {title} with
-        </span>
-        <div className="ml-1 h-px grow bg-textColor opacity-50"></div>
+        <span className={`text-sm text-placeholder`}>Or {title} with</span>
+
+        <div className="ml-1 h-px grow bg-placeholder"></div>
       </div>
 
       <div className="grid grid-cols-1 gap-[0.625rem] sm:grid-cols-2">
