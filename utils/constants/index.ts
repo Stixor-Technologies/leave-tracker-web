@@ -13,7 +13,7 @@ export const ROUTES = {
   ENTITLEMENT: "/entitlement",
   REPORTS: "/reports",
   BILLING: "/billing",
-  EMPLOYEE: "/employee",
+  EMPLOYEE: "/employees",
   ROLES: "/roles",
   PERMISSIONS: "/permissions",
   HOLIDAYS: "/holidays",
