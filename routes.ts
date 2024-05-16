@@ -18,7 +18,7 @@ import {
   FolderUp,
   Trees,
 } from "lucide-react";
-import UserRole from "@/public/assets/images/dashboard/User-Role.svg";
+import UserRole from "@/public/assets/images/dashboard/user-role.svg";
 
 export const routes: Route[] = [
   {
