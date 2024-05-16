@@ -10,6 +10,10 @@ import {
   SignInRequest,
   CreateOrganizationResponse,
   CheckUserVerificationResponse,
+  SendPasswordSetupLinkRequest,
+  SetPasswordRequest,
+  SetPasswordSuccessResponse,
+  SendPasswordSetupLinkResponse,
 } from "./api-types";
 import { OrganizationFormDetail } from "@/utils/forms/interfaces";
 
@@ -29,6 +33,28 @@ export const authApi = createApi({
       query: (body) => ({
         method: "POST",
         url: "/user/sign-up",
+        body: body,
+      }),
+    }),
+
+    setPassword: builder.mutation<
+      SetPasswordSuccessResponse,
+      SetPasswordRequest
+    >({
+      query: (body) => ({
+        method: "PATCH",
+        url: "/user/set-password",
+        body: body,
+      }),
+    }),
+
+    sendPasswordSetupLink: builder.mutation<
+      SendPasswordSetupLinkResponse,
+      SendPasswordSetupLinkRequest
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/user/send-link",
         body: body,
       }),
     }),
@@ -87,6 +113,8 @@ export const authApi = createApi({
 
 export const {
   useSignUpMutation,
+  useSendPasswordSetupLinkMutation,
+  useSetPasswordMutation,
   useResendEmailVerificationLinkMutation,
   useVerifyLinkQuery,
   useCheckUserVerificationQuery,

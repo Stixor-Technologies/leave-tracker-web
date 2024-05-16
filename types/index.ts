@@ -5,19 +5,45 @@ export interface RootState {
   user: UserState;
 }
 
+export interface OrgUser {
+  id: number;
+  userId: number;
+  orgId: number;
+  org: {
+    id: number;
+    name: string;
+    size: string;
+    country: string;
+    timeZone: string;
+  };
+}
+
 export interface UserState {
   user: {
-    id: number | null;
-    name: string | null;
-    email: string | null;
-    slackId: string | null;
-    role: string | null;
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    slackId: null | string;
+    role: string;
+    hireDate: string;
+    approvalFlowId: number;
+    holidayCalender: string;
+    gender: string;
+    probationEnd: string;
+    seniorityYears: string;
+    seniorityMonths: string;
+    workScheduleId: number;
+    contractEnd: string;
     deleted: boolean;
-    createdAt: string | null;
-    updatedAt: string | null;
+    createdAt: string;
+    updatedAt: string;
     verified: boolean;
-    orgUser: [];
+    directManagerId: number;
+    inviteAccepted: boolean;
+    orgUser: OrgUser[];
   };
+
   isOrg: boolean;
 }
 

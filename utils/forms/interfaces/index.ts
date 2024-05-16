@@ -4,6 +4,13 @@ export interface SignUpFormDetails {
   confirmPassword: string;
 }
 
+export interface VerifiedSignUpFormDetails
+  extends Omit<SignUpFormDetails, "email"> {}
+
+export interface ForgotPasswordFormDetails {
+  email: string;
+}
+
 export interface SignInFormDetails
   extends Omit<SignUpFormDetails, "confirmPassword"> {}
 

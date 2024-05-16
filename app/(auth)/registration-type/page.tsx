@@ -4,16 +4,17 @@ import AuthenticationPageTemplate from "@/components/authentication-page-templat
 import employeeImage from "@/public/assets/images/registration-types/employee.svg";
 import organizationImage from "@/public/assets/images/registration-types/organization.svg";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect } from "react";
 import { ROUTES } from "@/utils/constants";
 import { NextPage } from "next";
 import { toast } from "sonner";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const RegisterationType: NextPage = () => {
   const searchParams = useSearchParams();
   let socialLogin = searchParams.get("socialLogin");
+
+  const router = useRouter();
 
   useEffect(() => {
     if (socialLogin === "true") {
@@ -59,14 +60,14 @@ const RegisterationType: NextPage = () => {
       </h1>
 
       <div className="!flex flex-col items-center gap-8 md:flex-row">
-        <Link href={ROUTES.ORGANIZATION_REGISTRATION}>
-          {card(
-            organizationImage,
-            "Organization Image",
-            "Organization",
-            "Set up your organization to easily track employee activity with an all-in-one HR system",
-          )}
-        </Link>
+        {card(
+          organizationImage,
+          "Organization Image",
+          "Organization",
+          "Set up your organization to easily track employee activity with an all-in-one HR system",
+          "",
+          () => router.replace(ROUTES.ORGANIZATION_REGISTRATION),
+        )}
 
         {card(
           employeeImage,
@@ -74,9 +75,7 @@ const RegisterationType: NextPage = () => {
           "Employee",
           "Join an organization that you are affiliated with.",
           "!pt-[2.688rem]",
-          () => {
-            toast.error("You need an invite from the admin to continue");
-          },
+          () => toast.error("You need an invite from the admin to continue"),
         )}
       </div>
     </AuthenticationPageTemplate>

@@ -25,8 +25,40 @@ export const signUpForm = {
   },
 };
 
+export const verifiedSignUpForm = {
+  id: "02-verified-sign-up-form",
+  fields: {
+    password: {
+      type: "password",
+      name: "password",
+      label: "New Password",
+      placeholder: "New Password",
+      errMsg: "Password is required.",
+    },
+    confirmPassword: {
+      type: "password",
+      name: "confirmPassword",
+      label: "Confirm Password",
+      placeholder: "Confirm Password",
+      errMsg: "Password confirmation is required.",
+    },
+  },
+};
+export const forgotPasswordForm = {
+  id: "03-forgot-password-form",
+  fields: {
+    email: {
+      type: "string",
+      name: "email",
+      label: "Email",
+      placeholder: "Email",
+      errMsg: "Email is required",
+    },
+  },
+};
+
 export const signInForm = {
-  id: "01-sign-in-form",
+  id: "03-sign-in-form",
   fields: {
     email: {
       type: "string",
@@ -46,7 +78,7 @@ export const signInForm = {
 };
 
 export const createOrganizationForm = {
-  id: "01-sign-in-form",
+  id: "04-sign-in-form",
   fields: {
     name: {
       type: "string",
