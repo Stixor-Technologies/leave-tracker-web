@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import {
   Archive,
   Mail,
@@ -19,8 +19,16 @@ import Entitlement from "./entitlement";
 import Requests from "./requests";
 import EntitlementChanges from "./entitlement-changes";
 
-const EmployeeDetail = () => {
+type EmployeeDetailProp = {
+  children?: ReactNode;
+  activeEmployeeId: number;
+};
+
+const EmployeeDetail: FC<EmployeeDetailProp> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<string>("Overview");
+  const [activateFields, setActivateFields] = useState<boolean>(false);
+
+  console.log(activateFields);
 
   const tabs = [
     "Overview",
@@ -47,7 +55,11 @@ const EmployeeDetail = () => {
           <Settings />
           <FileDiff />
         </div>
+
         <Button
+          onClick={() => {
+            activateFields;
+          }}
           variant={"primary"}
           className="col-start-2 row-end-2 ml-auto max-w-[8.75rem] gap-8 text-sm font-medium leading-[1.5rem] "
         >
@@ -72,7 +84,9 @@ const EmployeeDetail = () => {
           ))}
         </TabsList>
 
-        <Overview />
+        {/* {children} */}
+
+        <Overview activateFields={activateFields} />
         <Additional />
         <Entitlement />
         <Requests />

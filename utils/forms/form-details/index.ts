@@ -156,42 +156,42 @@ export const employeeOverview = {
   fields: {
     email: {
       type: "string",
-      label: "Organization name",
+      label: "Email",
       placeholder: "Name",
     },
     approvalFlow: {
       type: "string",
-      label: "Organization size",
+      label: "Approval flow",
       placeholder: "Select",
     },
     teams: {
       type: "string",
-      label: "Country",
+      label: "Teams",
       placeholder: "Select",
     },
     position: {
       type: "string",
-      label: "Time Zone",
+      label: "Position",
       placeholder: "Select",
     },
     holidayCalender: {
       type: "string",
-      label: "Time Zone",
+      label: "Holidays calendar",
       placeholder: "Select",
     },
     contractType: {
       type: "string",
-      label: "Time Zone",
+      label: "Contract type",
       placeholder: "Select",
     },
     userRole: {
       type: "string",
-      label: "Time Zone",
+      label: "User Role",
       placeholder: "Select",
     },
 
     workSchedule: {
-      type: "string",
+      type: "Work schedule",
       label: "Time Zone",
       placeholder: "Select",
     },

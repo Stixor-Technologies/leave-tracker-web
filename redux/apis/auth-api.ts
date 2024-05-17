@@ -100,6 +100,7 @@ export const authApi = createApi({
         url: "/user/org-all-employees",
         method: "GET",
       }),
+      transformResponse: (response) => response.data.users,
     }),
   }),
 });

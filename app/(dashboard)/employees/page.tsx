@@ -9,13 +9,22 @@ import { CirclePlus } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import EmployeeDetail from "@/components/employees/employee-detail";
 import { useEmployeeListQuery } from "@/redux/apis/auth-api";
+import Overview from "@/components/employees/employee-detail/overview";
+import Additional from "@/components/employees/employee-detail/additional";
+import EntitlementChanges from "@/components/employees/employee-detail/entitlement-changes";
+import Entitlement from "@/components/employees/employee-detail/entitlement";
+import Requests from "@/components/employees/employee-detail/requests";
+// import Entitlement from "../entitlement/page";
+// import Requests from "../requests/page";
 
 const Employees: NextPage = () => {
   const { data, isLoading } = useEmployeeListQuery();
 
   console.log(data);
   const [openEmployeeForm, setOpenEmployeeForm] = useState<boolean>(false);
+  const [activeEmployeeId, setActiveEmployeeId] = useState<number>(1);
 
+  // console.log(activeEmployeeId);
   return (
     //   <Header title="Employee" navigate>
     //   <Dialog open={openEmployeeForm} onOpenChange={setOpenEmployeeForm}>
@@ -57,6 +66,9 @@ const Employees: NextPage = () => {
               <Button
                 key={idx}
                 className="relative z-10 h-auto w-full justify-start bg-transparent px-1 py-3"
+                onClick={() => {
+                  setActiveEmployeeId(idx);
+                }}
               >
                 <div className="flex items-center gap-2">
                   <Avatar>
@@ -73,7 +85,13 @@ const Employees: NextPage = () => {
           </div>
 
           <div className="flex-1 self-start rounded-2xl border border-stroke px-[1.375rem] py-3">
-            <EmployeeDetail />
+            <EmployeeDetail activeEmployeeId={activeEmployeeId} />
+            {/* <Overview />
+              <Additional />
+              <Entitlement />
+              <Requests />
+              <EntitlementChanges />
+            </EmployeeDetail> */}
           </div>
         </div>
       </div>
