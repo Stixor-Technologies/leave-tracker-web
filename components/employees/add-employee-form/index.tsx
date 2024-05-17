@@ -42,7 +42,7 @@ type AddEmployeeProps = {
 };
 
 const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
-  const [sendInvite, setSendInvite] = useState(false);
+  const [sendInvite, setSendInvite] = useState<boolean>(false);
   const [addEmployee, { isLoading }] = useAddEmployeeMutation();
   const [sendPasswordLink, { isLoading: sendPasswordLoading }] =
     useSendPasswordSetupLinkMutation();

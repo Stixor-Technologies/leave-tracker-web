@@ -26,13 +26,11 @@ import { toast } from "sonner";
 import { loginUser } from "@/redux/slice/user-slice";
 
 const SetPassword = ({ type }: { type: "INVITE" | "RESET" }) => {
-  const [setupPassword, { isLoading }] = useSetPasswordMutation();
-
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
-
   const router = useRouter();
   const dispatch = useDispatch();
+  const searchParams = useSearchParams();
+  const [setupPassword, { isLoading }] = useSetPasswordMutation();
+  const token = searchParams.get("token");
 
   const {
     fields: { password, confirmPassword },
