@@ -67,23 +67,13 @@ export const addEmployeeSchema = Yup.object().shape({
     .trim()
     .test("is-smaller", "Years cannot be less than 0", function (value) {
       const numericValue = parseInt(value?.trim() || "", 10);
-      console.log(numericValue, numericValue < 0, typeof numericValue);
-      if (numericValue < 0) {
-        return false;
-      }
-      return true;
+
+      return numericValue < 0 ? false : true;
     })
     .test("is-greater", "Years cannot be greater than 35", function (value) {
       const numericValue = parseInt(value?.trim() || "", 10);
 
-      if (numericValue === 0) {
-        return true;
-      }
-
-      if (numericValue > 35) {
-        return false;
-      }
-      return true;
+      return numericValue > 35 ? false : true;
     })
     .test("is-numeric", "Only numbers allowed", function (value) {
       return /^\d*$/.test(value?.trim() || "");
@@ -95,22 +85,12 @@ export const addEmployeeSchema = Yup.object().shape({
 
     .test("is-smaller", "Months cannot be less than 0", function (value) {
       const numericValue = parseInt(value?.trim() || "", 10);
-      if (numericValue < 0) {
-        return false;
-      }
-      return true;
+      return numericValue < 0 ? false : true;
     })
     .test("is-greater", "Months cannot be greater than 12", function (value) {
       const numericValue = parseInt(value?.trim() || "", 10);
 
-      if (numericValue === 0) {
-        return true;
-      }
-
-      if (numericValue > 12) {
-        return false;
-      }
-      return true;
+      return numericValue > 12 ? false : true;
     })
     .test("is-numeric", "Only numbers allowed", function (value) {
       return /^\d*$/.test(value?.trim() || "");
