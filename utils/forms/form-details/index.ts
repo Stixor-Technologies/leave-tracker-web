@@ -150,3 +150,50 @@ export const createOrganizationForm = {
     },
   },
 };
+
+export const employeeOverview = {
+  id: "01-employee-overview",
+  fields: {
+    email: {
+      type: "string",
+      label: "Organization name",
+      placeholder: "Name",
+    },
+    approvalFlow: {
+      type: "string",
+      label: "Organization size",
+      placeholder: "Select",
+    },
+    teams: {
+      type: "string",
+      label: "Country",
+      placeholder: "Select",
+    },
+    position: {
+      type: "string",
+      label: "Time Zone",
+      placeholder: "Select",
+    },
+    holidayCalender: {
+      type: "string",
+      label: "Time Zone",
+      placeholder: "Select",
+    },
+    contractType: {
+      type: "string",
+      label: "Time Zone",
+      placeholder: "Select",
+    },
+    userRole: {
+      type: "string",
+      label: "Time Zone",
+      placeholder: "Select",
+    },
+
+    workSchedule: {
+      type: "string",
+      label: "Time Zone",
+      placeholder: "Select",
+    },
+  },
+};

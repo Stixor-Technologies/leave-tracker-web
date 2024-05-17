@@ -36,7 +36,7 @@ const EmployeeDetail = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 items-center gap-7 border-b border-stroke py-[0.469rem] xl:flex xl:gap-9">
+      <div className="grid grid-cols-2 items-center gap-5 border-b border-stroke pb-[0.469rem] xl:flex xl:gap-9">
         <h5>Waseeq Aftab Mughal</h5>
         <div className="col-span-2 flex items-center justify-between gap-6 text-primary">
           <Mail />

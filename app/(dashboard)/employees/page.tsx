@@ -72,7 +72,7 @@ const Employees: NextPage = () => {
             ))}
           </div>
 
-          <div className="flex-1 self-start rounded-2xl border border-stroke p-[1.375rem]">
+          <div className="flex-1 self-start rounded-2xl border border-stroke px-[1.375rem] py-3">
             <EmployeeDetail />
           </div>
         </div>
