@@ -51,7 +51,7 @@ export const addEmployeeForm = {
     firstName: {
       type: "string",
       label: "First Name",
-      placeholder: "Enter the fisrt name",
+      placeholder: "Enter the first name",
     },
     lastName: {
       type: "string",
