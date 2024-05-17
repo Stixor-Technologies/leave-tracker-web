@@ -24,8 +24,12 @@ const Dashboard: NextPage = () => {
 
   return (
     <div className="container">
-      <Header title="Dashboard">
-        <Button variant="primary" className="w-[92vw] sm:w-auto">
+      <Header
+        title="Dashboard"
+        layout="column"
+        innerClassName="self-center sm:self-end"
+      >
+        <Button variant="primary" className="w-[91vw] sm:w-auto">
           <ExternalLink size={16} className="me-2" />
           Integrations
         </Button>

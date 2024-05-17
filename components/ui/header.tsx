@@ -9,6 +9,9 @@ interface HeaderProps {
   navigate?: boolean;
   children?: ReactNode;
   className?: string;
+  innerClassName?: string;
+  layout?: string;
+  // isInContainer?: boolean;
 }
 
 const Header: FC<HeaderProps> = ({
@@ -16,28 +19,33 @@ const Header: FC<HeaderProps> = ({
   navigate = false,
   children,
   className = "",
+  innerClassName = "",
+  layout = "column",
+  // isInContainer = false,
 }) => {
   const router = useRouter();
 
-  const generalClasses = "flex items-center lg:gap-3";
+  const generalClasses = "flex items-center gap-3";
 
   return (
     <div
-      className={`${generalClasses} ${className} mb-[1.875rem] justify-center border-b border-stroke !pb-1.5 pt-3 sm:justify-between md:pt-0`}
+      className={`${generalClasses} ${className} ${layout === "row" ? "pe-10 lg:pe-0" : "flex-col !items-start gap-y-3.5 lg:flex-row lg:items-center"} mb-[1.875rem] justify-center border-b border-stroke !pb-1.5 pt-3 sm:justify-between md:pt-0`}
     >
       <div className={`${generalClasses}`}>
         {navigate && (
           <ArrowLeft
-            className="hidden cursor-pointer text-lg text-primary md:text-xl lg:block lg:text-[1.375rem] xl:text-2xl"
+            className="cursor-pointer text-lg text-stroke md:text-xl lg:text-[1.375rem] xl:text-2xl"
             onClick={() => router.back()}
           />
         )}
-        <h1 className="absolute left-5 top-5 text-lg font-medium text-textColor md:text-xl lg:static 2xl:text-2xl ">
+        <h1 className="text-lg font-medium text-textColor md:text-xl 2xl:text-2xl ">
           {title}
         </h1>
       </div>
 
-      <div className={`${generalClasses} flex-wrap gap-3`}>{children}</div>
+      <div className={`${generalClasses} ${innerClassName} flex-wrap gap-3`}>
+        {children}
+      </div>
     </div>
   );
 };
