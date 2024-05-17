@@ -95,7 +95,6 @@ export const addEmployeeSchema = Yup.object().shape({
 
     .test("is-smaller", "Months cannot be less than 0", function (value) {
       const numericValue = parseInt(value?.trim() || "", 10);
-      console.log(numericValue, numericValue < 0, typeof numericValue);
       if (numericValue < 0) {
         return false;
       }

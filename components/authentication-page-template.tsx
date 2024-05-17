@@ -32,7 +32,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
         className="absolute bottom-0 left-0 !z-0 w-[17.5rem] md:w-auto"
       />
       <div
-        className={`my-[1.5rem] flex w-full items-center md:flex-1 ${needGeneralStyles && "min-w-[90vw] max-w-[90vw]  sm:min-w-0 sm:max-w-[80vw] lg:max-w-[45rem]"}`}
+        className={`my-6 flex w-full items-center md:flex-1 ${needGeneralStyles && "min-w-[90vw] max-w-[90vw]  sm:min-w-0 sm:max-w-[80vw] lg:max-w-[45rem]"}`}
       >
         {redirectTo === "" ? (
           <div className={` ${generalClasses} ${className}`}>{children}</div>

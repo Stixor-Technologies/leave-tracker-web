@@ -79,7 +79,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="h-full max-h-[80vh] overflow-y-auto p-6 pb-0 pt-[2.375rem] md:px-11"
+        className="h-full max-h-[80vh] overflow-y-auto px-6 pb-0 pt-[2.375rem] md:px-11"
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
           <FormField
@@ -344,7 +344,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                         inputMode="numeric"
                         maxLength={2}
                         {...field}
-                        value={field.value !== undefined ? field.value : ""}
+                        value={field?.value ?? ""}
                       />
                     </FormControl>
                     <FormMessage />
@@ -364,7 +364,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                         maxLength={2}
                         inputMode="numeric"
                         {...field}
-                        value={field.value !== undefined ? field.value : ""}
+                        value={field?.value ?? ""}
                       />
                     </FormControl>
                     <FormMessage />
@@ -423,7 +423,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
         </div>
 
-        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-3 sm:flex-row sm:items-center sm:gap-[1.5rem] sm:py-[2.375rem]">
+        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-3 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem]">
           <div className="flex items-center gap-2 sm:order-1">
             <Checkbox id="terms" />
             <FormLabel

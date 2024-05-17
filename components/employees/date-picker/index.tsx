@@ -23,9 +23,7 @@ const DatePicker: FC<DatePickerProps> = ({ onSelect, value, placeholder }) => {
       <PopoverTrigger asChild>
         <Button
           variant="popover"
-          className={`w-full text-left font-normal
-      ${!value} && "text-muted-foreground",
-    `}
+          className={`w-full text-left font-normal ${!value} && "text-muted-foreground"`}
         >
           <span className="flex items-center gap-2">
             <CalendarDays className="h-4 w-4 text-gray" />
@@ -45,7 +43,7 @@ const DatePicker: FC<DatePickerProps> = ({ onSelect, value, placeholder }) => {
             captionLayout="dropdown"
             fromYear={2015}
             toYear={2035}
-            selected={new Date(value ? value : "")}
+            selected={new Date(value ?? "")}
             onSelect={onSelect}
             defaultMonth={value ? new Date(value) : new Date()}
             disabled={(date) =>
