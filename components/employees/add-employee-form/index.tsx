@@ -1,4 +1,4 @@
-import React, { Dispatch, FC } from "react";
+import React, { Dispatch, FC, useState } from "react";
 
 import {
   Form,
@@ -31,7 +31,7 @@ import { addEmployeeDefaultValues } from "@/utils/forms/initial-values";
 import { addEmployeeSchema } from "@/utils/forms/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAddEmployeeMutation } from "@/redux/apis/auth-api";
-import { DialogFooter } from "@/components/ui/dialog";
+import { DialogFooter, DialogHeader } from "@/components/ui/dialog";
 import { Label } from "@radix-ui/react-label";
 
 type AddEmployeeProps = {
@@ -40,6 +40,14 @@ type AddEmployeeProps = {
 
 const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
   const [addEmployee, { isLoading }] = useAddEmployeeMutation();
+
+  const [hiringDate, setHiringDate] = useState<Date | undefined>(undefined);
+  const [contractEndDate, setContractEndDate] = useState<Date | undefined>(
+    undefined,
+  );
+  const [probationEndDate, setProbationEndDate] = useState<Date | undefined>(
+    undefined,
+  );
 
   const {
     fields: {
@@ -79,8 +87,11 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="h-full max-h-[80vh] overflow-y-auto px-6 pb-0 pt-[2.375rem] md:px-11"
+        className="h-full max-h-[80vh] overflow-y-auto px-6 py-0  md:px-11"
+        // pt-[2.375rem]
       >
+        <DialogHeader />
+        {/* Add Employee */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
           <FormField
             control={form.control}
@@ -149,9 +160,17 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                   <FormControl>
                     <DatePicker
-                      onSelect={field.onChange}
+                      onSelect={(date) => {
+                        field.onChange(date);
+                        setHiringDate(date);
+                      }}
                       placeholder={probationEnd?.placeholder}
                       value={field?.value}
+                      disabled={(date: Date) =>
+                        date < new Date("1900-01-01") ||
+                        (contractEndDate && date >= contractEndDate) ||
+                        (probationEndDate && date >= probationEndDate)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -180,7 +199,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                   </FormControl>
                   <SelectContent>
                     {/* TODO: Role list will be added later */}
-                    {/* <SelectItem></SelectItem> */}
+                    {/* <SelectItem value=""></SelectItem> */}
+
                     <div>Not Found</div>
                   </SelectContent>
                 </Select>
@@ -288,9 +308,17 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                   <FormControl>
                     <DatePicker
-                      onSelect={field.onChange}
+                      onSelect={(date) => {
+                        field.onChange(date);
+                        setProbationEndDate(date);
+                      }}
                       placeholder={probationEnd?.placeholder}
                       value={field?.value}
+                      disabled={(date: Date) =>
+                        date < new Date("1900-01-01") ||
+                        (hiringDate && date <= hiringDate) ||
+                        (contractEndDate && date > contractEndDate)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -383,9 +411,17 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                 <FormControl>
                   <DatePicker
-                    onSelect={field.onChange}
+                    onSelect={(date) => {
+                      field.onChange(date);
+                      setContractEndDate(date);
+                    }}
                     placeholder={contractExpiryDate?.placeholder}
                     value={field?.value}
+                    disabled={(date: Date) =>
+                      date < new Date("1900-01-01") ||
+                      (hiringDate && date <= hiringDate) ||
+                      (probationEndDate && date < probationEndDate)
+                    }
                   />
                 </FormControl>
                 <FormMessage />

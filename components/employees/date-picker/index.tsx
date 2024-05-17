@@ -15,9 +15,15 @@ type DatePickerProps = {
   onSelect: SelectSingleEventHandler;
   value?: string;
   placeholder: string;
+  disabled: boolean;
 };
 
-const DatePicker: FC<DatePickerProps> = ({ onSelect, value, placeholder }) => {
+const DatePicker: FC<DatePickerProps> = ({
+  onSelect,
+  value,
+  placeholder,
+  disabled,
+}) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -46,9 +52,7 @@ const DatePicker: FC<DatePickerProps> = ({ onSelect, value, placeholder }) => {
             selected={new Date(value ?? "")}
             onSelect={onSelect}
             defaultMonth={value ? new Date(value) : new Date()}
-            disabled={(date) =>
-              date > new Date() || date < new Date("1900-01-01")
-            }
+            disabled={disabled}
             initialFocus
           />
         </PopoverClose>
