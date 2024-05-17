@@ -20,7 +20,7 @@ const Employees: NextPage = () => {
               Add New Employee
             </Button>
           </DialogTrigger>
-          <DialogContent className="h-full max-h-[80vh] w-[90%] max-w-[45rem] overflow-y-auto px-5  pb-0 pt-[2.375rem] md:h-auto md:w-full md:px-11">
+          <DialogContent className=" w-[90%] max-w-[45rem] overflow-hidden p-0">
             <AddEmployee setOpenEmployeeForm={setOpenEmployeeForm} />
           </DialogContent>
         </Dialog>

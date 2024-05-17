@@ -76,7 +76,10 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="h-full max-h-[80vh] overflow-y-auto p-6 pb-0 pt-[2.375rem] md:px-11"
+      >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
           <FormField
             control={form.control}
@@ -336,10 +339,11 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                     <FormControl>
                       <Input
                         placeholder={seniorityYears.placeholder}
-                        type={seniorityMonths.type}
+                        type={seniorityYears.type}
                         inputMode="numeric"
+                        maxLength={2}
                         {...field}
-                        value={field.value !== null ? field.value : ""}
+                        value={field.value !== undefined ? field.value : ""}
                       />
                     </FormControl>
                     <FormMessage />
@@ -356,9 +360,10 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                       <Input
                         placeholder={seniorityMonths.placeholder}
                         type={seniorityMonths.type}
+                        maxLength={2}
                         inputMode="numeric"
                         {...field}
-                        value={field.value !== null ? field.value : ""}
+                        value={field.value !== undefined ? field.value : ""}
                       />
                     </FormControl>
                     <FormMessage />
@@ -417,7 +422,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
         </div>
 
-        <DialogFooter className="sticky bottom-0 flex flex-col gap-4 bg-white py-6 sm:flex-row sm:items-center sm:gap-[1.5rem] md:pb-[2.375rem] md:pt-8">
+        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-3 sm:flex-row sm:items-center sm:gap-[1.5rem] sm:py-[2.375rem]">
           <div className="flex items-center gap-2 sm:order-1">
             <Checkbox id="terms" />
             <FormLabel
