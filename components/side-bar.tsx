@@ -58,11 +58,7 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
 
   return (
     <>
-      {!inSideDrawer && (
-        <div className="block px-3.5 pt-5 lg:hidden ">
-          <SideDrawer />
-        </div>
-      )}
+      {!inSideDrawer && <SideDrawer />}
 
       <div
         className={`${!inSideDrawer && "hidden lg:flex"} flex h-full flex-col justify-between bg-lightGray lg:min-h-screen lg:w-[15rem] lg:min-w-[15rem]`}
