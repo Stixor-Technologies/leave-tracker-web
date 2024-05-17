@@ -1,41 +1,16 @@
+"use client";
 import React from "react";
 import { NextPage } from "next";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  Archive,
-  Mail,
-  MailOpen,
-  FileDiff,
-  User,
-  Lock,
-  Settings,
-  SquarePen,
-} from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+
 import EmployeeDetail from "@/components/employees/employee-detail";
+import { useEmployeeListQuery } from "@/redux/apis/auth-api";
 
 const Employee: NextPage = () => {
-  const tabs = [
-    "Overview",
-    "Additional",
-    "Entitlement",
-    "Requests",
-    "Entitlement changes",
-  ];
+  const { data, isLoading } = useEmployeeListQuery();
+
+  console.log(data);
 
   return (
     <div className="container flex h-screen">
@@ -57,7 +32,7 @@ const Employee: NextPage = () => {
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
 
-                  <span className=" text-sm leading-[0.875rem] text-textColor">
+                  <span className="text-left text-sm leading-[0.875rem] text-textColor">
                     Waseeq Aftab Mughal
                   </span>
                 </div>

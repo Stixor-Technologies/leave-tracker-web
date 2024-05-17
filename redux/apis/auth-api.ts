@@ -82,6 +82,13 @@ export const authApi = createApi({
         body: body,
       }),
     }),
+
+    employeeList: builder.query<any, void>({
+      query: () => ({
+        url: "/user/org-all-employees",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -92,4 +99,5 @@ export const {
   useCheckUserVerificationQuery,
   useSignInMutation,
   useCreateOrganizationMutation,
+  useEmployeeListQuery,
 } = authApi;

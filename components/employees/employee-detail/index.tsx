@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import {
   Archive,
   Mail,
@@ -11,8 +13,27 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import Additional from "./additional";
+import Overview from "./overview";
+import Entitlement from "./entitlement";
+import Requests from "./requests";
+import EntitlementChanges from "./entitlement-changes";
 
 const EmployeeDetail = () => {
+  const [activeTab, setActiveTab] = useState<string>("Overview");
+
+  const tabs = [
+    "Overview",
+    "Additional",
+    "Entitlement",
+    "Requests",
+    "Entitlement changes",
+  ];
+
+  const onTabChange = (value: string) => {
+    setActiveTab(value);
+  };
+
   return (
     <>
       <div className="grid grid-cols-2 items-center gap-7 border-b border-stroke py-[0.469rem] xl:flex xl:gap-9">
@@ -37,20 +58,25 @@ const EmployeeDetail = () => {
         </Button>
       </div>
 
-      <Tabs defaultValue="Overview" className=" max-w-xl">
+      <Tabs
+        // defaultValue="Overview"
+        value={activeTab}
+        onValueChange={onTabChange}
+        className="mt-5 w-full"
+      >
         <TabsList className="">
           {tabs?.map((tab, idx) => (
             <TabsTrigger key={idx} value={tab}>
               {tab}
             </TabsTrigger>
           ))}
-          {/* <TabsTrigger value="account">Account</TabsTrigger> */}
-          {/* <TabsTrigger value="password">Password</TabsTrigger> */}
         </TabsList>
-        <TabsContent value="Overview">
-          Make changes to your account here.
-        </TabsContent>
-        <TabsContent value="Additional">Change your password here.</TabsContent>
+
+        <Overview />
+        <Additional />
+        <Entitlement />
+        <Requests />
+        <EntitlementChanges />
       </Tabs>
     </>
   );
