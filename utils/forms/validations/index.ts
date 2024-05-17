@@ -108,6 +108,6 @@ export const addEmployeeSchema = Yup.object().shape({
     .matches(/^(0|\d{2})?$/, "Months must be in the format '01', '02'."),
 
   hireDate: Yup.string().optional(),
-  contractEnd: Yup.string().optional(),
+  contractExpiryDate: Yup.string().optional(),
   workScheduleId: Yup.string().optional(),
 });
