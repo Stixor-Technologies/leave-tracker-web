@@ -62,3 +62,8 @@ export interface CheckUserVerificationResponse {
     verified: boolean;
   };
 }
+
+export interface AddEmployeeResponse {
+  message: string;
+  data: string;
+}
