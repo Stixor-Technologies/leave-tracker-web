@@ -88,3 +88,8 @@ export interface SetPasswordSuccessResponse {
     user: UserState;
   };
 }
+
+export interface AddEmployeeResponse {
+  message: string;
+  data: string;
+}

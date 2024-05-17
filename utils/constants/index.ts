@@ -13,7 +13,7 @@ export const ROUTES = {
   ENTITLEMENT: "/entitlement",
   REPORTS: "/reports",
   BILLING: "/billing",
-  EMPLOYEE: "/employee",
+  EMPLOYEE: "/employees",
   ROLES: "/roles",
   PERMISSIONS: "/permissions",
   HOLIDAYS: "/holidays",
@@ -354,3 +354,9 @@ export const SOCIAL_LINKS = {
   GOOGLE: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/google/login`,
   SLACK: `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/auth/slack/login`,
 };
+
+export const GENDERS = [
+  { label: "Male", value: "Male" },
+  { label: "Female", value: "Female" },
+  { label: "Other", value: "Other" },
+];

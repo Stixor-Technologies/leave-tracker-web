@@ -20,3 +20,20 @@ export interface OrganizationFormDetail {
   country: string;
   timeZone: string;
 }
+
+export interface AddEmployeeFormDetail {
+  firstName: string;
+  lastName: string;
+  email: string;
+  hireDate?: string;
+  role?: string;
+  approvalFlowId?: string;
+  holidayCalender?: string;
+  gender?: string;
+  probationEnd?: string;
+  directManagerId?: string;
+  seniorityYears?: string;
+  seniorityMonths?: string;
+  workScheduleId?: string;
+  contractEnd?: string;
+}
