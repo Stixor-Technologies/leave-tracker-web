@@ -130,12 +130,12 @@ export const createOrganizationForm = {
   fields: {
     name: {
       type: "string",
-      label: "Organization name",
+      label: "Organization Name",
       placeholder: "Name",
     },
     size: {
       type: "string",
-      label: "Organization size",
+      label: "Organization Size",
       placeholder: "Select",
     },
     country: {
