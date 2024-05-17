@@ -23,7 +23,7 @@ const DatePicker: FC<DatePickerProps> = ({ onSelect, value, placeholder }) => {
       <PopoverTrigger asChild>
         <Button
           variant="popover"
-          className={`w-full text-left font-normal ${!value} && "text-muted-foreground"`}
+          className={`w-full text-left font-normal ${!value && "text-placeholder"}`}
         >
           <span className="flex items-center gap-2">
             <CalendarDays className="h-4 w-4 text-gray" />
