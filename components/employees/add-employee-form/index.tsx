@@ -168,8 +168,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                       value={field?.value}
                       disabled={(date: Date) =>
                         date < new Date("1900-01-01") ||
-                        (contractEndDate && date >= contractEndDate) ||
-                        (probationEndDate && date >= probationEndDate)
+                        (contractEndDate ? date >= contractEndDate : false) ||
+                        (probationEndDate ? date >= probationEndDate : false)
                       }
                     />
                   </FormControl>
@@ -316,8 +316,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                       value={field?.value}
                       disabled={(date: Date) =>
                         date < new Date("1900-01-01") ||
-                        (hiringDate && date <= hiringDate) ||
-                        (contractEndDate && date > contractEndDate)
+                        (hiringDate ? date <= hiringDate : false) ||
+                        (contractEndDate ? date > contractEndDate : false)
                       }
                     />
                   </FormControl>
@@ -419,8 +419,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                     value={field?.value}
                     disabled={(date: Date) =>
                       date < new Date("1900-01-01") ||
-                      (hiringDate && date <= hiringDate) ||
-                      (probationEndDate && date < probationEndDate)
+                      (hiringDate ? date <= hiringDate : false) ||
+                      (probationEndDate ? date < probationEndDate : false)
                     }
                   />
                 </FormControl>

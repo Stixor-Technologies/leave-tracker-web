@@ -15,7 +15,7 @@ type DatePickerProps = {
   onSelect: SelectSingleEventHandler;
   value?: string;
   placeholder: string;
-  disabled: boolean;
+  disabled: (date: Date) => boolean;
 };
 
 const DatePicker: FC<DatePickerProps> = ({
