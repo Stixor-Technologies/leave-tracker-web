@@ -10,8 +10,12 @@ import {
   SignInRequest,
   CreateOrganizationResponse,
   CheckUserVerificationResponse,
+  AddEmployeeResponse,
 } from "./api-types";
-import { OrganizationFormDetail } from "@/utils/forms/interfaces";
+import {
+  AddEmployeeFormDetail,
+  OrganizationFormDetail,
+} from "@/utils/forms/interfaces";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -83,6 +87,14 @@ export const authApi = createApi({
       }),
     }),
 
+    addEmployee: builder.mutation<AddEmployeeResponse, AddEmployeeFormDetail>({
+      query: (body) => ({
+        method: "POST",
+        url: "/user/add-new-employee",
+        body: body,
+      }),
+    }),
+
     employeeList: builder.query<any, void>({
       query: () => ({
         url: "/user/org-all-employees",
@@ -100,4 +112,5 @@ export const {
   useSignInMutation,
   useCreateOrganizationMutation,
   useEmployeeListQuery,
+  useAddEmployeeMutation,
 } = authApi;

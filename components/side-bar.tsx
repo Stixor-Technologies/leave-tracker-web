@@ -7,7 +7,6 @@ import { FC, useState } from "react";
 import { usePathname } from "next/navigation";
 import { routes } from "@/routes";
 import { SheetClose } from "./ui/sheet";
-import { ROUTES } from "@/utils/constants";
 import {
   Select,
   SelectContent,
@@ -70,16 +69,13 @@ const SideBar: FC<SideBarProps> = ({ inSideDrawer = false }) => {
       >
         <div>
           <div className="pb-[2.065rem] ps-5 pt-5">
-            <Link href={ROUTES.DASHBOARD}>
-              <Image
-                priority
-                className="cursor-pointer"
-                src="/assets/images/logo.svg"
-                alt="Logo"
-                width={177}
-                height={42}
-              />
-            </Link>
+            <Image
+              priority
+              src="/assets/images/logo.svg"
+              alt="Logo"
+              width={177}
+              height={42}
+            />
           </div>
 
           <h2 className="pb-4 ps-5 text-xs font-semibold uppercase text-primary">

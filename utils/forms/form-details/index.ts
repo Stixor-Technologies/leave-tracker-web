@@ -45,6 +45,86 @@ export const signInForm = {
   },
 };
 
+export const addEmployeeForm = {
+  id: "01-add-employee-form",
+  fields: {
+    firstName: {
+      type: "string",
+      label: "First Name",
+      placeholder: "Enter the fisrt name",
+    },
+    lastName: {
+      type: "string",
+      label: "Last Name",
+      placeholder: "Enter the last name",
+    },
+    email: {
+      type: "string",
+      label: "Email Name",
+      placeholder: "Enter the email address",
+    },
+    hireDate: {
+      type: "string",
+      label: "Hire Date",
+      placeholder: "16/05/2024",
+    },
+
+    role: {
+      type: "string",
+      label: "Role",
+      placeholder: "Select",
+    },
+
+    approvalFlow: {
+      type: "string",
+      label: "Approval Flow",
+      placeholder: "Select",
+    },
+
+    holidayCalender: {
+      type: "string",
+      label: "Holiday Calender",
+      placeholder: "Select",
+    },
+    gender: {
+      type: "string",
+      label: "Gender",
+      placeholder: "Select",
+    },
+    probationEnd: {
+      type: "string",
+      label: "Probation End",
+      placeholder: "16/05/2024",
+    },
+    directManager: {
+      type: "string",
+      label: "Direct Manager",
+      placeholder: "Select",
+    },
+    seniorityYears: {
+      type: "string",
+      label: "Seniority Before Hire",
+      placeholder: "Years",
+    },
+    seniorityMonths: {
+      type: "string",
+      label: "",
+      placeholder: "Months",
+    },
+
+    workSchedule: {
+      type: "string",
+      label: "Work Schedule",
+      placeholder: "Select",
+    },
+    contractExpiryDate: {
+      type: "string",
+      label: "Contract Expiry Date",
+      placeholder: "16/05/2024",
+    },
+  },
+};
+
 export const createOrganizationForm = {
   id: "01-sign-in-form",
   fields: {
@@ -55,7 +135,7 @@ export const createOrganizationForm = {
     },
     size: {
       type: "string",
-      label: "Organization Size",
+      label: "Organization size",
       placeholder: "Select",
     },
     country: {
@@ -65,7 +145,7 @@ export const createOrganizationForm = {
     },
     timeZone: {
       type: "string",
-      label: "TimeZone",
+      label: "Time Zone",
       placeholder: "Select",
     },
   },

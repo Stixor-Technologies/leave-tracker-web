@@ -18,7 +18,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
   className = "",
   needGeneralStyles = true,
 }) => {
-  const generalClasses = `z-10 ${needGeneralStyles && "rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 min-w-[90vw] sm:min-w-0 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[45rem]"}`;
+  const generalClasses = `z-10 w-full ${needGeneralStyles && "rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 "}`;
 
   return (
     <div
@@ -31,11 +31,13 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
         alt="Background Logo"
         className="absolute bottom-0 left-0 !z-0 w-[17.5rem] md:w-auto"
       />
-      <div className="my-[1.5rem] flex items-center md:flex-1">
+      <div
+        className={`my-6 flex w-full items-center md:flex-1 ${needGeneralStyles && "min-w-[90vw] max-w-[90vw]  sm:min-w-0 sm:max-w-[80vw] lg:max-w-[45rem]"}`}
+      >
         {redirectTo === "" ? (
-          <div className={`${generalClasses} ${className}`}>{children}</div>
+          <div className={` ${generalClasses} ${className}`}>{children}</div>
         ) : (
-          <div className={`flex flex-col items-center sm:items-end`}>
+          <div className={`flex w-full flex-col items-center sm:items-end`}>
             <div className={`${generalClasses} ${className}`}>{children}</div>
 
             <div className="z-10 pt-3 text-sm sm:pt-6">

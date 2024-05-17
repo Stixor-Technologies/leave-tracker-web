@@ -2,6 +2,7 @@ import {
   SignUpFormDetails,
   SignInFormDetails,
   OrganizationFormDetail,
+  AddEmployeeFormDetail,
 } from "../interfaces";
 
 export const signUpFormDetails: SignUpFormDetails = {
@@ -20,4 +21,21 @@ export const organizationDefaultValues: OrganizationFormDetail = {
   size: "",
   country: "",
   timeZone: "",
+};
+
+export const addEmployeeDefaultValues: AddEmployeeFormDetail = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  hireDate: undefined,
+  role: undefined,
+  approvalFlowId: undefined,
+  holidayCalender: undefined,
+  gender: undefined,
+  probationEnd: undefined,
+  directManagerId: undefined,
+  seniorityYears: undefined,
+  seniorityMonths: undefined,
+  workScheduleId: undefined,
+  contractEnd: undefined,
 };
