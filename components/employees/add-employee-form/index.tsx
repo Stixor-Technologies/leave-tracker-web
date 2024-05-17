@@ -32,6 +32,7 @@ import { addEmployeeSchema } from "@/utils/forms/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAddEmployeeMutation } from "@/redux/apis/auth-api";
 import { DialogFooter } from "@/components/ui/dialog";
+import { Label } from "@radix-ui/react-label";
 
 type AddEmployeeProps = {
   setOpenEmployeeForm: Dispatch<React.SetStateAction<boolean>>;
@@ -328,7 +329,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
 
           <div className="space-y-1.5">
-            <FormLabel>{seniorityYears?.label}</FormLabel>
+            <Label>{seniorityYears?.label}</Label>
 
             <div className="flex items-start gap-4">
               <FormField
