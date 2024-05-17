@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import AuthenticationPageTemplate from "@/components/authentication-page-template";
-
 import { useSendPasswordSetupLinkMutation } from "@/redux/apis/auth-api";
 import { forgotPasswordFormDetails } from "@/utils/forms/initial-values";
 import { ForgotPasswordFormDetails } from "@/utils/forms/interfaces";
@@ -44,7 +43,7 @@ const ForgotPasswordForm = () => {
 
       toast.success(result?.message);
     } catch (error: any) {
-      toast.error(error?.data?.message[0]);
+      toast.error(error?.data?.message);
     }
   };
 

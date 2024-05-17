@@ -1,4 +1,4 @@
-import React, { Dispatch, FC } from "react";
+import React, { Dispatch, FC, useState } from "react";
 
 import {
   Form,
@@ -19,7 +19,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { Input } from "@/components/ui/input";
-import { GENDERS } from "@/utils/constants";
+import { GENDERS, LOCAL } from "@/utils/constants";
 
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
@@ -30,7 +30,10 @@ import { AddEmployeeFormDetail } from "@/utils/forms/interfaces";
 import { addEmployeeDefaultValues } from "@/utils/forms/initial-values";
 import { addEmployeeSchema } from "@/utils/forms/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAddEmployeeMutation } from "@/redux/apis/auth-api";
+import {
+  useAddEmployeeMutation,
+  useSendPasswordSetupLinkMutation,
+} from "@/redux/apis/auth-api";
 import { DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@radix-ui/react-label";
 
@@ -39,7 +42,10 @@ type AddEmployeeProps = {
 };
 
 const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
+  const [sendInvite, setSendInvite] = useState(false);
   const [addEmployee, { isLoading }] = useAddEmployeeMutation();
+  const [sendPasswordLink, { isLoading: sendPasswordLoading }] =
+    useSendPasswordSetupLinkMutation();
 
   const {
     fields: {
@@ -68,6 +74,14 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
   const onSubmit = async (formValues: AddEmployeeFormDetail) => {
     try {
       await addEmployee(formValues).unwrap();
+      if (sendInvite) {
+        await sendPasswordLink({
+          email: formValues.email,
+          type: "INVITE",
+          local: LOCAL,
+        });
+        toast.success("Invite sent successfully");
+      }
       toast.success("Employee Added");
       setOpenEmployeeForm(false);
     } catch (err: any) {
@@ -425,7 +439,11 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
         <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-3 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem]">
           <div className="flex items-center gap-2 sm:order-1">
-            <Checkbox id="terms" />
+            <Checkbox
+              id="terms"
+              checked={sendInvite}
+              onCheckedChange={(checked) => setSendInvite(checked as boolean)}
+            />
             <FormLabel
               htmlFor="terms"
               className="text-sm font-medium leading-none text-black peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -435,8 +453,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           </div>
 
           <Button
-            disabled={isLoading}
-            loading={isLoading}
+            disabled={isLoading || sendPasswordLoading}
+            loading={isLoading || sendPasswordLoading}
             className="sm:order-0"
             variant="primary"
             size={"medium"}
