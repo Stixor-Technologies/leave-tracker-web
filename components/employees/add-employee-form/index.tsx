@@ -31,8 +31,9 @@ import { addEmployeeDefaultValues } from "@/utils/forms/initial-values";
 import { addEmployeeSchema } from "@/utils/forms/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAddEmployeeMutation } from "@/redux/apis/auth-api";
-import { DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@radix-ui/react-label";
+import { format } from "date-fns";
 
 type AddEmployeeProps = {
   setOpenEmployeeForm: Dispatch<React.SetStateAction<boolean>>;
@@ -74,8 +75,23 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
   });
 
   const onSubmit = async (formValues: AddEmployeeFormDetail) => {
+    const formattedFormValues = {
+      ...formValues,
+      hireDate:
+        formValues?.hireDate &&
+        format(formValues?.hireDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+
+      contractExpiryDate:
+        formValues?.contractExpiryDate &&
+        format(formValues?.contractExpiryDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+
+      probationEnd:
+        formValues?.probationEnd &&
+        format(formValues?.probationEnd, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+    };
+
     try {
-      await addEmployee(formValues).unwrap();
+      await addEmployee(formattedFormValues).unwrap();
       toast.success("Employee Added");
       setOpenEmployeeForm(false);
     } catch (err: any) {
@@ -87,11 +103,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="h-full max-h-[80vh] overflow-y-auto px-6 py-0  md:px-11"
-        // pt-[2.375rem]
+        className="h-full max-h-[80vh] overflow-y-auto px-5 py-0 md:px-11"
       >
-        <DialogHeader />
-        {/* Add Employee */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
           <FormField
             control={form.control}
@@ -404,7 +417,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
           <FormField
             control={form.control}
-            name={"contractEnd"}
+            name={"contractExpiryDate"}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{contractExpiryDate?.label}</FormLabel>
@@ -459,7 +472,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
         </div>
 
-        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-3 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem]">
+        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-6 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem]">
           <div className="flex items-center gap-2 sm:order-1">
             <Checkbox id="terms" />
             <FormLabel
