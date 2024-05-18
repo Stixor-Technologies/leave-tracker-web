@@ -101,11 +101,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="h-full max-h-[80vh] overflow-y-auto px-5 py-0 md:px-11"
-      >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
+        <div className="grid h-full max-h-[60vh] grid-cols-1 gap-4 overflow-y-auto px-5 py-0 sm:grid-cols-2 md:gap-6 md:px-11">
           <FormField
             control={form.control}
             name={"firstName"}
@@ -472,7 +469,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
         </div>
 
-        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-6 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem]">
+        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white px-5 py-6 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem] md:px-11">
           <div className="flex items-center gap-2 sm:order-1">
             <Checkbox id="terms" />
             <FormLabel
