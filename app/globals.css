@@ -106,3 +106,14 @@
     max-height: var(--radix-popover-content-available-height);
   }
 }
+
+/* Width and height for the scrollbar track */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e2e2e2;
+  border-radius: 4px;
+}
