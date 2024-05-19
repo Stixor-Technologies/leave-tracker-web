@@ -30,3 +30,25 @@ export interface Route {
       >
     | string;
 }
+
+export interface EmployeeBase {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  slackId?: string;
+  role?: string;
+  hireDate?: string;
+  approvalFlowId?: string;
+  holidayCalender?: string;
+  gender?: string;
+  probationEnd?: string;
+  seniorityYears?: string;
+  seniorityMonths?: string;
+  workScheduleId?: string;
+  contractEnd?: string;
+  deleted: boolean;
+  verified: boolean;
+  directManagerId?: string;
+  inviteAccepted?: boolean;
+}
