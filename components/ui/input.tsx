@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const generalClasses = "text-placeholder ";
 
     return (
-      <div className="relative">
+      <div className="relative w-full">
         <input
           type={(isPassword && !showPassword) || !isPassword ? type : "text"}
           className={cn(

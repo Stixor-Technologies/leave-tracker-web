@@ -24,7 +24,10 @@ type EmployeeDetailProp = {
   activeEmployeeId: number;
 };
 
-const EmployeeDetail: FC<EmployeeDetailProp> = ({ children }) => {
+const EmployeeDetail: FC<EmployeeDetailProp> = ({
+  children,
+  activeEmployeeId,
+}) => {
   const [activeTab, setActiveTab] = useState<string>("Overview");
   const [activateFields, setActivateFields] = useState<boolean>(false);
 
@@ -42,56 +45,65 @@ const EmployeeDetail: FC<EmployeeDetailProp> = ({ children }) => {
     setActiveTab(value);
   };
 
+  //   <div className="flex-1 self-start rounded-2xl border border-stroke px-[1.375rem] py-3">
+  //   <EmployeeDetail activeEmployeeId={activeEmployeeId} />
+
+  // </div>
+
   return (
     <>
-      <div className="grid grid-cols-2 items-center gap-5 border-b border-stroke pb-[0.469rem] xl:flex xl:gap-9">
-        <h5>Waseeq Aftab Mughal</h5>
-        <div className="col-span-2 flex items-center justify-between gap-6 text-primary">
-          <Mail />
-          <Archive />
-          <MailOpen />
-          <User />
-          <Lock />
-          <Settings />
-          <FileDiff />
+      {/* {activeEmployeeId > 1 && ( */}
+      <>
+        <div className="grid grid-cols-2 items-center gap-5 border-b border-stroke pb-[0.469rem] xl:flex xl:gap-9">
+          <h5>Waseeq Aftab Mughal</h5>
+          <div className="col-span-2 flex items-center justify-between gap-6 text-primary">
+            <Mail />
+            <Archive />
+            <MailOpen />
+            <User />
+            <Lock />
+            <Settings />
+            <FileDiff />
+          </div>
+
+          <Button
+            onClick={() => {
+              activateFields;
+            }}
+            variant={"primary"}
+            className="col-start-2 row-end-2 ml-auto max-w-[8.75rem] gap-8 text-sm font-medium leading-[1.5rem] "
+          >
+            <span className="flex items-center gap-2">
+              <SquarePen className="h-4 w-4" />
+              Edit Profile
+            </span>
+          </Button>
         </div>
 
-        <Button
-          onClick={() => {
-            activateFields;
-          }}
-          variant={"primary"}
-          className="col-start-2 row-end-2 ml-auto max-w-[8.75rem] gap-8 text-sm font-medium leading-[1.5rem] "
+        <Tabs
+          // defaultValue="Overview"
+          value={activeTab}
+          onValueChange={onTabChange}
+          className="mt-5 w-full"
         >
-          <span className="flex items-center gap-2">
-            <SquarePen className="h-4 w-4" />
-            Edit Profile
-          </span>
-        </Button>
-      </div>
+          <TabsList className="">
+            {tabs?.map((tab, idx) => (
+              <TabsTrigger key={idx} value={tab}>
+                {tab}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-      <Tabs
-        // defaultValue="Overview"
-        value={activeTab}
-        onValueChange={onTabChange}
-        className="mt-5 w-full"
-      >
-        <TabsList className="">
-          {tabs?.map((tab, idx) => (
-            <TabsTrigger key={idx} value={tab}>
-              {tab}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+          {/* {children} */}
 
-        {/* {children} */}
-
-        <Overview activateFields={activateFields} />
-        <Additional />
-        <Entitlement />
-        <Requests />
-        <EntitlementChanges />
-      </Tabs>
+          <Overview activateFields={activateFields} />
+          <Additional />
+          <Entitlement />
+          <Requests />
+          <EntitlementChanges />
+        </Tabs>
+      </>
+      {/* )} */}
     </>
   );
 };

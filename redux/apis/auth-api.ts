@@ -23,7 +23,7 @@ export const authApi = createApi({
     baseUrl: AUTH_BASE_URL,
     credentials: "include",
   }),
-  tagTypes: [],
+  tagTypes: ["Employee"], // Define tag for employees
 
   endpoints: (builder) => ({
     signUp: builder.mutation<
@@ -93,6 +93,7 @@ export const authApi = createApi({
         url: "/user/add-new-employee",
         body: body,
       }),
+      invalidatesTags: ["Employee"], // Invalidate the employee tag on successful add
     }),
 
     employeeList: builder.query<any, void>({
@@ -100,7 +101,19 @@ export const authApi = createApi({
         url: "/user/org-all-employees",
         method: "GET",
       }),
+      keepUnusedDataFor: 0.001,
       transformResponse: (response) => response.data.users,
+      providesTags: ["Employee"], // Provide the employee tag
+    }),
+
+    getEmployeeDetail: builder.query<any, string>({
+      query: (id) => ({
+        method: "GET",
+        url: `/user/${id}`,
+        params: { id },
+      }),
+      keepUnusedDataFor: 0.001,
+      transformResponse: (response) => response.data.user,
     }),
   }),
 });
@@ -114,4 +127,5 @@ export const {
   useCreateOrganizationMutation,
   useEmployeeListQuery,
   useAddEmployeeMutation,
+  useGetEmployeeDetailQuery,
 } = authApi;

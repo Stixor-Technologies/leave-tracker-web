@@ -191,8 +191,8 @@ export const employeeOverview = {
     },
 
     workSchedule: {
-      type: "Work schedule",
-      label: "Time Zone",
+      type: "string",
+      label: "Work schedule",
       placeholder: "Select",
     },
   },
