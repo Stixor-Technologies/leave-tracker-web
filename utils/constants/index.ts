@@ -356,7 +356,7 @@ export const SOCIAL_LINKS = {
 };
 
 export const GENDERS = [
-  { label: "Male", value: "Male" },
-  { label: "Female", value: "Female" },
+  { label: "Male", value: "MALE" },
+  { label: "Female", value: "FEMALE" },
   { label: "Other", value: "Other" },
 ];
