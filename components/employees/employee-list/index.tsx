@@ -12,68 +12,46 @@ import { usePathname } from "next/navigation";
 
 const EmployeeList = () => {
   const { data, isLoading } = useEmployeeListQuery();
-  const [activeEmployeeId, setActiveEmployeeId] = useState<number>(1);
-  const [openEmployeeForm, setOpenEmployeeForm] = useState<boolean>(false);
-  console.log(data);
+
   const pathname = usePathname();
   const employeeNumber = parseInt(pathname.split("/")[2]);
 
-  console.log(employeeNumber);
-
   return (
-    // flex h-full gap-5
-
-    // <div className="">
-
     <>
       <div className="top-0 mt-2 flex w-full max-w-xl md:absolute">
         <Input placeholder="Search" className="flex-1" />
         <Button variant={"primary"}>Filter</Button>
       </div>
-      <div className="flex h-full flex-col divide-y divide-stroke overflow-y-auto md:w-[16.625rem]">
-        {/* <Dialog open={openEmployeeForm} onOpenChange={setOpenEmployeeForm}>
-          <DialogTrigger asChild>
-            <Button variant={"primary"} className="w-[92vw] sm:w-[12rem]">
-              <CirclePlus className="mr-2" size={16} />
-              Add New Employee
-            </Button>
-          </DialogTrigger>
-          <DialogContent className=" w-[90%] max-w-[45rem] overflow-hidden p-0">
-            <AddEmployee setOpenEmployeeForm={setOpenEmployeeForm} />
-          </DialogContent>
-        </Dialog> */}
-
-        {/* {Array.from({ length: 25 }).map((_, idx) => ( */}
+      <div className="flex h-full flex-col overflow-y-auto md:w-[17.813rem]">
         {data?.map((employee, idx) => {
-          //   console.log(
-          //     employee?.id === employeeNumber,
-          //     typeof employeeNumber,
-          //     typeof employee?.id,
-          //     employee?.id,
-          //     employeeNumber,
-          //   );
           return (
             <Link
               href={`/employees/${employee?.id}`}
               key={employee?.id}
-              className={`h-auto w-full justify-start px-1 py-3 ${employee?.id === employeeNumber ? "rounded-md bg-primary text-white" : "bg-transparent text-textColor"} `}
+              className={`flex items-center`}
             >
-              <div className="flex items-center gap-2">
-                <Avatar>
-                  <AvatarImage src={"/assets/images/sample-avater.png"} />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+              <div
+                className={`relative flex h-auto w-full items-center justify-between border-b border-stroke px-1 py-3 ${employee?.id === employeeNumber ? "rounded-md bg-primary text-white" : "bg-transparent text-textColor"}`}
+              >
+                <div className=" flex items-center gap-2">
+                  <Avatar>
+                    <AvatarImage src={"/assets/images/sample-avater.png"} />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
 
-                <span className="text-left text-sm leading-[0.875rem]">
-                  {` ${employee?.firstName || ""} ${employee?.lastName || ""} `}
-                </span>
+                  <span className="text-left text-sm leading-[0.875rem]">
+                    {` ${employee?.firstName || ""} ${employee?.lastName || ""} `}
+                  </span>
+                </div>
               </div>
+              <span
+                className={`relative right-1 h-5 w-5 -rotate-[0deg] rounded-br-[3rem] bg-primary [clip-path:polygon(0%_0,100%_50%,0_100%)]  ${employee?.id !== employeeNumber && "invisible opacity-0"}`}
+              />
             </Link>
           );
         })}
       </div>
     </>
-    // </div>
   );
 };
 
