@@ -10,7 +10,7 @@ export default function RootLayout({
     <div className="container flex h-screen flex-col">
       <EmployeeHeader />
 
-      <div className="relative flex flex-1 gap-5 overflow-hidden md:pt-20">
+      <div className="relative flex flex-1 gap-3 overflow-hidden md:pt-20">
         <div className="hidden md:block">
           <EmployeeList />
         </div>

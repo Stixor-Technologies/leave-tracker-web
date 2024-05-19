@@ -12,17 +12,13 @@ import {
 import {
   Select,
   SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
-import { Label } from "@/components/ui/label";
-import InfoBlock from "../../info-block";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { employeeOverview } from "@/utils/forms/form-details";
-import { AddEmployeeFormDetail } from "@/utils/forms/interfaces";
 
 type OverviewProps = {
   loading: boolean;
@@ -37,21 +33,9 @@ const Overview: FC<OverviewProps> = ({
 }) => {
   // console.log("employeeData", employeeData?.data?.user?.email);
 
-  const form = useForm({
-    // defaultValues: {
-    //   // email: "employeeData?.data?.user?.email",
-    //   // approvalFlowId: undefined,
-    //   // role: undefined,
-    //   // holidayCalender: undefined,
-    //   // workScheduleId: undefined,
-    // },
-  });
-
-  // console.log("isLoading", loading);
+  const form = useForm({});
 
   useEffect(() => {
-    // reset form with user data
-    // console.log("Reset form");
     form.reset({
       email: employeeData?.email,
     });

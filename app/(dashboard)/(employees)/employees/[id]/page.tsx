@@ -18,12 +18,6 @@ import Entitlement from "@/components/employees/employee-detail/entitlement";
 import Requests from "@/components/employees/employee-detail/requests";
 import EntitlementChanges from "@/components/employees/employee-detail/entitlement-changes";
 import { useGetEmployeeDetailQuery } from "@/redux/apis/auth-api";
-import { usePathname, useSearchParams } from "next/navigation";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 
 type EmployeeDetailProps = {
   params: {
@@ -32,21 +26,12 @@ type EmployeeDetailProps = {
 };
 
 const EmployeeDetail: FC<EmployeeDetailProps> = ({ params: { id } }) => {
-  const query = useSearchParams();
-  let as = 12;
-
-  const [isUser, setIsUser] = useState<string | undefined>(undefined);
-
   const [activeTab, setActiveTab] = useState<string>("Overview");
   const [activateFields, setActivateFields] = useState<boolean>(false);
 
   const { data, isLoading } = useGetEmployeeDetailQuery(id, {
     skip: !id,
   });
-
-  console.log("loading", data);
-
-  //   console.log(status, isLoading);
 
   const tabs = [
     "Overview",
@@ -89,26 +74,6 @@ const EmployeeDetail: FC<EmployeeDetailProps> = ({ params: { id } }) => {
         </Button>
       </div>
 
-      {/* <Tabs value={activeTab} onValueChange={onTabChange} className="mt-5">
-        <TabsList className=" w-[546px]">
-          <Carousel>
-            <CarouselContent className="-ml-4">
-              {tabs?.map((tab, idx) => (
-                <CarouselItem key={idx} className="pl-4">
-                  <TabsTrigger value={tab}>{tab}</TabsTrigger>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </TabsList>
-
-        <Overview activateFields={activateFields} />
-        <Additional />
-        <Entitlement />
-        <Requests />
-        <EntitlementChanges />
-      </Tabs> */}
-
       <Tabs value={activeTab} onValueChange={onTabChange} className="mt-5">
         <div className=" w-full max-w-[566px] overflow-x-auto">
           <TabsList className="">
@@ -125,7 +90,7 @@ const EmployeeDetail: FC<EmployeeDetailProps> = ({ params: { id } }) => {
           employeeData={data}
           activateFields={activateFields}
         />
-        <Additional />
+        <Additional employeeData={data} />
         <Entitlement />
         <Requests />
         <EntitlementChanges />
