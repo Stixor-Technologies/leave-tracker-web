@@ -8,12 +8,17 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CirclePlus } from "lucide-react";
 import AddEmployee from "../add-employee-form";
 import { Input } from "@/components/ui/input";
+import { usePathname } from "next/navigation";
 
 const EmployeeList = () => {
   const { data, isLoading } = useEmployeeListQuery();
   const [activeEmployeeId, setActiveEmployeeId] = useState<number>(1);
   const [openEmployeeForm, setOpenEmployeeForm] = useState<boolean>(false);
   console.log(data);
+  const pathname = usePathname();
+  const employeeNumber = parseInt(pathname.split("/")[2]);
+
+  console.log(employeeNumber);
 
   return (
     // flex h-full gap-5
@@ -40,23 +45,26 @@ const EmployeeList = () => {
 
         {/* {Array.from({ length: 25 }).map((_, idx) => ( */}
         {data?.map((employee, idx) => {
+          //   console.log(
+          //     employee?.id === employeeNumber,
+          //     typeof employeeNumber,
+          //     typeof employee?.id,
+          //     employee?.id,
+          //     employeeNumber,
+          //   );
           return (
             <Link
               href={`/employees/${employee?.id}`}
               key={employee?.id}
-              className=" h-auto w-full justify-start bg-transparent px-1 py-3"
-              //   onClick={() => {
-              //     setActiveEmployeeId(employee?.id);
-              //   }}
+              className={`h-auto w-full justify-start px-1 py-3 ${employee?.id === employeeNumber ? "rounded-md bg-primary text-white" : "bg-transparent text-textColor"} `}
             >
-              {/* {employee?.id} */}
               <div className="flex items-center gap-2">
                 <Avatar>
                   <AvatarImage src={"/assets/images/sample-avater.png"} />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
 
-                <span className="text-left text-sm leading-[0.875rem] text-textColor">
+                <span className="text-left text-sm leading-[0.875rem]">
                   {` ${employee?.firstName || ""} ${employee?.lastName || ""} `}
                 </span>
               </div>
