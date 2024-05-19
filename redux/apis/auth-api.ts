@@ -101,7 +101,7 @@ export const authApi = createApi({
         url: "/user/org-all-employees",
         method: "GET",
       }),
-      keepUnusedDataFor: 0.001,
+      // keepUnusedDataFor: 0.001,
       transformResponse: (response) => response.data.users,
       providesTags: ["Employee"], // Provide the employee tag
     }),
@@ -112,7 +112,7 @@ export const authApi = createApi({
         url: `/user/${id}`,
         params: { id },
       }),
-      keepUnusedDataFor: 0.001,
+      // keepUnusedDataFor: 0.001,
       transformResponse: (response) => response.data.user,
     }),
   }),

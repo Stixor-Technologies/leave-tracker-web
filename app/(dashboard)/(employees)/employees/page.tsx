@@ -30,14 +30,8 @@ const Employees: NextPage = () => {
         Employee
       </h5>
 
-      {/* <div className="flex h-full gap-5"> */}
-      {/* <div className="flex-1 self-start rounded-2xl border border-stroke px-[1.375rem] py-3">
-          <EmployeeDetail activeEmployeeId={activeEmployeeId} />
-        </div> */}
       <EmployeeList />
-      {/* <div className="block w-full lg:hidden"><EmployeeList /></div> */}
     </div>
-    // </div>
   );
 };
 
