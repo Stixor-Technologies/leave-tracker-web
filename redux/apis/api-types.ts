@@ -63,6 +63,32 @@ export interface CheckUserVerificationResponse {
   };
 }
 
+export interface SendPasswordSetupLinkRequest {
+  email: string;
+  type: "INVITE" | "RESET";
+  local: boolean;
+}
+
+export interface SendPasswordSetupLinkResponse {
+  data: string;
+  message: string;
+}
+
+export interface SetPasswordRequest {
+  password: string;
+  confirmPassword: string;
+  token: string;
+  type: string;
+}
+
+export interface SetPasswordSuccessResponse {
+  status: number;
+  message: string;
+  data: {
+    user: UserState;
+  };
+}
+
 export interface AddEmployeeResponse {
   message: string;
   data: string;
