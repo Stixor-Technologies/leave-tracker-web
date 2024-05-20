@@ -45,12 +45,13 @@ export const PROTECTED_ROUTES = [
   ROUTES.ABSENCE_TYPES,
 ];
 
+// /* excluding these paths from middleware for now, because cookie is stored on VERIFICATION screen and user gets redirected to home screen during sign-up
 export const AUTH_ROUTES = [
   ROUTES.SIGN_UP,
   ROUTES.SIGN_IN,
-  ROUTES.VERIFICATION,
-  ROUTES.REGISTRATION_TYPE,
-  ROUTES.ORGANIZATION_REGISTRATION,
+  // ROUTES.VERIFICATION,
+  // ROUTES.REGISTRATION_TYPE,
+  // ROUTES.ORGANIZATION_REGISTRATION,
 ];
 
 export const AUTH_BASE_URL = process.env.NEXT_PUBLIC_AUTH_BASE_URL;
