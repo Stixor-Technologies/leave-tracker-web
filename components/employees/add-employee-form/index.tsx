@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 
 import {
   Form,
@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { GENDERS, LOCAL } from "@/utils/constants";
 
 import { toast } from "sonner";
-import { useForm } from "react-hook-form";
+import { useForm, ControllerRenderProps, NonUndefined } from "react-hook-form";
 import { addEmployeeForm } from "@/utils/forms/form-details";
 import DatePicker from "@/components/employees/date-picker";
 import { Button } from "@/components/ui/button";
@@ -113,9 +113,19 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
     }
   };
 
+  const handleDateSelect =
+    (
+      field: ControllerRenderProps<any, any>,
+      setState: Dispatch<SetStateAction<Date | undefined>>,
+    ) =>
+    (date: Date | undefined) => {
+      field.onChange(date);
+      setState(date);
+    };
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="mb-2 grid h-full max-h-[60vh] grid-cols-1 gap-4 overflow-y-auto px-5 py-0 sm:grid-cols-2 md:gap-6 md:px-11">
           <FormField
             control={form.control}
@@ -184,10 +194,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                   <FormControl>
                     <DatePicker
-                      onSelect={(date) => {
-                        field.onChange(date);
-                        setHiringDate(date);
-                      }}
+                      onSelect={handleDateSelect(field, setHiringDate)}
                       placeholder={probationEnd?.placeholder}
                       value={field?.value}
                       disabled={(date: Date) =>
@@ -332,10 +339,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                   <FormControl>
                     <DatePicker
-                      onSelect={(date) => {
-                        field.onChange(date);
-                        setProbationEndDate(date);
-                      }}
+                      onSelect={handleDateSelect(field, setProbationEndDate)}
                       placeholder={probationEnd?.placeholder}
                       value={field?.value}
                       disabled={(date: Date) =>
@@ -435,10 +439,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                 <FormControl>
                   <DatePicker
-                    onSelect={(date) => {
-                      field.onChange(date);
-                      setContractEndDate(date);
-                    }}
+                    onSelect={handleDateSelect(field, setContractEndDate)}
                     placeholder={contractExpiryDate?.placeholder}
                     value={field?.value}
                     disabled={(date: Date) =>
