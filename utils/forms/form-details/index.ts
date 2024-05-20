@@ -83,7 +83,7 @@ export const addEmployeeForm = {
     firstName: {
       type: "string",
       label: "First Name",
-      placeholder: "Enter the fisrt name",
+      placeholder: "Enter the first name",
     },
     lastName: {
       type: "string",
@@ -162,12 +162,12 @@ export const createOrganizationForm = {
   fields: {
     name: {
       type: "string",
-      label: "Organization name",
+      label: "Organization Name",
       placeholder: "Name",
     },
     size: {
       type: "string",
-      label: "Organization size",
+      label: "Organization Size",
       placeholder: "Select",
     },
     country: {

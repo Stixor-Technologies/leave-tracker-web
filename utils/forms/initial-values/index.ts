@@ -48,5 +48,5 @@ export const addEmployeeDefaultValues: AddEmployeeFormDetail = {
   seniorityYears: undefined,
   seniorityMonths: undefined,
   workScheduleId: undefined,
-  contractEnd: undefined,
+  contractExpiryDate: undefined,
 };

@@ -35,5 +35,5 @@ export interface AddEmployeeFormDetail {
   seniorityYears?: string;
   seniorityMonths?: string;
   workScheduleId?: string;
-  contractEnd?: string;
+  contractExpiryDate?: string;
 }

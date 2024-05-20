@@ -73,8 +73,18 @@ export const addEmployeeSchema = Yup.object().shape({
     .required("First name is required")
     .min(2, "First name must be at least 2 characters long")
     .max(30, "First name must be at most 30 characters long")
-    .matches(/^[^\s]+(?:\s[^\s]+)*$/, "First name cannot start/end with space"),
-  lastName: Yup.string().required("Last name is required"),
+    .matches(/^[A-Za-z\s]+$/, "Only characters are allowed")
+    .matches(
+      /^[^\s]+(?:$|.*[^\s]+$)/,
+      "First name cannot start/end with space",
+    ),
+  lastName: Yup.string()
+    .required("Last name is required")
+    .min(2, "Last name must be at least 2 characters long")
+    .max(30, "Last name must be at most 30 characters long")
+    .matches(/^[A-Za-z\s]+$/, "Only characters are allowed")
+    .matches(/^[^\s]+(?:$|.*[^\s]+$)/, "Last name cannot start/end with space"),
+
   email: Yup.string()
     .required("Email is required")
     .email("Invalid email address"),
@@ -119,6 +129,6 @@ export const addEmployeeSchema = Yup.object().shape({
     .matches(/^(0|\d{2})?$/, "Months must be in the format '01', '02'."),
 
   hireDate: Yup.string().optional(),
-  contractEnd: Yup.string().optional(),
+  contractExpiryDate: Yup.string().optional(),
   workScheduleId: Yup.string().optional(),
 });
