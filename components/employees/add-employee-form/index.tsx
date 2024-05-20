@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { GENDERS, LOCAL } from "@/utils/constants";
 
 import { toast } from "sonner";
-import { useForm, ControllerRenderProps, NonUndefined } from "react-hook-form";
+import { useForm, ControllerRenderProps } from "react-hook-form";
 import { addEmployeeForm } from "@/utils/forms/form-details";
 import DatePicker from "@/components/employees/date-picker";
 import { Button } from "@/components/ui/button";
