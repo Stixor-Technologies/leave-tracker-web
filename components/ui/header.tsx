@@ -29,7 +29,7 @@ const Header: FC<HeaderProps> = ({
 
   return (
     <div
-      className={`${generalClasses} ${className} ${layout === "row" ? "pe-10 lg:pe-0" : "flex-col !items-start gap-y-3.5 lg:flex-row lg:items-center"} mb-[1.875rem] justify-center border-b border-stroke !pb-1.5 pt-3 sm:justify-between md:pt-0`}
+      className={`${generalClasses} ${className} ${layout === "row" ? "flex-wrap justify-between pe-10 lg:pe-0" : "flex-col !items-start justify-center gap-y-3.5 sm:justify-between lg:flex-row lg:items-center"} mb-[1.875rem] border-b border-stroke !pb-1.5 pt-3 md:pt-0`}
     >
       <div className={`${generalClasses}`}>
         {navigate && (
@@ -38,7 +38,7 @@ const Header: FC<HeaderProps> = ({
             onClick={() => router.back()}
           />
         )}
-        <h1 className="text-lg font-medium text-textColor md:text-xl 2xl:text-2xl ">
+        <h1 className="text-base font-medium text-textColor md:text-lg lg:text-xl 2xl:text-2xl ">
           {title}
         </h1>
       </div>

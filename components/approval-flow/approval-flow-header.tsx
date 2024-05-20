@@ -13,15 +13,15 @@ const ApprovalFlowHeader = () => {
   const headerOptions = ["Employee", "Dummy", "Approval flows"];
 
   return (
-    <Header title="Approval flows" layout="row" navigate className="pt-0">
+    <Header title="Approval flows" layout="row" navigate className="!pt-0">
       <Select
         onValueChange={(value) => setSelectedOption(value)}
         defaultValue={selectedOption}
       >
-        <SelectTrigger className="flex h-10 w-[8.5rem] items-center border-0 bg-white p-0 pt-0 text-sm font-medium text-textColor focus:ring-transparent md:w-[10.5rem] md:px-3 md:pb-3 lg:px-4">
-          <span className="flex items-center justify-center text-base font-medium text-textColor">
-            {selectedOption}
-          </span>
+        <SelectTrigger className="flex h-10 w-[6.75rem] items-center border-0 bg-white p-0 pt-0 text-xs font-medium text-textColor focus:ring-transparent sm:w-[8rem] sm:text-sm md:w-[10.5rem] md:px-3 md:pb-3 md:text-base lg:px-4">
+          {/* <span className="flex items-center  text-base font-medium text-textColor"> */}
+          {selectedOption}
+          {/* </span> */}
         </SelectTrigger>
 
         <SelectContent>
