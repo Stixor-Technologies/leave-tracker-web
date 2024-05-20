@@ -102,7 +102,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className=" ">
-        <div className="grid h-full max-h-[60vh] grid-cols-1 gap-4 overflow-y-auto px-5 py-0 sm:grid-cols-2 md:gap-6 md:px-11">
+        <div className="mb-2 grid h-full max-h-[60vh] grid-cols-1 gap-4 overflow-y-auto px-5 py-0 sm:grid-cols-2 md:gap-6 md:px-11">
           <FormField
             control={form.control}
             name={"firstName"}
