@@ -68,7 +68,10 @@ const SetPassword = ({ type }: { type: "INVITE" | "RESET" }) => {
   };
 
   return (
-    <AuthenticationPageTemplate className="md:!p-11">
+    <AuthenticationPageTemplate
+      className="md:!p-11"
+      innerContainerClassName="h-[84vh] lg:h-auto"
+    >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
