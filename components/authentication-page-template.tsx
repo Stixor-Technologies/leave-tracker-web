@@ -9,6 +9,7 @@ interface AuthenticationPageTemplateProps {
   children: ReactNode;
   redirectTo?: string;
   className?: string;
+  innerContainerClassName?: string;
   needGeneralStyles?: boolean;
 }
 
@@ -16,6 +17,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
   children,
   redirectTo = "",
   className = "",
+  innerContainerClassName = "",
   needGeneralStyles = true,
 }) => {
   const generalClasses = `z-10 w-full ${needGeneralStyles && "rounded-2xl border bg-white px-7 py-6 md:rounded-[1.5rem] md:px-11 md:pt-9 md:pb-11 "}`;
@@ -32,7 +34,7 @@ const AuthenticationPageTemplate: React.FC<AuthenticationPageTemplateProps> = ({
         className="absolute bottom-0 left-0 !z-0 w-[17.5rem] md:w-auto"
       />
       <div
-        className={`my-6 flex w-full items-center md:flex-1 ${needGeneralStyles && "min-w-[90vw] max-w-[90vw]  sm:min-w-0 sm:max-w-[80vw] lg:max-w-[45rem]"}`}
+        className={`${innerContainerClassName} my-6 flex w-full items-center md:flex-1 ${needGeneralStyles && "min-w-[90vw] max-w-[90vw]  sm:min-w-0 sm:max-w-[80vw] lg:max-w-[45rem]"}`}
       >
         {redirectTo === "" ? (
           <div className={` ${generalClasses} ${className}`}>{children}</div>
