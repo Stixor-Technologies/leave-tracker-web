@@ -2,11 +2,22 @@ import {
   SignUpFormDetails,
   SignInFormDetails,
   OrganizationFormDetail,
+  VerifiedSignUpFormDetails,
+  ForgotPasswordFormDetails,
   AddEmployeeFormDetail,
 } from "../interfaces";
 
 export const signUpFormDetails: SignUpFormDetails = {
   email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+export const forgotPasswordFormDetails: ForgotPasswordFormDetails = {
+  email: "",
+};
+
+export const verifiedSignUpFormDetails: VerifiedSignUpFormDetails = {
   password: "",
   confirmPassword: "",
 };

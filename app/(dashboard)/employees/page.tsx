@@ -1,10 +1,10 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { NextPage } from "next";
-import React, { useState } from "react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import AddEmployee from "@/components/employees/add-employee-form";
 import Header from "@/components/ui/header";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { NextPage } from "next";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { CirclePlus } from "lucide-react";
 
 const Employees: NextPage = () => {
