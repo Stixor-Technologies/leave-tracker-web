@@ -13,7 +13,13 @@ const ApprovalFlowHeader = () => {
   const headerOptions = ["Employee", "Dummy", "Approval flows"];
 
   return (
-    <Header title="Approval flows" layout="row" navigate className="!pt-0">
+    <Header
+      title="Approval flows"
+      layout="row"
+      navigate
+      className="!pt-0"
+      headingClassName="text-sm sm:text-base"
+    >
       <Select
         onValueChange={(value) => setSelectedOption(value)}
         defaultValue={selectedOption}
