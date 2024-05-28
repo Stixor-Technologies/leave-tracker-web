@@ -6,6 +6,8 @@
   :root {
     --primary: 257, 68%, 58%, 1;
 
+    --primary-less-opacity: 257, 68%, 58%, 0.1;
+
     --primary-light: 257, 100%, 79%, 1;
 
     --primary-dark: 228, 97%, 13%, 1;

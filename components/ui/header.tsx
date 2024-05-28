@@ -10,6 +10,7 @@ interface HeaderProps {
   children?: ReactNode;
   className?: string;
   innerClassName?: string;
+  headingClassName?: string;
   layout?: string;
   // isInContainer?: boolean;
 }
@@ -20,6 +21,7 @@ const Header: FC<HeaderProps> = ({
   children,
   className = "",
   innerClassName = "",
+  headingClassName = "",
   layout = "column",
   // isInContainer = false,
 }) => {
@@ -29,16 +31,18 @@ const Header: FC<HeaderProps> = ({
 
   return (
     <div
-      className={`${generalClasses} ${className} ${layout === "row" ? "flex-wrap justify-between pe-10 lg:pe-0" : "flex-col !items-start justify-center gap-y-3.5 sm:justify-between lg:flex-row lg:items-center"} mb-[1.875rem] border-b border-stroke !pb-1.5 pt-3 md:pt-0`}
+      className={`${generalClasses} ${className} ${layout === "row" ? "flex-wrap justify-between pe-10 lg:pe-0" : "flex-col !items-start justify-center gap-y-3.5 sm:justify-between lg:flex-row lg:items-center"} mb-[1.875rem] border-b border-stroke pb-1.5 pt-3 md:pt-0`}
     >
       <div className={`${generalClasses}`}>
         {navigate && (
           <ArrowLeft
-            className="cursor-pointer text-lg text-stroke md:text-xl lg:text-[1.375rem] xl:text-2xl"
+            className="cursor-pointer text-lg text-stroke transition-all duration-300 hover:-translate-x-1 hover:text-primary md:text-xl lg:text-[1.375rem] xl:text-2xl"
             onClick={() => router.back()}
           />
         )}
-        <h1 className="text-base font-medium text-textColor md:text-lg lg:text-xl 2xl:text-2xl ">
+        <h1
+          className={`${headingClassName} text-base font-medium text-textColor md:text-lg lg:text-xl 2xl:text-2xl `}
+        >
           {title}
         </h1>
       </div>

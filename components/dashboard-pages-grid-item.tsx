@@ -15,7 +15,7 @@ const DashboardPagesGridItem: React.FC<DashboardPagesGridItemProps> = ({
   return (
     <Link
       href={href}
-      className="group flex h-full max-h-[10.625rem] min-h-[9.27rem] w-full min-w-[8.6rem] max-w-[13.719rem] flex-col items-center justify-center gap-[1.688rem] rounded-2xl border border-primary text-primary transition-all duration-300 hover:scale-110 hover:border-primaryDark hover:text-primaryDark "
+      className="hover:bg-primaryLessOpacity group flex h-full max-h-[10.625rem] min-h-[9.27rem] w-full min-w-[8.6rem] max-w-[13.719rem] flex-col items-center justify-center gap-[1.688rem] rounded-2xl border border-primary bg-white text-primary transition-all duration-300 hover:border-primaryDark hover:text-primaryDark "
     >
       {icon}
 

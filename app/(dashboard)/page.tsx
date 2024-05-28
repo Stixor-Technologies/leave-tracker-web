@@ -28,6 +28,7 @@ const Dashboard: NextPage = () => {
         title="Dashboard"
         layout="column"
         innerClassName="self-center sm:self-end"
+        className="pb-3"
       >
         <Button variant="primary" className="w-[91vw] sm:w-auto">
           <ExternalLink size={16} className="me-2" />
@@ -42,7 +43,7 @@ const Dashboard: NextPage = () => {
           <DashboardPagesGridItem
             icon={
               index !== 1 ? (
-                <singleRoute.icon className=" h-[3.25rem] w-[3.25rem] md:h-[3.75rem] md:w-[3.75rem]" />
+                <singleRoute.icon className="h-[3.25rem] w-[3.25rem] md:h-[3.75rem] md:w-[3.75rem]" />
               ) : (
                 <svg
                   width="60"
