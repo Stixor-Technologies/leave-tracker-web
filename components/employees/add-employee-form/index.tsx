@@ -87,9 +87,9 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
         formValues?.hireDate &&
         format(formValues?.hireDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
 
-      contractExpiryDate:
-        formValues?.contractExpiryDate &&
-        format(formValues?.contractExpiryDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+      contractEnd:
+        formValues?.contractEnd &&
+        format(formValues?.contractEnd, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
 
       probationEnd:
         formValues?.probationEnd &&
@@ -432,7 +432,7 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
           <FormField
             control={form.control}
-            name={"contractExpiryDate"}
+            name={"contractEnd"}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{contractExpiryDate?.label}</FormLabel>

@@ -31,12 +31,10 @@ const Overview: FC<OverviewProps> = ({
   employeeData,
   loading,
 }) => {
-  const form = useForm({});
+  const form = useForm();
 
   useEffect(() => {
-    form.reset({
-      email: employeeData?.email,
-    });
+    form.reset(employeeData);
   }, [employeeData]);
 
   const {
@@ -84,7 +82,6 @@ const Overview: FC<OverviewProps> = ({
                 control={form.control}
                 name="approvalFlowId"
                 render={({ field }) => {
-                  console.log(field?.value);
                   return (
                     <FormItem>
                       <FormLabel>{approvalFlow?.label}</FormLabel>
@@ -97,11 +94,14 @@ const Overview: FC<OverviewProps> = ({
                           <SelectTrigger
                             applyDisabledStyles={false}
                             disabled
-                            className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                            className={`${field?.value == undefined ? "text-placeholder" : "capitalize text-textColor"}`}
                           >
                             <SelectValue
                               placeholder={approvalFlow?.placeholder}
-                            />
+                            >
+                              {field?.value?.toLowerCase() ??
+                                approvalFlow.placeholder}
+                            </SelectValue>
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -131,9 +131,11 @@ const Overview: FC<OverviewProps> = ({
                         <SelectTrigger
                           applyDisabledStyles={false}
                           disabled
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          className={`${field?.value === undefined ? "text-placeholder" : "capitalize text-textColor"}`}
                         >
-                          <SelectValue placeholder={teams?.placeholder} />
+                          <SelectValue placeholder={teams?.placeholder}>
+                            {field?.value?.toLowerCase() ?? teams.placeholder}
+                          </SelectValue>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -155,7 +157,12 @@ const Overview: FC<OverviewProps> = ({
                     <FormLabel>{position?.label}</FormLabel>
 
                     <FormControl>
-                      <Input type={email.type} readOnly {...field} />
+                      <Input
+                        type={email.type}
+                        placeholder={position?.placeholder}
+                        readOnly
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -177,11 +184,14 @@ const Overview: FC<OverviewProps> = ({
                         <SelectTrigger
                           applyDisabledStyles={false}
                           disabled
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          className={`${field?.value == undefined ? "text-placeholder" : "capitalize text-textColor"}`}
                         >
                           <SelectValue
                             placeholder={holidayCalender?.placeholder}
-                          />
+                          >
+                            {field?.value?.toLowerCase() ??
+                              holidayCalender.placeholder}
+                          </SelectValue>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -210,11 +220,12 @@ const Overview: FC<OverviewProps> = ({
                         <SelectTrigger
                           applyDisabledStyles={false}
                           disabled
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          className={`${field?.value === undefined ? "text-placeholder" : "capitalize text-textColor"}`}
                         >
-                          <SelectValue
-                            placeholder={contractType?.placeholder}
-                          />
+                          <SelectValue placeholder={contractType?.placeholder}>
+                            {field?.value?.toLowerCase() ??
+                              contractType.placeholder}
+                          </SelectValue>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -243,9 +254,11 @@ const Overview: FC<OverviewProps> = ({
                         <SelectTrigger
                           applyDisabledStyles={false}
                           disabled
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          className={`${field?.value == undefined ? "text-placeholder" : "capitalize text-textColor"}`}
                         >
-                          <SelectValue placeholder={role?.placeholder} />
+                          <SelectValue placeholder={role?.placeholder}>
+                            {field?.value?.toLowerCase() ?? role.placeholder}
+                          </SelectValue>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -272,13 +285,14 @@ const Overview: FC<OverviewProps> = ({
                     >
                       <FormControl>
                         <SelectTrigger
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          className={`${field?.value == undefined ? "text-placeholder" : "capitalize text-textColor"}`}
                           disabled
                           applyDisabledStyles={false}
                         >
-                          <SelectValue
-                            placeholder={workSchedule?.placeholder}
-                          />
+                          <SelectValue placeholder={workSchedule?.placeholder}>
+                            {field?.value?.toLowerCase() ??
+                              workSchedule.placeholder}
+                          </SelectValue>
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>

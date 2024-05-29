@@ -330,7 +330,7 @@ export const employeeOverview = {
     position: {
       type: "string",
       label: "Position",
-      placeholder: "Select",
+      placeholder: "Position",
     },
     contractType: {
       type: "string",
