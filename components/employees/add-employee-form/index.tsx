@@ -1,4 +1,4 @@
-import React, { Dispatch, FC } from "react";
+import React, { Dispatch, FC, SetStateAction, useState } from "react";
 
 import {
   Form,
@@ -19,10 +19,10 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { Input } from "@/components/ui/input";
-import { GENDERS } from "@/utils/constants";
+import { GENDERS, LOCAL } from "@/utils/constants";
 
 import { toast } from "sonner";
-import { useForm } from "react-hook-form";
+import { useForm, ControllerRenderProps } from "react-hook-form";
 import { addEmployeeForm } from "@/utils/forms/form-details";
 import DatePicker from "@/components/employees/date-picker";
 import { Button } from "@/components/ui/button";
@@ -30,16 +30,31 @@ import { AddEmployeeFormDetail } from "@/utils/forms/interfaces";
 import { addEmployeeDefaultValues } from "@/utils/forms/initial-values";
 import { addEmployeeSchema } from "@/utils/forms/validations";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useAddEmployeeMutation } from "@/redux/apis/auth-api";
+import {
+  useAddEmployeeMutation,
+  useSendPasswordSetupLinkMutation,
+} from "@/redux/apis/auth-api";
 import { DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@radix-ui/react-label";
+import { format } from "date-fns";
 
 type AddEmployeeProps = {
   setOpenEmployeeForm: Dispatch<React.SetStateAction<boolean>>;
 };
 
 const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
+  const [sendInvite, setSendInvite] = useState<boolean>(false);
   const [addEmployee, { isLoading }] = useAddEmployeeMutation();
+  const [sendPasswordLink, { isLoading: sendPasswordLoading }] =
+    useSendPasswordSetupLinkMutation();
+
+  const [hiringDate, setHiringDate] = useState<Date | undefined>(undefined);
+  const [contractEndDate, setContractEndDate] = useState<Date | undefined>(
+    undefined,
+  );
+  const [probationEndDate, setProbationEndDate] = useState<Date | undefined>(
+    undefined,
+  );
 
   const {
     fields: {
@@ -66,8 +81,31 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
   });
 
   const onSubmit = async (formValues: AddEmployeeFormDetail) => {
+    const formattedFormValues = {
+      ...formValues,
+      hireDate:
+        formValues?.hireDate &&
+        format(formValues?.hireDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+
+      contractExpiryDate:
+        formValues?.contractExpiryDate &&
+        format(formValues?.contractExpiryDate, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+
+      probationEnd:
+        formValues?.probationEnd &&
+        format(formValues?.probationEnd, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+    };
+
     try {
-      await addEmployee(formValues).unwrap();
+      await addEmployee(formattedFormValues).unwrap();
+      if (sendInvite) {
+        await sendPasswordLink({
+          email: formattedFormValues.email,
+          type: "INVITE",
+          local: LOCAL,
+        });
+        toast.success("Invite sent successfully");
+      }
       toast.success("Employee Added");
       setOpenEmployeeForm(false);
     } catch (err: any) {
@@ -75,13 +113,20 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
     }
   };
 
+  const handleDateSelect =
+    (
+      field: ControllerRenderProps<any, any>,
+      setState: Dispatch<SetStateAction<Date | undefined>>,
+    ) =>
+    (date: Date | undefined) => {
+      field.onChange(date);
+      setState(date);
+    };
+
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="h-full max-h-[80vh] overflow-y-auto px-6 pb-0 pt-[2.375rem] md:px-11"
-      >
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="mb-2 grid h-full max-h-[60vh] grid-cols-1 gap-4 overflow-y-auto px-5 py-0 sm:grid-cols-2 md:gap-6 md:px-11">
           <FormField
             control={form.control}
             name={"firstName"}
@@ -149,9 +194,14 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                   <FormControl>
                     <DatePicker
-                      onSelect={field.onChange}
+                      onSelect={handleDateSelect(field, setHiringDate)}
                       placeholder={probationEnd?.placeholder}
                       value={field?.value}
+                      disabled={(date: Date) =>
+                        date < new Date("1900-01-01") ||
+                        (contractEndDate ? date >= contractEndDate : false) ||
+                        (probationEndDate ? date >= probationEndDate : false)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -180,7 +230,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
                   </FormControl>
                   <SelectContent>
                     {/* TODO: Role list will be added later */}
-                    {/* <SelectItem></SelectItem> */}
+                    {/* <SelectItem value=""></SelectItem> */}
+
                     <div>Not Found</div>
                   </SelectContent>
                 </Select>
@@ -288,9 +339,14 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
                   <FormControl>
                     <DatePicker
-                      onSelect={field.onChange}
+                      onSelect={handleDateSelect(field, setProbationEndDate)}
                       placeholder={probationEnd?.placeholder}
                       value={field?.value}
+                      disabled={(date: Date) =>
+                        date < new Date("1900-01-01") ||
+                        (hiringDate ? date <= hiringDate : false) ||
+                        (contractEndDate ? date > contractEndDate : false)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -376,16 +432,21 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
 
           <FormField
             control={form.control}
-            name={"contractEnd"}
+            name={"contractExpiryDate"}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{contractExpiryDate?.label}</FormLabel>
 
                 <FormControl>
                   <DatePicker
-                    onSelect={field.onChange}
+                    onSelect={handleDateSelect(field, setContractEndDate)}
                     placeholder={contractExpiryDate?.placeholder}
                     value={field?.value}
+                    disabled={(date: Date) =>
+                      date < new Date("1900-01-01") ||
+                      (hiringDate ? date <= hiringDate : false) ||
+                      (probationEndDate ? date < probationEndDate : false)
+                    }
                   />
                 </FormControl>
                 <FormMessage />
@@ -423,9 +484,13 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           />
         </div>
 
-        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white py-3 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem]">
+        <DialogFooter className="sticky bottom-0 -mx-1 flex flex-col gap-4 bg-white px-5 py-6 sm:flex-row sm:items-center sm:gap-6 sm:py-[2.375rem] md:px-11">
           <div className="flex items-center gap-2 sm:order-1">
-            <Checkbox id="terms" />
+            <Checkbox
+              id="terms"
+              checked={sendInvite}
+              onCheckedChange={(checked) => setSendInvite(checked as boolean)}
+            />
             <FormLabel
               htmlFor="terms"
               className="text-sm font-medium leading-none text-black peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -435,8 +500,8 @@ const AddEmployee: FC<AddEmployeeProps> = ({ setOpenEmployeeForm }) => {
           </div>
 
           <Button
-            disabled={isLoading}
-            loading={isLoading}
+            disabled={isLoading || sendPasswordLoading}
+            loading={isLoading || sendPasswordLoading}
             className="sm:order-0"
             variant="primary"
             size={"medium"}

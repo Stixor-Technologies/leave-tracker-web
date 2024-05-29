@@ -5,6 +5,13 @@ export interface SignUpFormDetails {
   confirmPassword: string;
 }
 
+export interface VerifiedSignUpFormDetails
+  extends Omit<SignUpFormDetails, "email"> {}
+
+export interface ForgotPasswordFormDetails {
+  email: string;
+}
+
 export interface SignInFormDetails
   extends Omit<SignUpFormDetails, "confirmPassword"> {}
 
@@ -67,4 +74,21 @@ export type AddEmployeeFormDetail = Pick<
 //   seniorityMonths?: string;
 //   workScheduleId?: string;
 //   contractEnd?: string;
+// }
+
+// export interface AddEmployeeFormDetail {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   hireDate?: string;
+//   role?: string;
+//   approvalFlowId?: string;
+//   holidayCalender?: string;
+//   gender?: string;
+//   probationEnd?: string;
+//   directManagerId?: string;
+//   seniorityYears?: string;
+//   seniorityMonths?: string;
+//   workScheduleId?: string;
+//   contractExpiryDate?: string;
 // }
