@@ -76,7 +76,9 @@ const Overview: FC<OverviewProps> = ({
                       <Input
                         // placeholder={firstName.placeholder}
                         type={"string"}
-                        disabled={!activateFields}
+                        // disabled={!activateFields}
+                        // isReadOnly
+                        readOnly={true}
                         {...field}
                       />
                     </FormControl>
@@ -88,9 +90,55 @@ const Overview: FC<OverviewProps> = ({
               <FormField
                 control={form.control}
                 name="approvalFlowId"
+                render={({ field }) => {
+                  console.log(field?.value);
+                  return (
+                    <FormItem>
+                      <FormLabel>{approvalFlow?.label}</FormLabel>
+
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger
+                            className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          >
+                            <SelectValue
+                              placeholder={approvalFlow?.placeholder}
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {/* TODO: ApprovalFlow will be added later */}
+                          {/* <SelectItem></SelectItem> */}
+                          <div>Not Found</div>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name={"teams"}
                 render={({ field }) => (
+                  // <FormItem>
+                  //   <FormLabel required>{teams?.label}</FormLabel>
+
+                  //   <FormControl>
+                  //     <Input
+                  //       placeholder={email?.placeholder}
+                  //       type={email.type}
+                  //       {...field}
+                  //     />
+                  //   </FormControl>
+                  //   <FormMessage />
+                  // </FormItem>
                   <FormItem>
-                    <FormLabel>{approvalFlow?.label}</FormLabel>
+                    <FormLabel>{teams?.label}</FormLabel>
 
                     <Select
                       onValueChange={field.onChange}
@@ -100,7 +148,7 @@ const Overview: FC<OverviewProps> = ({
                         <SelectTrigger
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                         >
-                          <SelectValue />
+                          <SelectValue placeholder={teams?.placeholder} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -116,29 +164,10 @@ const Overview: FC<OverviewProps> = ({
 
               <FormField
                 control={form.control}
-                name={"teams"}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel required>{teams?.label}</FormLabel>
-
-                    <FormControl>
-                      <Input
-                        placeholder={email?.placeholder}
-                        type={email.type}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
                 name={"position"}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel required>{position?.label}</FormLabel>
+                    <FormLabel>{position?.label}</FormLabel>
 
                     <FormControl>
                       <Input type={email.type} {...field} />
@@ -163,7 +192,9 @@ const Overview: FC<OverviewProps> = ({
                         <SelectTrigger
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                         >
-                          <SelectValue />
+                          <SelectValue
+                            placeholder={holidayCalender?.placeholder}
+                          />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>

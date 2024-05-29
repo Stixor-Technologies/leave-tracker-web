@@ -47,57 +47,123 @@ export const organizationSchema = Yup.object().shape({
   timeZone: Yup.string().required("Time Zone is required"),
 });
 
+const firstNameSchema = Yup.string()
+  .required("First name is required")
+  .min(2, "First name must be at least 2 characters long")
+  .max(30, "First name must be at most 30 characters long")
+  .matches(/^[^\s]+(?:\s[^\s]+)*$/, "First name cannot start/end with space");
+const lastNameSchema = Yup.string().required("Last name is required");
+const emailSchema = Yup.string()
+  .required("Email is required")
+  .email("Invalid email address");
+const roleSchema = Yup.string().optional();
+const approvalFlowIdSchema = Yup.string().optional();
+const holidayCalenderSchema = Yup.string().optional();
+const genderSchema = Yup.string().optional();
+const probationEndSchema = Yup.string().optional();
+const directManagerIdSchema = Yup.string().optional();
+const seniorityYearsSchema = Yup.string()
+  .trim()
+  .test("is-smaller", "Years cannot be less than 0", function (value) {
+    const numericValue = parseInt(value?.trim() || "", 10);
+
+    return numericValue < 0 ? false : true;
+  })
+  .test("is-greater", "Years cannot be greater than 35", function (value) {
+    const numericValue = parseInt(value?.trim() || "", 10);
+
+    return numericValue > 35 ? false : true;
+  })
+  .test("is-numeric", "Only numbers allowed", function (value) {
+    return /^\d*$/.test(value?.trim() || "");
+  })
+  .matches(/^(0|\d{2})?$/, "Years must be in the format '01', '02'");
+
+const seniorityMonthsSchema = Yup.string()
+  .trim()
+  .test("is-smaller", "Months cannot be less than 0", function (value) {
+    const numericValue = parseInt(value?.trim() || "", 10);
+    return numericValue < 0 ? false : true;
+  })
+  .test("is-greater", "Months cannot be greater than 12", function (value) {
+    const numericValue = parseInt(value?.trim() || "", 10);
+    return numericValue > 12 ? false : true;
+  })
+  .test("is-numeric", "Only numbers allowed", function (value) {
+    return /^\d*$/.test(value?.trim() || "");
+  })
+  .matches(/^(0|\d{2})?$/, "Months must be in the format '01', '02'.");
+
+const hireDateSchema = Yup.string().optional();
+const contractEndSchema = Yup.string().optional();
+const workScheduleIdSchema = Yup.string().optional();
+
 export const addEmployeeSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .required("First name is required")
-    .min(2, "First name must be at least 2 characters long")
-    .max(30, "First name must be at most 30 characters long")
-    .matches(/^[^\s]+(?:\s[^\s]+)*$/, "First name cannot start/end with space"),
-  lastName: Yup.string().required("Last name is required"),
-  email: Yup.string()
-    .required("Email is required")
-    .email("Invalid email address"),
-  role: Yup.string().optional(),
-  approvalFlowId: Yup.string().optional(),
-  holidayCalender: Yup.string().optional(),
-  gender: Yup.string().optional(),
-  probationEnd: Yup.string().optional(),
-  directManagerId: Yup.string().optional(),
-  seniorityYears: Yup.string()
-    .trim()
-    .test("is-smaller", "Years cannot be less than 0", function (value) {
-      const numericValue = parseInt(value?.trim() || "", 10);
+  firstName: firstNameSchema,
+  lastName: lastNameSchema,
+  email: emailSchema,
+  role: roleSchema,
+  approvalFlowId: approvalFlowIdSchema,
+  holidayCalender: holidayCalenderSchema,
+  gender: genderSchema,
+  probationEnd: probationEndSchema,
+  directManagerId: directManagerIdSchema,
+  seniorityYears: seniorityYearsSchema,
+  seniorityMonths: seniorityMonthsSchema,
+  hireDate: hireDateSchema,
+  contractEnd: contractEndSchema,
+  workScheduleId: workScheduleIdSchema,
 
-      return numericValue < 0 ? false : true;
-    })
-    .test("is-greater", "Years cannot be greater than 35", function (value) {
-      const numericValue = parseInt(value?.trim() || "", 10);
+  // firstName: Yup.string()
+  //   .required("First name is required")
+  //   .min(2, "First name must be at least 2 characters long")
+  //   .max(30, "First name must be at most 30 characters long")
+  //   .matches(/^[^\s]+(?:\s[^\s]+)*$/, "First name cannot start/end with space"),
+  // lastName: Yup.string().required("Last name is required"),
+  // email: Yup.string()
+  //   .required("Email is required")
+  //   .email("Invalid email address"),
+  // role: Yup.string().optional(),
+  // approvalFlowId: Yup.string().optional(),
+  // holidayCalender: Yup.string().optional(),
+  // gender: Yup.string().optional(),
+  // probationEnd: Yup.string().optional(),
+  // directManagerId: Yup.string().optional(),
+  // seniorityYears: Yup.string()
+  //   .trim()
+  //   .test("is-smaller", "Years cannot be less than 0", function (value) {
+  //     const numericValue = parseInt(value?.trim() || "", 10);
 
-      return numericValue > 35 ? false : true;
-    })
-    .test("is-numeric", "Only numbers allowed", function (value) {
-      return /^\d*$/.test(value?.trim() || "");
-    })
-    .matches(/^(0|\d{2})?$/, "Years must be in the format '01', '02'"),
+  //     return numericValue < 0 ? false : true;
+  //   })
+  //   .test("is-greater", "Years cannot be greater than 35", function (value) {
+  //     const numericValue = parseInt(value?.trim() || "", 10);
 
-  seniorityMonths: Yup.string()
-    .trim()
+  //     return numericValue > 35 ? false : true;
+  //   })
+  //   .test("is-numeric", "Only numbers allowed", function (value) {
+  //     return /^\d*$/.test(value?.trim() || "");
+  //   })
+  //   .matches(/^(0|\d{2})?$/, "Years must be in the format '01', '02'"),
 
-    .test("is-smaller", "Months cannot be less than 0", function (value) {
-      const numericValue = parseInt(value?.trim() || "", 10);
-      return numericValue < 0 ? false : true;
-    })
-    .test("is-greater", "Months cannot be greater than 12", function (value) {
-      const numericValue = parseInt(value?.trim() || "", 10);
+  // seniorityMonths: Yup.string()
+  //   .trim()
 
-      return numericValue > 12 ? false : true;
-    })
-    .test("is-numeric", "Only numbers allowed", function (value) {
-      return /^\d*$/.test(value?.trim() || "");
-    })
-    .matches(/^(0|\d{2})?$/, "Months must be in the format '01', '02'."),
+  //   .test("is-smaller", "Months cannot be less than 0", function (value) {
+  //     const numericValue = parseInt(value?.trim() || "", 10);
+  //     return numericValue < 0 ? false : true;
+  //   })
+  //   .test("is-greater", "Months cannot be greater than 12", function (value) {
+  //     const numericValue = parseInt(value?.trim() || "", 10);
 
-  hireDate: Yup.string().optional(),
-  contractEnd: Yup.string().optional(),
-  workScheduleId: Yup.string().optional(),
+  //     return numericValue > 12 ? false : true;
+  //   })
+  //   .test("is-numeric", "Only numbers allowed", function (value) {
+  //     return /^\d*$/.test(value?.trim() || "");
+  //   })
+  //   .matches(/^(0|\d{2})?$/, "Months must be in the format '01', '02'."),
+
+  // hireDate: Yup.string().optional(),
+  // contractEnd: Yup.string().optional(),
+  // workScheduleId: Yup.string().optional(),
 });

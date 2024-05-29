@@ -9,7 +9,7 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, isPassword = false, ...props }, ref) => {
+  ({ className, type, isPassword = false, readOnly, ...props }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -20,12 +20,17 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="relative w-full">
         <input
           type={(isPassword && !showPassword) || !isPassword ? type : "text"}
+          // className={cn(
+          //   "flex h-10 w-full rounded-md border border-stroke bg-background px-3 py-2 text-sm text-textColor outline-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-sm placeholder:text-placeholder focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50",
+          //   className,
+          // )}
           className={cn(
-            "flex h-10 w-full rounded-md border border-stroke bg-background px-3 py-2 text-sm text-textColor outline-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-sm placeholder:text-placeholder focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50",
+            `4 flex h-10 w-full rounded-md border border-stroke bg-background px-3 py-2 text-sm text-textColor outline-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-sm placeholder:text-placeholder  disabled:cursor-not-allowed disabled:opacity-50 ${!readOnly && "focus-visible:outline-primary"}`,
             className,
           )}
           ref={ref}
           {...props}
+          readOnly={readOnly}
         />
         {isPassword && (
           <button

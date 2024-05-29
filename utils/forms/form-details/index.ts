@@ -320,12 +320,18 @@ export const employeeAdditonal = {
     terminationDate: {
       type: "string",
       label: "Termination Date",
-      placeholder: "",
+      placeholder: "16/05/2024",
     },
     employeeNumber: {
       type: "string",
       label: "Employee Number",
-      placeholder: "",
+      placeholder: "Employee number",
+    },
+
+    customNote: {
+      type: "string",
+      label: "Custom note",
+      placeholder: "Custom note",
     },
   },
 };
