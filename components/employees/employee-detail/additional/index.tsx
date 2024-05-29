@@ -51,259 +51,267 @@ const Additional: FC<AdditionalProps> = ({ employeeData }) => {
   } = employeeAdditonal;
 
   React.useEffect(() => {
-    // form.reset({
-    //   gender: employeeData?.gender,
-    // });
+    form.reset(employeeData);
   }, [employeeData]);
 
   const onSubmit = async (formValues: any) => {
     console.log(formValues);
   };
 
+  // TODO: Need to change readOnly, applyDisabledStyles, disabled prop values when we will work Edit employee information story
+
   return (
     <TabsContent value="Additional">
       <p>{employeeData?.email || "asasa"}</p>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
-            <FormField
-              control={form.control}
-              name="gender"
-              render={({ field }) => {
-                console.log(field?.value);
-                return (
-                  <FormItem>
-                    <FormLabel>{gender?.label}</FormLabel>
-
-                    <Select
-                      onValueChange={field.onChange}
-                      // defaultValue={employeeData?.gender}
-                    >
-                      <FormControl>
-                        <SelectTrigger
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
-                        >
-                          <SelectValue placeholder={gender.placeholder} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {GENDERS?.map((gender, index) => (
-                          <SelectItem key={index} value={gender?.value}>
-                            {gender?.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-
-            <FormField
-              control={form.control}
-              name="directdirectManagerId"
-              render={({ field }) => {
-                console.log(field?.value);
-                return (
-                  <FormItem>
-                    <FormLabel>{directManager?.label}</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      // defaultValue={employeeData?.gender}
-                    >
-                      <FormControl>
-                        <SelectTrigger
-                          className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
-                        >
-                          <SelectValue
-                            placeholder={directManager.placeholder}
-                          />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {/* TODO: list will be added later */}
-                        {/* <SelectItem></SelectItem> */}
-                        <div>Not Found</div>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
-            />
-
-            <fieldset className="sm:col-span-2">
-              <legend className="font text-sm leading-[0.875rem] text-primary ">
-                Job Experience
-              </legend>
-              <hr className=" mt-2 h-[1px] bg-stroke" />
-
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-                <FormField
-                  control={form.control}
-                  name={"hireDate"}
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>{hireDate?.label}</FormLabel>
-
-                        <FormControl>
-                          <DatePicker
-                            onSelect={field.onChange}
-                            placeholder={hireDate?.placeholder}
-                            value={field?.value}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-
-                <FormField
-                  control={form.control}
-                  name={"probationEnd"}
-                  render={({ field }) => {
-                    return (
-                      <FormItem>
-                        <FormLabel>{probationEnd?.label}</FormLabel>
-
-                        <FormControl>
-                          <DatePicker
-                            onSelect={field.onChange}
-                            placeholder={probationEnd?.placeholder}
-                            value={field?.value}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                />
-
-                <FormField
-                  control={form.control}
-                  name={"terminationDate"}
-                  render={({ field }) => (
+      {employeeData && (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => {
+                  // console.log(field?.value);
+                  return (
                     <FormItem>
-                      <FormLabel>{terminationDate?.label}</FormLabel>
+                      <FormLabel>{gender?.label}</FormLabel>
 
-                      <FormControl>
-                        <DatePicker
-                          onSelect={field.onChange}
-                          placeholder={terminationDate?.placeholder}
-                          value={employeeData?.updatedAt}
-                        />
-                      </FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field?.value}
+
+                        // defaultValue={employeeData?.gender}
+                      >
+                        <FormControl>
+                          <SelectTrigger
+                            applyDisabledStyles={false}
+                            disabled
+                            className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          >
+                            <SelectValue placeholder={gender.placeholder} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {GENDERS?.map((gender, index) => (
+                            <SelectItem key={index} value={gender?.value}>
+                              {gender?.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
-                  )}
-                />
+                  );
+                }}
+              />
 
-                <div className="space-y-1.5">
-                  <Label>{seniorityYears?.label}</Label>
+              <FormField
+                control={form.control}
+                name="directManagerId"
+                render={({ field }) => {
+                  // console.log(field?.value);
+                  return (
+                    <FormItem>
+                      <FormLabel>{directManager?.label}</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        // defaultValue={employeeData?.gender}
+                      >
+                        <FormControl>
+                          <SelectTrigger
+                            applyDisabledStyles={false}
+                            disabled
+                            className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          >
+                            <SelectValue
+                              placeholder={directManager.placeholder}
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {/* TODO: list will be added later */}
+                          {/* <SelectItem></SelectItem> */}
+                          <div>Not Found</div>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
 
-                  <div className="flex items-start gap-4">
-                    <FormField
-                      control={form.control}
-                      name={"seniorityYears"}
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
+              <fieldset className="sm:col-span-2">
+                <legend className="font text-sm leading-[0.875rem] text-primary ">
+                  Job Experience
+                </legend>
+                <hr className=" mt-2 h-[1px] bg-stroke" />
+
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                  <FormField
+                    control={form.control}
+                    name={"hireDate"}
+                    render={({ field }) => {
+                      return (
+                        <FormItem>
+                          <FormLabel>{hireDate?.label}</FormLabel>
+
                           <FormControl>
-                            <Input
-                              placeholder={seniorityYears.placeholder}
-                              type={seniorityYears.type}
-                              inputMode="numeric"
-                              maxLength={2}
-                              {...field}
-                              value={field?.value ?? ""}
-                              readOnly
+                            <DatePicker
+                              onSelect={field.onChange}
+                              placeholder={hireDate?.placeholder}
+                              value={field?.value}
                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
-                      )}
-                    />
+                      );
+                    }}
+                  />
 
-                    <FormField
-                      control={form.control}
-                      name={"seniorityMonths"}
-                      render={({ field }) => (
-                        <FormItem className="flex-1">
+                  <FormField
+                    control={form.control}
+                    name={"probationEnd"}
+                    render={({ field }) => {
+                      return (
+                        <FormItem>
+                          <FormLabel>{probationEnd?.label}</FormLabel>
+
                           <FormControl>
-                            <Input
-                              placeholder={seniorityMonths.placeholder}
-                              type={seniorityMonths.type}
-                              maxLength={2}
-                              inputMode="numeric"
-                              {...field}
-                              value={field?.value ?? ""}
-                              readOnly
+                            <DatePicker
+                              onSelect={field.onChange}
+                              placeholder={probationEnd?.placeholder}
+                              value={field?.value}
                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
-                      )}
-                    />
+                      );
+                    }}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name={"terminationDate"}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{terminationDate?.label}</FormLabel>
+
+                        <FormControl>
+                          <DatePicker
+                            onSelect={field.onChange}
+                            placeholder={terminationDate?.placeholder}
+                            value={employeeData?.updatedAt}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="space-y-1.5">
+                    <Label>{seniorityYears?.label}</Label>
+
+                    <div className="flex items-start gap-4">
+                      <FormField
+                        control={form.control}
+                        name={"seniorityYears"}
+                        render={({ field }) => (
+                          <FormItem className="flex-1">
+                            <FormControl>
+                              <Input
+                                placeholder={seniorityYears.placeholder}
+                                type={seniorityYears.type}
+                                inputMode="numeric"
+                                maxLength={2}
+                                {...field}
+                                value={field?.value ?? ""}
+                                readOnly
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+
+                      <FormField
+                        control={form.control}
+                        name={"seniorityMonths"}
+                        render={({ field }) => (
+                          <FormItem className="flex-1">
+                            <FormControl>
+                              <Input
+                                placeholder={seniorityMonths.placeholder}
+                                type={seniorityMonths.type}
+                                maxLength={2}
+                                inputMode="numeric"
+                                {...field}
+                                value={field?.value ?? ""}
+                                readOnly
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </fieldset>
+              </fieldset>
 
-            <fieldset className="sm:col-span-2">
-              <legend className="font text-sm leading-[0.875rem] text-primary ">
-                Custom fields
-              </legend>
-              <hr className=" mt-2 h-[1px] bg-stroke" />
+              <fieldset className="sm:col-span-2">
+                <legend className="font text-sm leading-[0.875rem] text-primary ">
+                  Custom fields
+                </legend>
+                <hr className=" mt-2 h-[1px] bg-stroke" />
 
-              <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-                <FormField
-                  control={form.control}
-                  name={"employeeNumber"}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{employeeNumber?.label}</FormLabel>
+                <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+                  <FormField
+                    control={form.control}
+                    name={"employeeNumber"}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{employeeNumber?.label}</FormLabel>
 
-                      <FormControl>
-                        <Input
-                          placeholder={employeeNumber.placeholder}
-                          type={"string"}
-                          {...field}
-                          readOnly
-                        />
-                      </FormControl>
+                        <FormControl>
+                          <Input
+                            placeholder={employeeNumber.placeholder}
+                            type={"string"}
+                            {...field}
+                            readOnly
+                          />
+                        </FormControl>
 
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <FormField
-                  control={form.control}
-                  name={"customNote"}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{customNote?.label}</FormLabel>
+                  <FormField
+                    control={form.control}
+                    name={"customNote"}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{customNote?.label}</FormLabel>
 
-                      <FormControl>
-                        <Input
-                          placeholder={customNote.placeholder}
-                          type={"string"}
-                          {...field}
-                          readOnly
-                        />
-                      </FormControl>
+                        <FormControl>
+                          <Input
+                            placeholder={customNote.placeholder}
+                            type={"string"}
+                            {...field}
+                            readOnly
+                          />
+                        </FormControl>
 
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </fieldset>
-          </div>
-        </form>
-      </Form>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </fieldset>
+            </div>
+          </form>
+        </Form>
+      )}
     </TabsContent>
   );
 };

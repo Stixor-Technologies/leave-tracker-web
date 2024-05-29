@@ -288,7 +288,7 @@ export const employeeOverview = {
     email: commonEmployeeFields?.email,
     approvalFlow: commonEmployeeFields?.approvalFlow,
     holidayCalender: commonEmployeeFields?.holidayCalender,
-    userRole: commonEmployeeFields?.role,
+    role: commonEmployeeFields?.role,
     workSchedule: commonEmployeeFields?.workSchedule,
     teams: {
       type: "string",

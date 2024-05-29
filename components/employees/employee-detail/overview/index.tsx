@@ -31,8 +31,6 @@ const Overview: FC<OverviewProps> = ({
   employeeData,
   loading,
 }) => {
-  // console.log("employeeData", employeeData?.data?.user?.email);
-
   const form = useForm({});
 
   useEffect(() => {
@@ -49,7 +47,7 @@ const Overview: FC<OverviewProps> = ({
       position,
       holidayCalender,
       contractType,
-      userRole,
+      role,
       workSchedule,
     },
   } = employeeOverview;
@@ -57,6 +55,8 @@ const Overview: FC<OverviewProps> = ({
   const onSubmit = async (formValues: any) => {
     console.log(formValues);
   };
+
+  // TODO: Need to change readOnly, applyDisabledStyles, disabled prop values when we will work Edit employee information story
 
   return (
     <>
@@ -73,14 +73,7 @@ const Overview: FC<OverviewProps> = ({
                     <FormLabel>{"Email"}</FormLabel>
 
                     <FormControl>
-                      <Input
-                        // placeholder={firstName.placeholder}
-                        type={"string"}
-                        // disabled={!activateFields}
-                        // isReadOnly
-                        readOnly={true}
-                        {...field}
-                      />
+                      <Input type={"string"} readOnly {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -102,6 +95,8 @@ const Overview: FC<OverviewProps> = ({
                       >
                         <FormControl>
                           <SelectTrigger
+                            applyDisabledStyles={false}
+                            disabled
                             className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                           >
                             <SelectValue
@@ -125,18 +120,6 @@ const Overview: FC<OverviewProps> = ({
                 control={form.control}
                 name={"teams"}
                 render={({ field }) => (
-                  // <FormItem>
-                  //   <FormLabel required>{teams?.label}</FormLabel>
-
-                  //   <FormControl>
-                  //     <Input
-                  //       placeholder={email?.placeholder}
-                  //       type={email.type}
-                  //       {...field}
-                  //     />
-                  //   </FormControl>
-                  //   <FormMessage />
-                  // </FormItem>
                   <FormItem>
                     <FormLabel>{teams?.label}</FormLabel>
 
@@ -146,6 +129,8 @@ const Overview: FC<OverviewProps> = ({
                     >
                       <FormControl>
                         <SelectTrigger
+                          applyDisabledStyles={false}
+                          disabled
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                         >
                           <SelectValue placeholder={teams?.placeholder} />
@@ -170,7 +155,7 @@ const Overview: FC<OverviewProps> = ({
                     <FormLabel>{position?.label}</FormLabel>
 
                     <FormControl>
-                      <Input type={email.type} {...field} />
+                      <Input type={email.type} readOnly {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -190,6 +175,8 @@ const Overview: FC<OverviewProps> = ({
                     >
                       <FormControl>
                         <SelectTrigger
+                          applyDisabledStyles={false}
+                          disabled
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                         >
                           <SelectValue
@@ -221,6 +208,8 @@ const Overview: FC<OverviewProps> = ({
                     >
                       <FormControl>
                         <SelectTrigger
+                          applyDisabledStyles={false}
+                          disabled
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                         >
                           <SelectValue
@@ -241,10 +230,10 @@ const Overview: FC<OverviewProps> = ({
 
               <FormField
                 control={form.control}
-                name="userRole"
+                name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{userRole?.label}</FormLabel>
+                    <FormLabel>{role?.label}</FormLabel>
 
                     <Select
                       onValueChange={field.onChange}
@@ -252,9 +241,11 @@ const Overview: FC<OverviewProps> = ({
                     >
                       <FormControl>
                         <SelectTrigger
+                          applyDisabledStyles={false}
+                          disabled
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
                         >
-                          <SelectValue placeholder={userRole?.placeholder} />
+                          <SelectValue placeholder={role?.placeholder} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -270,7 +261,7 @@ const Overview: FC<OverviewProps> = ({
 
               <FormField
                 control={form.control}
-                name="workSchedule"
+                name="workScheduleId"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{workSchedule?.label}</FormLabel>
@@ -282,6 +273,8 @@ const Overview: FC<OverviewProps> = ({
                       <FormControl>
                         <SelectTrigger
                           className={`${field?.value === undefined ? "text-placeholder" : "text-textColor"}`}
+                          disabled
+                          applyDisabledStyles={false}
                         >
                           <SelectValue
                             placeholder={workSchedule?.placeholder}
